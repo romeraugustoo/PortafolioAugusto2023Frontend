@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/bodyhome.css';
 import profileImage from '../assets/images/profile/profile-augusto.png';
 import reactLogo from '../assets/images/logo/React.jpg';
@@ -14,20 +15,26 @@ import mysql from '../assets/images/logo/mysql.png'
 
 import rapiburger from '../assets/images/portfolio/Rapiburger.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
+import tslc from '../assets/images/portfolio/TransporteSantaLucia.png';
 
 import instagram from '../assets/images/logo/Instagram-Glyph-Color-Logo.wine.png';
 import downloadIcon from '../assets/images/logo/gold-button-009.svg';
 import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 import ScrollReveal from 'scrollreveal';
+import { useTheme } from '../context/ThemeContext';
+
 const ProfileImage = () => {
     return <img src={profileImage} className='profile-image' alt="Profile Augusto" />;
 };
 
 const BodyHome = ({ onSectionChange }) => {
     const currentYear = new Date().getFullYear();
+    const { darkMode } = useTheme();
+
     const projects = [
-        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger' },
-        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio' },
+        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
+        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
+        { id: 3, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
 
     const handleScroll = () => {
@@ -38,26 +45,28 @@ const BodyHome = ({ onSectionChange }) => {
 
         let currentSection = 'home';
 
-        const aboutTop = aboutSection.offsetTop;
-        const aboutBottom = aboutTop + aboutSection.offsetHeight;
+        if (aboutSection && portfolioSection && contactSection) {
+            const aboutTop = aboutSection.offsetTop;
+            const aboutBottom = aboutTop + aboutSection.offsetHeight;
 
-        const portfolioTop = portfolioSection.offsetTop;
-        const portfolioBottom = portfolioTop + portfolioSection.offsetHeight;
+            const portfolioTop = portfolioSection.offsetTop;
+            const portfolioBottom = portfolioTop + portfolioSection.offsetHeight;
 
-        const contactTop = contactSection.offsetTop;
-        const contactBottom = contactTop + contactSection.offsetHeight;
-        const offset = 100;
-        if (scrollPosition >= (aboutTop - 60) && scrollPosition < (aboutBottom - 100)) {
-            currentSection = 'about';
-        } else if (scrollPosition >= (portfolioTop - 100) && scrollPosition < portfolioBottom) {
-            currentSection = 'portfolio';
+            const contactTop = contactSection.offsetTop;
+            const contactBottom = contactTop + contactSection.offsetHeight;
+            const offset = 100;
+            if (scrollPosition >= (aboutTop - 60) && scrollPosition < (aboutBottom - 100)) {
+                currentSection = 'about';
+            } else if (scrollPosition >= (portfolioTop - 100) && scrollPosition < portfolioBottom) {
+                currentSection = 'portfolio';
+            }
+
+
+            if (scrollPosition >= contactTop - offset && scrollPosition < contactBottom) {
+                currentSection = 'contact';
+            }
+            onSectionChange(currentSection);
         }
-
-
-        if (scrollPosition >= contactTop - offset && scrollPosition < contactBottom) {
-            currentSection = 'contact';
-        }
-        onSectionChange(currentSection);
     };
 
 
@@ -90,14 +99,6 @@ const BodyHome = ({ onSectionChange }) => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [onSectionChange]);
-
-
-
-    const [darkMode, setDarkMode] = React.useState(true);
-
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-    };
 
     return (
         <>
@@ -232,6 +233,9 @@ const BodyHome = ({ onSectionChange }) => {
                                                         Git Back
                                                     </a>
                                                 )}
+                                                <Link to={project.solutionRoute} className="project-link-btn">
+                                                    Mi Solución
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -278,15 +282,6 @@ const BodyHome = ({ onSectionChange }) => {
                 </div>
 
             </div>
-            <div className="wsp" >
-                <a href="https://wa.link/cjq5u5" className='btn-wsp' target='_blank' rel="noopener noreferrer">
-                    <i className="fa-brands fa-whatsapp fa-2xl" ></i>
-                </a>
-            </div>
-
-            <button className="btn-theme-toggle" onClick={toggleTheme}>
-                <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} fa-2xl`}></i>
-            </button>
 
             <div className={`copyright pt-5 ${darkMode ? 'dark-mode' : ''}`}>
                 <p className="text-center">
