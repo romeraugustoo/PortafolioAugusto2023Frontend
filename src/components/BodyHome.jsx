@@ -75,8 +75,12 @@ const BodyHome = ({ onSectionChange }) => {
         ScrollReveal().reveal('.skill_item', { delay: 600 });
         ScrollReveal().reveal('.about_skills', { delay: 600 });
 
-        ScrollReveal().reveal('.portfolio', { delay: 600 });
-        ScrollReveal().reveal('.contact-me', { delay: 300 });
+        // Target inner containers instead of the main section to keep background visible
+        ScrollReveal().reveal('.portfolio .description-container', { delay: 600 });
+        ScrollReveal().reveal('.portfolio .container', { delay: 600 });
+
+        ScrollReveal().reveal('.contact-me .contact-me-text', { delay: 300 });
+        ScrollReveal().reveal('.contact-me .contact-me-container', { delay: 300 });
 
     }, []);
     useEffect(() => {
@@ -89,6 +93,12 @@ const BodyHome = ({ onSectionChange }) => {
 
 
 
+    const [darkMode, setDarkMode] = React.useState(true);
+
+    const toggleTheme = () => {
+        setDarkMode(!darkMode);
+    };
+
     return (
         <>
             <div className='home'>
@@ -100,7 +110,7 @@ const BodyHome = ({ onSectionChange }) => {
                     </div>
                 </div>
             </div>
-            <div id="about" className='about'>
+            <div id="about" className={`about ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="about_description">
                     <h2 className='about_title'>Sobre mi</h2>
                     <p className='about_title2'>
@@ -187,7 +197,7 @@ const BodyHome = ({ onSectionChange }) => {
                 </div>
             </div>
             {/* Portafolio Section */}
-            <div id="portfolio" className="portfolio d-flex align-content-center justify-content-center">
+            <div id="portfolio" className={`portfolio d-flex align-content-center justify-content-center ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="description-container  ">
                     <div className="description-port">
                         <h2>Portafolio</h2>
@@ -231,7 +241,7 @@ const BodyHome = ({ onSectionChange }) => {
                     </div>
                 </div>
             </div >
-            <div id="contact" className="contact-me">
+            <div id="contact" className={`contact-me ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="contact-me-text ">
                     <h2>Contacto</h2>
                     <p>Contáctame si quieres que trabajemos juntos.</p>
@@ -274,7 +284,11 @@ const BodyHome = ({ onSectionChange }) => {
                 </a>
             </div>
 
-            <div className="copyright pt-5">
+            <button className="btn-theme-toggle" onClick={toggleTheme}>
+                <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} fa-2xl`}></i>
+            </button>
+
+            <div className={`copyright pt-5 ${darkMode ? 'dark-mode' : ''}`}>
                 <p className="text-center">
                     Copyright © {currentYear}. @augusto.romera. All Rights Reserved.
                 </p>

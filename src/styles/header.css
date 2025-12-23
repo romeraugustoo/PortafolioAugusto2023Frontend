@@ -60,3 +60,44 @@
 .nav-link-scrolled {
     color: #fabc5d !important;
 }
+
+.nav-btn-cv {
+    background-color: transparent;
+    border: 2px solid #fabc5d;
+    color: #fabc5d;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-btn-cv:hover {
+    background-color: #fabc5d;
+    color: black;
+    text-decoration: none;
+}
+
+.nav-btn-cv.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+}
+
+.nav-btn-cv.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (max-width: 991px) {
+    .nav-btn-cv {
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+        width: fit-content;
+    }
+}

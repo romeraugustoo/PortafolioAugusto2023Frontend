@@ -11,6 +11,22 @@ const Header = ({ activeSection, navBarClass }) => {
     const handleLinkClick = () => {
         setExpanded(false);  // Cerrar la barra de navegación después de hacer clic en un enlace
     };
+
+    const [showNavButton, setShowNavButton] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setShowNavButton(false);
+            } else {
+                setShowNavButton(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <Navbar expand="lg" data-bs-theme="dark" className={`navbarmain ${navLinkClass}`} expanded={expanded} onSelect={() => setExpanded(false)}>
             <Container>
@@ -26,7 +42,7 @@ const Header = ({ activeSection, navBarClass }) => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                    <Nav className="ms-auto align-items-center">
                         <Link
                             className={`nav-link ${activeSection === 'home' ? 'nav-link-scrolled' : ''}`}
                             to="home"
@@ -67,6 +83,13 @@ const Header = ({ activeSection, navBarClass }) => {
                         >
                             Contacto
                         </Link>
+                        <a
+                            href="/assets/files/Curriculum Vitae augusto.pdf"
+                            download
+                            className={`nav-btn-cv ${showNavButton ? 'show' : 'hide'}`}
+                        >
+                            Descargar CV
+                        </a>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

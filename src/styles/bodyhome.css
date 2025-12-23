@@ -96,6 +96,14 @@ body {
     width: 100%;
     min-height: 100vh;
     padding: 30px 0 100px;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.about.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .about_description {
@@ -180,6 +188,14 @@ body {
     padding: 30px;
     padding-left: 0%;
     width: 100%;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.portfolio.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .image-portfolio {
@@ -201,6 +217,12 @@ body {
     width: 100%;
     aspect-ratio: 16/9;
     perspective: 1000px;
+}
+
+@media (max-width: 768px) {
+    .flip-card {
+        aspect-ratio: 4/3; /* Taller on mobile to fit content */
+    }
 }
 
 .flip-card-inner {
@@ -250,7 +272,10 @@ body {
     align-items: center;
     padding: 20px;
     border: 1px solid var(--gold);
-    box-shadow: inset 0 0 20px rgba(250, 188, 93, 0.1);
+    box-shadow: 
+        inset 0 0 20px rgba(250, 188, 93, 0.1),
+        0 0 15px rgba(250, 188, 93, 0.5), /* Outer neon glow */
+        0 0 30px rgba(250, 188, 93, 0.3); /* Softer outer glow */
 }
 
 .flip-card-back h3 {
@@ -265,7 +290,9 @@ body {
 
 .project-links-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Change to row for matrix/wrap layout */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
     gap: 10px;
     width: 100%;
     align-items: center;
@@ -275,17 +302,21 @@ body {
     background-color: transparent;
     border: 1px solid var(--gold);
     color: var(--gold);
-    padding: 8px 16px;
+    padding: 6px 12px; /* Reduce padding slightly for better fit */
     text-decoration: none;
-    border-radius: 0; /* More elegant square/sharp look or keep rounded? User said elegant. Let's keep slight round or go sharp. Let's try sharp for 'elegant' or slightly rounded. */
     border-radius: 4px;
     transition: all 0.3s ease;
     font-weight: 500;
-    width: 80%;
-    max-width: 200px;
+    /* width: 80%;  Remove fixed width to allow flex sizing */
+    /* max-width: 200px; */
+    flex: 1 1 40%; /* Allow items to grow/shrink, base 40% width */
+    min-width: 100px; /* Minimum width */
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Slightly smaller font */
     letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .project-link-btn:hover {
@@ -307,6 +338,14 @@ body {
 /* Estilos de la sección "Contacto" */
 .contact-me {
     padding: 190px 0 100px;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.contact-me.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .contact-me-container {
@@ -347,6 +386,30 @@ body {
     text-decoration: none;
     color: #0df053;
     background-color: #fff;
+}
+
+.btn-theme-toggle {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 95px; /* Stacked above WhatsApp button */
+    right: 30px;
+    background: var(--gold);
+    color: black;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    z-index: 100;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: white;
+    color: var(--gold);
 }
 
 
@@ -431,4 +494,16 @@ body {
     .about_skills {
         padding-left: 50px;
     }
+}
+
+.copyright {
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    padding-bottom: 20px;
+}
+
+.copyright.dark-mode {
+    background-color: black !important;
+    color: white !important;
 }
