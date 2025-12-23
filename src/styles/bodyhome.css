@@ -519,3 +519,43 @@ body {
     background-color: black !important;
     color: white !important;
 }
+
+/* Accordion Light Mode Overrides */
+.accordion-button:not(.collapsed) {
+    background-color: #e9ecef; /* Light gray instead of default blue */
+    color: black;
+    box-shadow: none; /* Remove default blue shadow */
+}
+
+.accordion-button:focus {
+    box-shadow: none; /* Remove focus ring */
+    border-color: rgba(0,0,0,.125);
+}
+
+/* Accordion Dark Mode Overrides */
+.solution-page.dark-mode .accordion-item {
+    background-color: black;
+    border-color: #444;
+}
+
+.solution-page.dark-mode .accordion-button {
+    background-color: #1a1a1a; /* Dark gray for header */
+    color: white;
+}
+
+.solution-page.dark-mode .accordion-button:not(.collapsed) {
+    background-color: #333; /* Slightly lighter for active state */
+    color: var(--gold); /* Highlight active text */
+    box-shadow: none; /* Remove default blue shadow */
+}
+
+/* Fix the arrow icon color */
+.solution-page.dark-mode .accordion-button::after {
+    filter: invert(1);
+}
+
+.solution-page.dark-mode .accordion-body {
+    background-color: black;
+    color: white;
+    border-top: 1px solid #444;
+}
