@@ -29,52 +29,7 @@ const BodyHome = ({ onSectionChange }) => {
         { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger' },
         { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio' },
     ];
-    const handleHover = (projectId) => {
-        const projectText = document.getElementById(`projectText-${projectId}`);
-        const linksContainer = document.createElement('div');
 
-        const websiteLink = document.createElement('a');
-        websiteLink.href = projects.find(project => project.id === projectId).website;
-        websiteLink.textContent = projects.find(project => project.id === projectId).text;
-        websiteLink.classList.add('project-link');
-        websiteLink.target = '_blank';
-        if (projects.find(project => project.id === projectId).name != "Portfolio") {
-            linksContainer.appendChild(websiteLink);
-            linksContainer.appendChild(document.createTextNode(' | '));
-        }
-
-        const githubLink = document.createElement('a');
-        const github1 = projects.find(project => project.id === projectId).github;
-        const github2 = projects.find(project => project.id === projectId).github2;
-
-        // Enlace iterativo 1
-        githubLink.href = github1;
-        if (github2) { githubLink.textContent = 'Git front'; } else githubLink.textContent = 'Github';
-        githubLink.classList.add('project-link');
-        linksContainer.appendChild(githubLink);
-        githubLink.target = '_blank';
-
-        if (github2) {
-            linksContainer.appendChild(document.createTextNode(' | '));
-            const githubLink2 = document.createElement('a');
-            githubLink2.href = github2;
-            githubLink2.textContent = 'Git back';
-            githubLink2.classList.add('project-link');
-            linksContainer.appendChild(githubLink2);
-            githubLink2.target = '_blank';
-        }
-
-        projectText.innerHTML = '';
-        projectText.appendChild(linksContainer);
-        projectText.classList.add('mt-2-show');
-        projectText.style.transition = 'opacity 0.7s';
-    };
-    const handleMouseLeave = (projectId) => {
-        const projectText = document.getElementById(`projectText-${projectId}`);
-        projectText.style.transition = '';
-        projectText.innerHTML = '';
-        projectText.classList.remove('mt-2-show');
-    };
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
         const aboutSection = document.getElementById('about');
@@ -245,18 +200,34 @@ const BodyHome = ({ onSectionChange }) => {
                 <div className="container">
                     <div className="row justify-content-center">
                         {projects.map((project) => (
-                            <div
-                                key={project.id}
-                                className="col-12 col-sm-6 col-md-4  p-4 d-flex align-items-center flex-column mt-2-container h-100"
-                                onMouseEnter={() => handleHover(project.id, project.name)}
-                                onMouseLeave={() => handleMouseLeave(project.id)}
-                                style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}
-                            >
-                                <img src={project.image} className="image-portfolio" alt={project.name} />
-                                <span id={`projectText-${project.id}`} className="mt-2"></span>
+                            <div key={project.id} className="col-12 col-sm-6 col-md-4 p-4">
+                                <div className="flip-card">
+                                    <div className="flip-card-inner">
+                                        <div className="flip-card-front">
+                                            <img src={project.image} className="image-portfolio" alt={project.name} />
+                                        </div>
+                                        <div className="flip-card-back">
+                                            <h3>{project.name}</h3>
+                                            <div className="project-links-container">
+                                                {project.website && (
+                                                    <a href={project.website} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                        {project.text}
+                                                    </a>
+                                                )}
+                                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                    {project.github2 ? 'Git Front' : 'Github'}
+                                                </a>
+                                                {project.github2 && (
+                                                    <a href={project.github2} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                        Git Back
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </div >
@@ -299,7 +270,7 @@ const BodyHome = ({ onSectionChange }) => {
             </div>
             <div className="wsp" >
                 <a href="https://wa.link/cjq5u5" className='btn-wsp' target='_blank' rel="noopener noreferrer">
-                <i className="fa-brands fa-whatsapp fa-2xl" ></i>
+                    <i className="fa-brands fa-whatsapp fa-2xl" ></i>
                 </a>
             </div>
 

@@ -184,48 +184,119 @@ body {
 
 .image-portfolio {
     border-radius: 8px;
-    width: 25vw;
-}
-
-.mt-2-container {
-    position: relative;
-    height: 240px;
-}
-
-.mt-2 {
-    position: relative;
-    left: 50%;
-    bottom: 0%;
-    transform: translateX(-50%);
-    background-color: rgb(0, 0, 0);
-    color: #fff;
     width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-portfolio:hover {
+    transform: scale(1.02);
+}
+
+/* Flip Card Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 16/9;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
     width: 100%;
-    padding: 10px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    opacity: 0;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.mt-2-show {
-    opacity: 1;
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
 }
 
-.project-link {
-    color: #ffffff;
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-back {
+    /* Luxury dark gradient background */
+    background: linear-gradient(135deg, #2c2c2c 0%, #000000 100%);
+    color: var(--gold);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--gold);
+    box-shadow: inset 0 0 20px rgba(250, 188, 93, 0.1);
+}
+
+.flip-card-back h3 {
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 5px;
+}
+
+.project-links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.project-link-btn {
+    background-color: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 16px;
     text-decoration: none;
-    transition: color 0.3s;
-    margin: 0 5px;
+    border-radius: 0; /* More elegant square/sharp look or keep rounded? User said elegant. Let's keep slight round or go sharp. Let's try sharp for 'elegant' or slightly rounded. */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    width: 80%;
+    max-width: 200px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 }
 
-.project-link:hover {
-    color: #fabc5d;
+.project-link-btn:hover {
+    background-color: var(--gold);
+    color: black;
+    text-decoration: none;
+    box-shadow: 0 0 10px var(--gold);
 }
 
 .description-container {
     padding-bottom: 70px;
-
     width: 100%;
 }
 
@@ -280,16 +351,6 @@ body {
 
 
 /* Media queries */
-@media (min-width: 991px) {
-    .image-portfolio {
-        width: 250px;
-    }
-
-    .mt-2 {
-        width: 250px;
-        position: absolute;
-    }
-}
 @media (max-width: 991px) {
     .hometext {
         display: flex;
@@ -332,32 +393,7 @@ body {
     }
 }
 
-@media (min-width: 721px) and (max-width: 991px) {
-    .image-portfolio {
-        width: 230px;
-    }
-
-    .mt-2 {
-        width: 230px;
-        position: absolute;
-    }
-}
-
 @media (min-width: 575px) and (max-width: 721px) {
-    .image-portfolio {
-        width: 250px;
-    }
-
-    .mt-2 {
-        position: absolute;
-        background-color: rgb(0, 0, 0);
-        color: #fff;
-        justify-content: center;
-        width: 250px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
     .about {
         flex-direction: column;
     }
@@ -376,20 +412,8 @@ body {
         padding: 1rem;
     }
 
-    .image-portfolio {
-        width: 70vw;
-    }
-
-    .mt-2 {
-        position: absolute;
-        background-color: rgb(0, 0, 0);
-        color: #fff;
-        justify-content: center;
-        width: 70vw;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
+    /* Removed fixed width overrides for portfolio images */
+    
     .about {
         flex-direction: column;
     }
