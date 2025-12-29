@@ -1,5 +1,5 @@
 :root {
-  --avatar-accent-color: #fabc5d;
+  --avatar-accent-color: var(--primary-color);
   --avatar-bg-color: #0f172a;
   --avatar-card-bg: #1e293b;
 }
@@ -127,7 +127,7 @@
   height: 3%;
   border-radius: 10px;
   position: absolute;
-  background: #462B26;
+  background: var(--primary-color);
   top: 13.5%;
 }
 
@@ -143,7 +143,7 @@
 }
 
 .frame-rim-joiner {
-  background: #462B26;
+  background: var(--primary-color);
   width: 20%;
   height: 19%;
   position: absolute;
@@ -157,7 +157,7 @@
 .frame-rim-right { right: 26.3%; }
 
 .lens-frame {
-  background-color: #462B26;
+  background-color: var(--primary-color);
   border-radius: 50% 50% 38% 38% / 27% 27% 58% 55%;
   width: 41%;
   height: 90%;
@@ -168,7 +168,7 @@
   width: 20%;
   height: 16%;
   position: absolute;
-  background: linear-gradient(90deg, rgba(182,142,133,1) 0%, rgba(70,43,38,1) 65%);
+  background: var(--primary-color);
   top: 15%;
   left: 40%;
 }
@@ -369,7 +369,7 @@
   transform: rotate(15deg) skewX(-10deg);
   border-radius: 5px;
   border: 3px solid #000;
-  border-bottom: 4px solid #C5A059; /* Gold trim */
+  border-bottom: 4px solid var(--primary-color); /* Gold trim */
   z-index: 2;
 }
 
@@ -383,14 +383,14 @@
   transform: rotate(-15deg) skewX(10deg);
   border-radius: 5px;
   border: 3px solid #000;
-  border-bottom: 4px solid #C5A059; /* Gold trim */
+  border-bottom: 4px solid var(--primary-color); /* Gold trim */
   z-index: 2;
 }
 
 .logo {
   width: 40px;
   height: 40px;
-  background: #C5A059; /* Gold color */
+  background: var(--primary-color); /* Gold color */
   position: absolute;
   top: 30%;
   left: 20%;
@@ -411,7 +411,7 @@
 }
 
 .buttons {
-  background-color: #333;
+  background-color: var(--primary-color);
   border-radius: 50%;
   position: relative;
   width: 20px;

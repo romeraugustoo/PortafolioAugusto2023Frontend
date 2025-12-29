@@ -18,7 +18,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 1. Título + Subtítulo */}
                 <section className="mb-5 text-center">
-                    <h1 className="display-4 text-warning mb-3">Santa Lucía Connect (SLC)</h1>
+                    <h1 className="display-4 theme-text-primary mb-3">Santa Lucía Connect (SLC)</h1>
                     <h3 className={`h5 mb-4 ${darkMode ? 'text-light' : 'text-secondary'}`}>
                         Transformación digital de la gestión operativa y la comunicación para Transporte Santa Lucía SRL.
                     </h3>
@@ -30,11 +30,11 @@ const TransporteSantaLucia = () => {
                     </div>
                 </section>
 
-                <hr className="border-warning" />
+                <hr className="theme-border-primary" />
 
                 {/* 2. Resumen corto del problema (Lead) */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">El Problema</h2>
+                    <h2 className="theme-text-primary mb-4">El Problema</h2>
                     <p className="lead">
                         Elegimos este caso para automatización en la cátedra de Diseño de Sistemas de Información de la carrera Ingeniería en Sistemas de Información (UTN-FRT). Este proyecto, denominado "Santa Lucía Connect" (SLC), fue realizado como Trabajo Final Integrador por el grupo conformado por Emilse Romano, Luis Romano y Augusto Romera.
                     </p>
@@ -42,7 +42,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 3. Contexto de la organización */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Contexto de la Organización</h2>
+                    <h2 className="theme-text-primary mb-4">Contexto de la Organización</h2>
                     <p>
                         Transporte Santa Lucía es una empresa familiar que conecta Monteros y localidades vecinas con una flota reducida. Su misión y visión apuntan a combinar tradición con soluciones tecnológicas que mejoren la calidad de servicio. El proyecto SLC nace como la primera fase de digitalización con alcance operacional concreto.
                     </p>
@@ -50,7 +50,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 4. Limitaciones y alcance */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Limitaciones y Alcance</h2>
+                    <h2 className="theme-text-primary mb-4">Limitaciones y Alcance</h2>
                     <p>Decidimos acotar la primera iteración a:</p>
                     <ul>
                         <li>Centralizar gestión de rutas, paradas, horarios y tarifas.</li>
@@ -62,7 +62,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 5. Opiniones / citas de usuarios */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Lo que dicen los usuarios</h2>
+                    <h2 className="theme-text-primary mb-4">Lo que dicen los usuarios</h2>
                     <Card bg={darkMode ? "black" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} mb-3`}>
                         <Card.Body>
                             <blockquote className="blockquote mb-0">
@@ -83,7 +83,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 6. Análisis del sistema */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Análisis del Sistema</h2>
+                    <h2 className="theme-text-primary mb-4">Análisis del Sistema</h2>
                     <p>Explico brevemente lo que modelé y por qué:</p>
                     <ul>
                         <li>Identifiqué las entidades clave del dominio: Ruta, Parada, Horario, Tarifa, Usuario.</li>
@@ -92,7 +92,7 @@ const TransporteSantaLucia = () => {
                     </ul>
                     {/* Domain Model Image */}
                     <div className="text-center mb-3">
-                        <div className={`d-inline-block p-3 border border-3 border-warning rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
+                        <div className={`d-inline-block p-3 border border-3 theme-border-primary rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
                             <img
                                 src={darkMode ? domainModelDark : databaseDiagram}
                                 alt="Diagrama de Base de Datos"
@@ -105,7 +105,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 7. Arquitectura */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Arquitectura</h2>
+                    <h2 className="theme-text-primary mb-4">Arquitectura</h2>
                     <p>Arquitectura simplificada que implementé:</p>
                     <ul>
                         <li><strong>Frontend (React SPA):</strong> Portal público y panel admin.</li>
@@ -117,7 +117,7 @@ const TransporteSantaLucia = () => {
                         <Col md={6}>
                             {/* Deployment Diagram */}
                             <div className="text-center mb-3">
-                                <div className={`d-inline-block p-2 border border-3 border-warning rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
+                                <div className={`d-inline-block p-2 border border-3 theme-border-primary rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
                                     <img
                                         src={darkMode ? deploymentDark : deploymentLight}
                                         alt="Diagrama de despliegue"
@@ -130,7 +130,7 @@ const TransporteSantaLucia = () => {
                         <Col md={6}>
                             {/* Packages Diagram */}
                             <div className="text-center mb-3">
-                                <div className={`d-inline-block p-2 border border-3 border-warning rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
+                                <div className={`d-inline-block p-2 border border-3 theme-border-primary rounded ${darkMode ? 'bg-dark' : 'bg-white'}`}>
                                     <img
                                         src={darkMode ? packagesDark : packagesLight}
                                         alt="Diagrama de paquetes"
@@ -145,7 +145,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 8. Funcionalidades principales (Casos de Uso) */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Funcionalidades Principales</h2>
+                    <h2 className="theme-text-primary mb-4">Funcionalidades Principales</h2>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">
                             <Accordion.Header>CU-01: Registrarse como usuario</Accordion.Header>
@@ -182,17 +182,17 @@ const TransporteSantaLucia = () => {
 
                 {/* 9. Resolución */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Resolución (Impacto)</h2>
-                    <ul>
-                        <li>Centralicé la fuente de información: un único origen de verdad para horarios y tarifas.</li>
-                        <li>Reduje la posibilidad de conflictos por información desactualizada (ya no depende de estados de WhatsApp).</li>
-                        <li>Generé capacidades que permiten, en siguientes iteraciones, añadir GPS, pagos y estadísticas.</li>
-                    </ul>
+                    <h2 className="theme-text-primary mb-4">Resolución (Impacto)</h2>
+                    <p>
+                        Centralicé la fuente de información: un único origen de verdad para horarios y tarifas.
+                        Reduje la posibilidad de conflictos por información desactualizada (ya no depende de estados de WhatsApp).
+                        Generé capacidades que permiten, en siguientes iteraciones, añadir GPS, pagos y estadísticas.
+                    </p>
                 </section>
 
                 {/* 10. Tecnologías */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Tecnologías Usadas</h2>
+                    <h2 className="theme-text-primary mb-4">Tecnologías Usadas</h2>
                     <ul>
                         <li><strong>Frontend:</strong> React (SPA) — elección por rendimiento y experiencia móvil.</li>
                         <li><strong>Backend:</strong> Node.js / Express — API REST para separar lógica de negocio.</li>
@@ -203,7 +203,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 11. Metodología */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Metodología y Trabajo en Equipo</h2>
+                    <h2 className="theme-text-primary mb-4">Metodología y Trabajo en Equipo</h2>
                     <p>
                         Trabajamos en equipo bajo una dinámica iterativa (Scrum-like): sprints cortos, roles claros y técnicas de elicitation (entrevistas en embudo con stakeholders) para priorizar requisitos reales. Todo requerimiento fue validado con usuarios antes de implementarlo.
                     </p>
@@ -211,7 +211,7 @@ const TransporteSantaLucia = () => {
 
                 {/* 12. Qué sigue */}
                 <section className="mb-5">
-                    <h2 className="text-warning mb-4">Visión a Futuro</h2>
+                    <h2 className="theme-text-primary mb-4">Visión a Futuro</h2>
                     <ul>
                         <li>Integrar seguimiento en vivo (GPS) para mejorar trazabilidad.</li>
                         <li>Agregar métodos de pago y abonos estudiantiles.</li>
@@ -221,8 +221,8 @@ const TransporteSantaLucia = () => {
 
                 {/* 13. Referencias / Descarga */}
                 <section className="mb-5 text-center">
-                    <h2 className="text-warning mb-4">Referencias</h2>
-                    <Button variant="outline-warning" size="lg" href="#" className="mb-4">
+                    <h2 className="theme-text-primary mb-4">Referencias</h2>
+                    <Button variant="outline-primary" size="lg" href="#" className="mb-4 theme-btn-outline">
                         <i className="fas fa-file-pdf me-2"></i> Descargar TFI (PDF)
                     </Button>
 

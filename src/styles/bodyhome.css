@@ -2,9 +2,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Kanit:wght@500&family=Open+Sans:ital,wght@0,400;1,300&family=Poppins&family=Raleway:wght@700&family=Roboto:wght@400;500;700&display=swap");
 
 :root {
-    --gold: #fabc5d;
-    --white: #ffffff;
-    --gray: #414141;
+    /* Color Palette */
+    --primary-color: #fabc5d;
+    --secondary-color: #0df053; /* WhatsApp */
+    
+    /* Backgrounds */
+    --bg-light: #ffffff;
+    --bg-dark: #000000;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    --bg-card-light: #ffffff;
+    --bg-card-dark: #000000;
+    --bg-accordion-light: #e9ecef;
+    --bg-accordion-dark: #1a1a1a;
+    
+    /* Text */
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --text-muted: #414141;
+    
+    /* Legacy variables mapping (for gradual refactor if needed, but we will try to replace all) */
+    --gold: var(--primary-color);
+    --white: var(--bg-light);
+    --gray: var(--text-muted);
 }
 
 * {
@@ -14,8 +33,8 @@
 }
 
 body {
-    background-color: var(--white);
-    color: black;
+    background-color: var(--bg-light);
+    color: var(--text-light);
     font-family: "Roboto", sans-serif;
 }
 
@@ -40,7 +59,7 @@ body {
     z-index: 0;
     background-size: cover;
     background-attachment: fixed;
-    background-color: rgb(0, 0, 0, 0.7) !important;
+    background-color: var(--bg-overlay) !important;
 }
 
 .hometext {
@@ -68,7 +87,7 @@ body {
 
 .home_text2 {
     font-family: "Roboto", sans-serif;
-    color: var(--gold);
+    color: var(--primary-color);
     font-weight: 700;
     font-size: 4.2em;
 }
@@ -78,7 +97,7 @@ body {
     font-family: monospace;
     white-space: nowrap;
     border-right: 4px solid;
-    color: #ffffff;
+    color: var(--text-dark);
     width: 19.5ch;
     font-size: 2.5em;
     animation:
@@ -107,14 +126,14 @@ body {
     width: 100%;
     min-height: 100vh;
     padding: 30px 0 100px;
-    background-color: white; /* Default Light Mode */
-    color: black; /* Default Light Mode */
+    background-color: var(--bg-light); /* Default Light Mode */
+    color: var(--text-light); /* Default Light Mode */
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .about.dark-mode {
-    background-color: black;
-    color: white;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
 .about_description {
@@ -124,7 +143,27 @@ body {
 }
 
 .about_skills {
-    padding-top: 40px;
+    padding: 30px;
+    margin-top: 40px;
+    margin-right: 20px; /* Space for shadow */
+    margin-bottom: 20px; /* Space for shadow */
+    border: 3px solid var(--primary-color);
+    box-shadow: 10px 10px 0px var(--primary-color); /* Hard shadow */
+    border-radius: 20px;
+    background-color: var(--bg-light); /* Solid background to look like an object */
+    transition: all 0.3s ease;
+    width: fit-content;
+    position: relative;
+    z-index: 1;
+}
+
+.about.dark-mode .about_skills {
+    background-color: var(--bg-dark); /* Dark background in dark mode */
+}
+
+.about_skills:hover {
+    transform: translate(5px, 5px);
+    box-shadow: 5px 5px 0px var(--primary-color);
 }
 
 .about_title {
@@ -159,35 +198,69 @@ body {
 }
 
 .download-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    margin-top: 20px;
+    height: 50px;
     width: 200px;
-    background-size: cover;
+    background: var(--primary-color);
     position: relative;
     text-decoration: none;
-    color: var(--white);
-    transition:
-        transform 0.3s ease,
-        filter 0.3s ease;
+    border-radius: 50px;
+    box-shadow: 
+        0 4px 6px rgba(0,0,0,0.3),
+        inset 0 2px 5px rgba(255,255,255,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
 }
+
+/* Glossy shine effect */
+.download-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
+    border-radius: 50px 50px 0 0;
+    pointer-events: none;
+}
+
 .download-button:hover {
-    transform: scale(1.1);
-    filter: brightness(1.2);
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 
+        0 6px 8px rgba(0,0,0,0.4),
+        inset 0 2px 5px rgba(255,255,255,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.2);
+}
+
+.download-button:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.3),
+        inset 0 2px 5px rgba(255,255,255,0.5),
+        inset 0 -2px 5px rgba(0,0,0,0.2);
 }
 
 .download-text {
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 700;
+    font-size: 0.9em; /* Smaller font */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Increased spacing for better readability */
     text-align: center;
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1em;
+    width: 100%;
+    line-height: 1.2; /* Better vertical alignment if wrapping */
+    display: flex; /* Ensure centering within the span if needed */
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilos de la sección "Portafolio" */
@@ -199,14 +272,14 @@ body {
     padding: 30px;
     padding-left: 0%;
     width: 100%;
-    background-color: white; /* Default Light Mode */
-    color: black; /* Default Light Mode */
+    background-color: var(--bg-light); /* Default Light Mode */
+    color: var(--text-light); /* Default Light Mode */
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .portfolio.dark-mode {
-    background-color: black;
-    color: white;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
 .image-portfolio {
@@ -263,7 +336,7 @@ body {
 
 .flip-card-front {
     background-color: #bbb;
-    color: black;
+    color: var(--text-light);
 }
 
 .flip-card-front img {
@@ -275,27 +348,27 @@ body {
 .flip-card-back {
     /* Luxury dark gradient background */
     background: linear-gradient(135deg, #2c2c2c 0%, #000000 100%);
-    color: var(--gold);
+    color: var(--primary-color);
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--primary-color);
     box-shadow: 
         inset 0 0 20px rgba(250, 188, 93, 0.1),
-        0 0 15px rgba(250, 188, 93, 0.5), /* Outer neon glow */
+        0 0 15px var(--primary-color), /* Outer neon glow */
         0 0 30px rgba(250, 188, 93, 0.3); /* Softer outer glow */
 }
 
 .flip-card-back h3 {
-    color: var(--gold);
+    color: var(--primary-color);
     margin-bottom: 20px;
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-bottom: 1px solid var(--gold);
+    border-bottom: 1px solid var(--primary-color);
     padding-bottom: 5px;
 }
 
@@ -311,8 +384,8 @@ body {
 
 .project-link-btn {
     background-color: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     padding: 6px 12px; /* Reduce padding slightly for better fit */
     text-decoration: none;
     border-radius: 4px;
@@ -331,10 +404,10 @@ body {
 }
 
 .project-link-btn:hover {
-    background-color: var(--gold);
-    color: black;
+    background-color: var(--primary-color);
+    color: var(--text-light);
     text-decoration: none;
-    box-shadow: 0 0 10px var(--gold);
+    box-shadow: 0 0 10px var(--primary-color);
 }
 
 .description-container {
@@ -349,14 +422,14 @@ body {
 /* Estilos de la sección "Contacto" */
 .contact-me {
     padding: 190px 0 100px;
-    background-color: white; /* Default Light Mode */
-    color: black; /* Default Light Mode */
+    background-color: var(--bg-light); /* Default Light Mode */
+    color: var(--text-light); /* Default Light Mode */
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .contact-me.dark-mode {
-    background-color: black;
-    color: white;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
 .contact-me-container {
@@ -364,7 +437,7 @@ body {
 }
 
 .iconlink:hover {
-    color: var(--gray) !important;
+    color: var(--text-muted) !important;
 }
 
 .contact-icon {
@@ -386,8 +459,8 @@ body {
     line-height: 55px;
     bottom: 30px;
     right: 30px;
-    background: #0df053;
-    color: rgb(255, 255, 255);
+    background: #25D366; /* Fixed WhatsApp Green */
+    color: #ffffff;
     border-radius: 50px;
     text-align: center;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3)  !important;
@@ -395,8 +468,8 @@ body {
 }
 .btn-wsp:hover {
     text-decoration: none;
-    color: #0df053;
-    background-color: #fff;
+    color: #25D366;
+    background-color: #ffffff;
 }
 
 .btn-theme-toggle {
@@ -406,8 +479,8 @@ body {
     line-height: 55px;
     bottom: 95px; /* Stacked above WhatsApp button */
     right: 30px;
-    background: var(--gold);
-    color: black;
+    background: var(--primary-color);
+    color: var(--text-light);
     border-radius: 50px;
     text-align: center;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
@@ -419,8 +492,122 @@ body {
 
 .btn-theme-toggle:hover {
     transform: scale(1.1);
-    background-color: white;
-    color: var(--gold);
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+}
+
+.magic-wand-btn-floating {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 160px; /* Stacked above Theme Toggle */
+    right: 30px;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    z-index: 100;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.magic-wand-btn-floating:hover {
+    transform: scale(1.1) rotate(0deg) !important; /* Force straight */
+    filter: brightness(1.2);
+}
+
+/* Tooltip Styles for Floating Buttons */
+.btn-wsp, .btn-theme-toggle, .magic-wand-btn-floating {
+    position: fixed; /* Ensure they stay fixed */
+}
+
+/* Common Tooltip Base */
+.btn-wsp::after,
+.btn-theme-toggle::after,
+.magic-wand-btn-floating::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 70px; /* Position to the left of the button */
+    top: 50%;
+    transform: translateY(-50%) scale(0.8);
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy pop effect */
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    z-index: 1000;
+}
+
+/* Tooltip Arrow (Triangle) */
+.btn-wsp::before,
+.btn-theme-toggle::before,
+.magic-wand-btn-floating::before {
+    content: '';
+    position: absolute;
+    right: 62px; /* Connects to the bubble */
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #333; /* Default arrow color */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+}
+
+/* Hover State - Show Tooltip */
+.btn-wsp:hover::after,
+.btn-theme-toggle:hover::after,
+.magic-wand-btn-floating:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1) rotate(0deg) !important;
+}
+
+.btn-wsp:hover::before,
+.btn-theme-toggle:hover::before,
+.magic-wand-btn-floating:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+/* Specific Colors */
+/* WhatsApp - Green */
+.btn-wsp::after {
+    background-color: #25D366;
+}
+.btn-wsp::before {
+    border-color: transparent transparent transparent #25D366;
+}
+
+/* Theme Toggle - Primary Color */
+.btn-theme-toggle::after {
+    background-color: var(--primary-color);
+    color: var(--text-light); /* Ensure contrast */
+}
+.btn-theme-toggle::before {
+    border-color: transparent transparent transparent var(--primary-color);
+}
+
+/* Magic Wand - Purple/Gradient Fallback */
+.magic-wand-btn-floating::after {
+    background-color: #a855f7; /* Purple from the gradient */
+}
+.magic-wand-btn-floating::before {
+    border-color: transparent transparent transparent #a855f7;
 }
 
 
@@ -513,33 +700,33 @@ body {
 }
 
 .copyright {
-    background-color: white;
-    color: black;
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background-color 0.5s ease, color 0.5s ease;
     padding-bottom: 20px;
 }
 
 .copyright.dark-mode {
-    background-color: black !important;
-    color: white !important;
+    background-color: var(--bg-dark) !important;
+    color: var(--text-dark) !important;
 }
 
 /* Solution Page Styles */
 .solution-page {
-    background-color: white;
-    color: black;
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .solution-page.dark-mode {
-    background-color: black !important;
-    color: white !important;
+    background-color: var(--bg-dark) !important;
+    color: var(--text-dark) !important;
 }
 
 /* Accordion Light Mode Overrides */
 .accordion-button:not(.collapsed) {
     background-color: #e9ecef; /* Light gray instead of default blue */
-    color: black;
+    color: var(--text-light);
     box-shadow: none; /* Remove default blue shadow */
 }
 
@@ -550,18 +737,18 @@ body {
 
 /* Accordion Dark Mode Overrides */
 .solution-page.dark-mode .accordion-item {
-    background-color: black;
+    background-color: var(--bg-dark);
     border-color: #444;
 }
 
 .solution-page.dark-mode .accordion-button {
     background-color: #1a1a1a; /* Dark gray for header */
-    color: white;
+    color: var(--text-dark);
 }
 
 .solution-page.dark-mode .accordion-button:not(.collapsed) {
     background-color: #333; /* Slightly lighter for active state */
-    color: var(--gold); /* Highlight active text */
+    color: var(--primary-color); /* Highlight active text */
     box-shadow: none; /* Remove default blue shadow */
 }
 
@@ -571,7 +758,27 @@ body {
 }
 
 .solution-page.dark-mode .accordion-body {
-    background-color: black;
-    color: white;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
     border-top: 1px solid #444;
+}
+
+/* Theme Utility Classes */
+.theme-text-primary {
+    color: var(--primary-color) !important;
+}
+
+.theme-border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.theme-btn-outline {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.theme-btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light); /* Or white depending on contrast */
+    border-color: var(--primary-color);
 }

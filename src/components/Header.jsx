@@ -5,10 +5,24 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import "../styles/header.css";
 import logoTipo from "../assets/images/logo/Augusto romera dev.png";
+import { useMagic } from '../context/MagicContext';
+import { useTheme } from '../context/ThemeContext';
+import confetti from 'canvas-confetti';
+import Swal from 'sweetalert2';
+import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 
 const Header = ({ activeSection, navBarClass }) => {
     const [expanded, setExpanded] = useState(false);
+    const { currentIcon, themeIndex } = useMagic();
+    const { darkMode } = useTheme();
+    const [isAnimating, setIsAnimating] = useState(false);
     const navLinkClass = navBarClass;
+
+    useEffect(() => {
+        setIsAnimating(true);
+        const timer = setTimeout(() => setIsAnimating(false), 300); // Match transition duration
+        return () => clearTimeout(timer);
+    }, [themeIndex]);
     const handleLinkClick = () => {
         setExpanded(false);  // Cerrar la barra de navegación después de hacer clic en un enlace
     };
@@ -30,14 +44,62 @@ const Header = ({ activeSection, navBarClass }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleDownload = (e) => {
+        e.preventDefault(); // Prevent immediate download
+
+        // Calculate origin
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        // Confetti
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { x, y }
+        });
+
+        // Delay download and modal
+        setTimeout(() => {
+            // Trigger download
+            const link = document.createElement('a');
+            link.href = curriculumPDF;
+            link.download = 'Curriculum Vitae augusto.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Show Modal
+            Swal.fire({
+                title: '¡Descarga Exitosa! 🎉',
+                text: 'Descargaste el CV, espero trabajemos juntos pronto.',
+                icon: 'success',
+                confirmButtonText: 'Genial',
+                background: darkMode ? '#1a1a1a' : '#ffffff',
+                color: darkMode ? '#ffffff' : '#000000',
+                confirmButtonColor: '#25D366',
+                customClass: {
+                    popup: 'swal-custom-popup',
+                    title: 'swal-custom-title',
+                    content: 'swal-custom-content'
+                },
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+        }, 3000);
+    };
+
     return (
         <Navbar expand="lg" data-bs-theme="dark" className={`navbarmain ${navLinkClass}`} expanded={expanded} onSelect={() => setExpanded(false)}>
             <Container>
                 <Navbar.Brand>
                     {isHome ? (
                         <img
-                            src={logoTipo}
-                            className="d-inline-block navbar-image"
+                            src={currentIcon || logoTipo}
+                            className={`d-inline-block navbar-image ${isAnimating ? 'transition-effect' : ''}`}
                             onClick={() => {
                                 scroll.scrollToTop();
                             }}
@@ -47,8 +109,8 @@ const Header = ({ activeSection, navBarClass }) => {
                     ) : (
                         <RouterLink to="/">
                             <img
-                                src={logoTipo}
-                                className="d-inline-block navbar-image"
+                                src={currentIcon || logoTipo}
+                                className={`d-inline-block navbar-image ${isAnimating ? 'transition-effect' : ''}`}
                                 alt="Logo"
                             />
                         </RouterLink>
@@ -100,9 +162,10 @@ const Header = ({ activeSection, navBarClass }) => {
                                     Contacto
                                 </ScrollLink>
                                 <a
-                                    href="/assets/files/Curriculum Vitae augusto.pdf"
+                                    href={curriculumPDF}
                                     download
                                     className={`nav-btn-cv ${showNavButton ? 'show' : 'hide'}`}
+                                    onClick={handleDownload}
                                 >
                                     Descargar CV
                                 </a>

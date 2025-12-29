@@ -1,8 +1,14 @@
 import AppRouter from './routes/AppRouter.jsx';
+import { ThemeProvider } from './context/ThemeContext';
+import { MagicProvider } from './context/MagicContext';
 function App() {
   return (
     <>
-      <AppRouter />
+      <ThemeProvider>
+        <MagicProvider>
+          <AppRouter />
+        </MagicProvider>
+      </ThemeProvider>
     </>
   )
 }

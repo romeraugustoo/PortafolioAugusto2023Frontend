@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/bodyhome.css';
 import profileImage from '../assets/images/profile/profile-augusto.png';
@@ -23,6 +23,8 @@ import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 import ScrollReveal from 'scrollreveal';
 import { useTheme } from '../context/ThemeContext';
 import { useMagic } from '../context/MagicContext';
+import confetti from 'canvas-confetti';
+import Swal from 'sweetalert2';
 import Avatar from './Avatar';
 import '../styles/avatar.css';
 
@@ -34,12 +36,61 @@ const BodyHome = ({ onSectionChange }) => {
     const currentYear = new Date().getFullYear();
     const { darkMode } = useTheme();
     const { showAvatar } = useMagic();
+    // const [showModal, setShowModal] = useState(false); // Removed custom modal state
 
     const projects = [
         { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
         { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
         { id: 3, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
+
+    const handleDownload = (e) => {
+        e.preventDefault(); // Prevent immediate download
+
+        // Calculate origin
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        // Confetti
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { x, y }
+        });
+
+        // Delay download and modal
+        setTimeout(() => {
+            // Trigger download
+            const link = document.createElement('a');
+            link.href = curriculumPDF;
+            link.download = 'Curriculum Vitae augusto.pdf'; // Optional: specify filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Show Modal
+            Swal.fire({
+                title: '¡Descarga Exitosa! 🎉',
+                text: 'Descargaste el CV, espero trabajemos juntos pronto.',
+                icon: 'success',
+                confirmButtonText: 'Genial',
+                background: darkMode ? '#1a1a1a' : '#ffffff',
+                color: darkMode ? '#ffffff' : '#000000',
+                confirmButtonColor: '#25D366',
+                customClass: {
+                    popup: 'swal-custom-popup',
+                    title: 'swal-custom-title',
+                    content: 'swal-custom-content'
+                },
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+        }, 3000);
+    };
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -73,12 +124,7 @@ const BodyHome = ({ onSectionChange }) => {
         }
     };
 
-
-
-
     useEffect(() => {
-        //         ScrollReveal().reveal('.homebg', { delay: 300 });
-        //         ScrollReveal().reveal('.hometext', { delay: 600 });
         ScrollReveal().reveal('.about_title', { delay: 300 });
         ScrollReveal().reveal('.about_title2', { delay: 300 });
         ScrollReveal().reveal('.description', { delay: 600 });
@@ -96,6 +142,7 @@ const BodyHome = ({ onSectionChange }) => {
         ScrollReveal().reveal('.contact-me .contact-me-container', { delay: 300 });
 
     }, []);
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
@@ -132,9 +179,8 @@ const BodyHome = ({ onSectionChange }) => {
                     <p className='description'>
                         Soy Augusto Romera, un estudiante de 24 años de Ingeniería en Sistemas. Mi formación académica incluye dos años completo de estudios para fullstack, respaldado por experiencia en desarrollo web. Busco oportunidades de tiempo completo para aplicar y expandir mis habilidades.
                     </p>
-                    <a href={curriculumPDF} download className="download-button">
-                        <img src={downloadIcon} alt="Download Icon" className="download-icon" />
-                        <span className="download-text"> Descargar CV</span>
+                    <a href={curriculumPDF} download className="download-button" onClick={handleDownload}>
+                        <span className="download-text">Descargar CV</span>
                     </a>
                 </div>
                 <div className="about_skills">
