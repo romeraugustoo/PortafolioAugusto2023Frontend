@@ -22,6 +22,9 @@ import downloadIcon from '../assets/images/logo/gold-button-009.svg';
 import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 import ScrollReveal from 'scrollreveal';
 import { useTheme } from '../context/ThemeContext';
+import { useMagic } from '../context/MagicContext';
+import Avatar from './Avatar';
+import '../styles/avatar.css';
 
 const ProfileImage = () => {
     return <img src={profileImage} className='profile-image' alt="Profile Augusto" />;
@@ -30,6 +33,7 @@ const ProfileImage = () => {
 const BodyHome = ({ onSectionChange }) => {
     const currentYear = new Date().getFullYear();
     const { darkMode } = useTheme();
+    const { showAvatar } = useMagic();
 
     const projects = [
         { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
@@ -104,7 +108,14 @@ const BodyHome = ({ onSectionChange }) => {
         <>
             <div className='home'>
                 <div className="homebg">
-                    <ProfileImage />
+                    <div className="profile-container">
+                        <div className={`profile-content ${showAvatar ? 'hidden' : 'visible'}`}>
+                            <ProfileImage />
+                        </div>
+                        <div className={`profile-content ${showAvatar ? 'visible' : 'hidden'}`}>
+                            <Avatar />
+                        </div>
+                    </div>
                     <div className="hometext">
                         <h1 className="home_text2">Augusto Romera</h1>
                         <h1 className="home_text3" >Fullstack Developer</h1>

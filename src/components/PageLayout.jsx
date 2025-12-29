@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { MagicProvider, useMagic } from '../context/MagicContext';
 import '../styles/bodyhome.css'; // Ensure styles are available
+import '../styles/avatar.css';
 
 const LayoutContent = ({ children, activeSection }) => {
     const [navBarClass, setNavBarClass] = useState('');
     const { darkMode, toggleTheme } = useTheme();
+    const { toggleAvatar } = useMagic();
 
     const { pathname } = useLocation();
 
@@ -49,6 +52,10 @@ const LayoutContent = ({ children, activeSection }) => {
             <button className="btn-theme-toggle" onClick={toggleTheme}>
                 <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} fa-2xl`}></i>
             </button>
+
+            <button className="magic-wand-btn-floating" onClick={toggleAvatar} title="Switch to Avatar">
+                <i className="fa-solid fa-wand-magic-sparkles"></i>
+            </button>
         </>
     );
 };
@@ -56,9 +63,11 @@ const LayoutContent = ({ children, activeSection }) => {
 const PageLayout = ({ children, activeSection }) => {
     return (
         <ThemeProvider>
-            <LayoutContent activeSection={activeSection}>
-                {children}
-            </LayoutContent>
+            <MagicProvider>
+                <LayoutContent activeSection={activeSection}>
+                    {children}
+                </LayoutContent>
+            </MagicProvider>
         </ThemeProvider>
     );
 };
