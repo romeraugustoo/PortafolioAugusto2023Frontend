@@ -58,17 +58,8 @@ const BodyHome = ({ onSectionChange }) => {
             origin: { x, y }
         });
 
-        // Delay download and modal
+        // Show Modal after 1 second
         setTimeout(() => {
-            // Trigger download
-            const link = document.createElement('a');
-            link.href = curriculumPDF;
-            link.download = 'Curriculum Vitae augusto.pdf'; // Optional: specify filename
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Show Modal
             Swal.fire({
                 title: '¡Descarga Exitosa! 🎉',
                 text: 'Descargaste el CV, espero trabajemos juntos pronto.',
@@ -89,6 +80,17 @@ const BodyHome = ({ onSectionChange }) => {
                     popup: 'animate__animated animate__fadeOutUp'
                 }
             });
+        }, 1000);
+
+        // Delay download (3 seconds total)
+        setTimeout(() => {
+            // Trigger download
+            const link = document.createElement('a');
+            link.href = curriculumPDF;
+            link.download = 'Curriculum Vitae augusto.pdf'; // Optional: specify filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }, 3000);
     };
 
