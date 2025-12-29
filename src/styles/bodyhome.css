@@ -96,6 +96,14 @@ body {
     width: 100%;
     min-height: 100vh;
     padding: 30px 0 100px;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.about.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .about_description {
@@ -180,52 +188,146 @@ body {
     padding: 30px;
     padding-left: 0%;
     width: 100%;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.portfolio.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .image-portfolio {
     border-radius: 8px;
-    width: 25vw;
-}
-
-.mt-2-container {
-    position: relative;
-    height: 240px;
-}
-
-.mt-2 {
-    position: relative;
-    left: 50%;
-    bottom: 0%;
-    transform: translateX(-50%);
-    background-color: rgb(0, 0, 0);
-    color: #fff;
     width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-portfolio:hover {
+    transform: scale(1.02);
+}
+
+/* Flip Card Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    aspect-ratio: 16/9;
+    perspective: 1000px;
+}
+
+@media (max-width: 768px) {
+    .flip-card {
+        aspect-ratio: 4/3; /* Taller on mobile to fit content */
+    }
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
     width: 100%;
-    padding: 10px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    opacity: 0;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.mt-2-show {
-    opacity: 1;
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
 }
 
-.project-link {
-    color: #ffffff;
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-back {
+    /* Luxury dark gradient background */
+    background: linear-gradient(135deg, #2c2c2c 0%, #000000 100%);
+    color: var(--gold);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--gold);
+    box-shadow: 
+        inset 0 0 20px rgba(250, 188, 93, 0.1),
+        0 0 15px rgba(250, 188, 93, 0.5), /* Outer neon glow */
+        0 0 30px rgba(250, 188, 93, 0.3); /* Softer outer glow */
+}
+
+.flip-card-back h3 {
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 5px;
+}
+
+.project-links-container {
+    display: flex;
+    flex-direction: row; /* Change to row for matrix/wrap layout */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.project-link-btn {
+    background-color: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 12px; /* Reduce padding slightly for better fit */
     text-decoration: none;
-    transition: color 0.3s;
-    margin: 0 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    /* width: 80%;  Remove fixed width to allow flex sizing */
+    /* max-width: 200px; */
+    flex: 1 1 40%; /* Allow items to grow/shrink, base 40% width */
+    min-width: 100px; /* Minimum width */
+    text-transform: uppercase;
+    font-size: 0.75rem; /* Slightly smaller font */
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.project-link:hover {
-    color: #fabc5d;
+.project-link-btn:hover {
+    background-color: var(--gold);
+    color: black;
+    text-decoration: none;
+    box-shadow: 0 0 10px var(--gold);
 }
 
 .description-container {
     padding-bottom: 70px;
-
     width: 100%;
 }
 
@@ -236,6 +338,14 @@ body {
 /* Estilos de la sección "Contacto" */
 .contact-me {
     padding: 190px 0 100px;
+    background-color: white; /* Default Light Mode */
+    color: black; /* Default Light Mode */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.contact-me.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 .contact-me-container {
@@ -278,18 +388,32 @@ body {
     background-color: #fff;
 }
 
+.btn-theme-toggle {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 95px; /* Stacked above WhatsApp button */
+    right: 30px;
+    background: var(--gold);
+    color: black;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    z-index: 100;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: white;
+    color: var(--gold);
+}
+
 
 /* Media queries */
-@media (min-width: 991px) {
-    .image-portfolio {
-        width: 250px;
-    }
-
-    .mt-2 {
-        width: 250px;
-        position: absolute;
-    }
-}
 @media (max-width: 991px) {
     .hometext {
         display: flex;
@@ -332,32 +456,7 @@ body {
     }
 }
 
-@media (min-width: 721px) and (max-width: 991px) {
-    .image-portfolio {
-        width: 230px;
-    }
-
-    .mt-2 {
-        width: 230px;
-        position: absolute;
-    }
-}
-
 @media (min-width: 575px) and (max-width: 721px) {
-    .image-portfolio {
-        width: 250px;
-    }
-
-    .mt-2 {
-        position: absolute;
-        background-color: rgb(0, 0, 0);
-        color: #fff;
-        justify-content: center;
-        width: 250px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
     .about {
         flex-direction: column;
     }
@@ -376,20 +475,8 @@ body {
         padding: 1rem;
     }
 
-    .image-portfolio {
-        width: 70vw;
-    }
-
-    .mt-2 {
-        position: absolute;
-        background-color: rgb(0, 0, 0);
-        color: #fff;
-        justify-content: center;
-        width: 70vw;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
+    /* Removed fixed width overrides for portfolio images */
+    
     .about {
         flex-direction: column;
     }
@@ -407,4 +494,68 @@ body {
     .about_skills {
         padding-left: 50px;
     }
+}
+
+.copyright {
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    padding-bottom: 20px;
+}
+
+.copyright.dark-mode {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* Solution Page Styles */
+.solution-page {
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.solution-page.dark-mode {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* Accordion Light Mode Overrides */
+.accordion-button:not(.collapsed) {
+    background-color: #e9ecef; /* Light gray instead of default blue */
+    color: black;
+    box-shadow: none; /* Remove default blue shadow */
+}
+
+.accordion-button:focus {
+    box-shadow: none; /* Remove focus ring */
+    border-color: rgba(0,0,0,.125);
+}
+
+/* Accordion Dark Mode Overrides */
+.solution-page.dark-mode .accordion-item {
+    background-color: black;
+    border-color: #444;
+}
+
+.solution-page.dark-mode .accordion-button {
+    background-color: #1a1a1a; /* Dark gray for header */
+    color: white;
+}
+
+.solution-page.dark-mode .accordion-button:not(.collapsed) {
+    background-color: #333; /* Slightly lighter for active state */
+    color: var(--gold); /* Highlight active text */
+    box-shadow: none; /* Remove default blue shadow */
+}
+
+/* Fix the arrow icon color */
+.solution-page.dark-mode .accordion-button::after {
+    filter: invert(1);
+}
+
+.solution-page.dark-mode .accordion-body {
+    background-color: black;
+    color: white;
+    border-top: 1px solid #444;
 }

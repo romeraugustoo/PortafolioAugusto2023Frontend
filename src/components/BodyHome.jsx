@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/bodyhome.css';
 import profileImage from '../assets/images/profile/profile-augusto.png';
 import reactLogo from '../assets/images/logo/React.jpg';
@@ -14,67 +15,28 @@ import mysql from '../assets/images/logo/mysql.png'
 
 import rapiburger from '../assets/images/portfolio/Rapiburger.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
+import tslc from '../assets/images/portfolio/TransporteSantaLucia.png';
 
 import instagram from '../assets/images/logo/Instagram-Glyph-Color-Logo.wine.png';
 import downloadIcon from '../assets/images/logo/gold-button-009.svg';
 import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 import ScrollReveal from 'scrollreveal';
+import { useTheme } from '../context/ThemeContext';
+
 const ProfileImage = () => {
     return <img src={profileImage} className='profile-image' alt="Profile Augusto" />;
 };
 
 const BodyHome = ({ onSectionChange }) => {
     const currentYear = new Date().getFullYear();
+    const { darkMode } = useTheme();
+
     const projects = [
-        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger' },
-        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio' },
+        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
+        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
+        { id: 3, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
-    const handleHover = (projectId) => {
-        const projectText = document.getElementById(`projectText-${projectId}`);
-        const linksContainer = document.createElement('div');
 
-        const websiteLink = document.createElement('a');
-        websiteLink.href = projects.find(project => project.id === projectId).website;
-        websiteLink.textContent = projects.find(project => project.id === projectId).text;
-        websiteLink.classList.add('project-link');
-        websiteLink.target = '_blank';
-        if (projects.find(project => project.id === projectId).name != "Portfolio") {
-            linksContainer.appendChild(websiteLink);
-            linksContainer.appendChild(document.createTextNode(' | '));
-        }
-
-        const githubLink = document.createElement('a');
-        const github1 = projects.find(project => project.id === projectId).github;
-        const github2 = projects.find(project => project.id === projectId).github2;
-
-        // Enlace iterativo 1
-        githubLink.href = github1;
-        if (github2) { githubLink.textContent = 'Git front'; } else githubLink.textContent = 'Github';
-        githubLink.classList.add('project-link');
-        linksContainer.appendChild(githubLink);
-        githubLink.target = '_blank';
-
-        if (github2) {
-            linksContainer.appendChild(document.createTextNode(' | '));
-            const githubLink2 = document.createElement('a');
-            githubLink2.href = github2;
-            githubLink2.textContent = 'Git back';
-            githubLink2.classList.add('project-link');
-            linksContainer.appendChild(githubLink2);
-            githubLink2.target = '_blank';
-        }
-
-        projectText.innerHTML = '';
-        projectText.appendChild(linksContainer);
-        projectText.classList.add('mt-2-show');
-        projectText.style.transition = 'opacity 0.7s';
-    };
-    const handleMouseLeave = (projectId) => {
-        const projectText = document.getElementById(`projectText-${projectId}`);
-        projectText.style.transition = '';
-        projectText.innerHTML = '';
-        projectText.classList.remove('mt-2-show');
-    };
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
         const aboutSection = document.getElementById('about');
@@ -83,26 +45,28 @@ const BodyHome = ({ onSectionChange }) => {
 
         let currentSection = 'home';
 
-        const aboutTop = aboutSection.offsetTop;
-        const aboutBottom = aboutTop + aboutSection.offsetHeight;
+        if (aboutSection && portfolioSection && contactSection) {
+            const aboutTop = aboutSection.offsetTop;
+            const aboutBottom = aboutTop + aboutSection.offsetHeight;
 
-        const portfolioTop = portfolioSection.offsetTop;
-        const portfolioBottom = portfolioTop + portfolioSection.offsetHeight;
+            const portfolioTop = portfolioSection.offsetTop;
+            const portfolioBottom = portfolioTop + portfolioSection.offsetHeight;
 
-        const contactTop = contactSection.offsetTop;
-        const contactBottom = contactTop + contactSection.offsetHeight;
-        const offset = 100;
-        if (scrollPosition >= (aboutTop - 60) && scrollPosition < (aboutBottom - 100)) {
-            currentSection = 'about';
-        } else if (scrollPosition >= (portfolioTop - 100) && scrollPosition < portfolioBottom) {
-            currentSection = 'portfolio';
+            const contactTop = contactSection.offsetTop;
+            const contactBottom = contactTop + contactSection.offsetHeight;
+            const offset = 100;
+            if (scrollPosition >= (aboutTop - 60) && scrollPosition < (aboutBottom - 100)) {
+                currentSection = 'about';
+            } else if (scrollPosition >= (portfolioTop - 100) && scrollPosition < portfolioBottom) {
+                currentSection = 'portfolio';
+            }
+
+
+            if (scrollPosition >= contactTop - offset && scrollPosition < contactBottom) {
+                currentSection = 'contact';
+            }
+            onSectionChange(currentSection);
         }
-
-
-        if (scrollPosition >= contactTop - offset && scrollPosition < contactBottom) {
-            currentSection = 'contact';
-        }
-        onSectionChange(currentSection);
     };
 
 
@@ -120,8 +84,12 @@ const BodyHome = ({ onSectionChange }) => {
         ScrollReveal().reveal('.skill_item', { delay: 600 });
         ScrollReveal().reveal('.about_skills', { delay: 600 });
 
-        ScrollReveal().reveal('.portfolio', { delay: 600 });
-        ScrollReveal().reveal('.contact-me', { delay: 300 });
+        // Target inner containers instead of the main section to keep background visible
+        ScrollReveal().reveal('.portfolio .description-container', { delay: 600 });
+        ScrollReveal().reveal('.portfolio .container', { delay: 600 });
+
+        ScrollReveal().reveal('.contact-me .contact-me-text', { delay: 300 });
+        ScrollReveal().reveal('.contact-me .contact-me-container', { delay: 300 });
 
     }, []);
     useEffect(() => {
@@ -131,8 +99,6 @@ const BodyHome = ({ onSectionChange }) => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [onSectionChange]);
-
-
 
     return (
         <>
@@ -145,7 +111,7 @@ const BodyHome = ({ onSectionChange }) => {
                     </div>
                 </div>
             </div>
-            <div id="about" className='about'>
+            <div id="about" className={`about ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="about_description">
                     <h2 className='about_title'>Sobre mi</h2>
                     <p className='about_title2'>
@@ -232,7 +198,7 @@ const BodyHome = ({ onSectionChange }) => {
                 </div>
             </div>
             {/* Portafolio Section */}
-            <div id="portfolio" className="portfolio d-flex align-content-center justify-content-center">
+            <div id="portfolio" className={`portfolio d-flex align-content-center justify-content-center ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="description-container  ">
                     <div className="description-port">
                         <h2>Portafolio</h2>
@@ -245,22 +211,41 @@ const BodyHome = ({ onSectionChange }) => {
                 <div className="container">
                     <div className="row justify-content-center">
                         {projects.map((project) => (
-                            <div
-                                key={project.id}
-                                className="col-12 col-sm-6 col-md-4  p-4 d-flex align-items-center flex-column mt-2-container h-100"
-                                onMouseEnter={() => handleHover(project.id, project.name)}
-                                onMouseLeave={() => handleMouseLeave(project.id)}
-                                style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}
-                            >
-                                <img src={project.image} className="image-portfolio" alt={project.name} />
-                                <span id={`projectText-${project.id}`} className="mt-2"></span>
+                            <div key={project.id} className="col-12 col-sm-6 col-md-4 p-4">
+                                <div className="flip-card">
+                                    <div className="flip-card-inner">
+                                        <div className="flip-card-front">
+                                            <img src={project.image} className="image-portfolio" alt={project.name} />
+                                        </div>
+                                        <div className="flip-card-back">
+                                            <h3>{project.name}</h3>
+                                            <div className="project-links-container">
+                                                {project.website && (
+                                                    <a href={project.website} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                        {project.text}
+                                                    </a>
+                                                )}
+                                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                    {project.github2 ? 'Git Front' : 'Github'}
+                                                </a>
+                                                {project.github2 && (
+                                                    <a href={project.github2} target="_blank" rel="noopener noreferrer" className="project-link-btn">
+                                                        Git Back
+                                                    </a>
+                                                )}
+                                                <Link to={project.solutionRoute} className="project-link-btn">
+                                                    Mi Solución
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         ))}
-
                     </div>
                 </div>
             </div >
-            <div id="contact" className="contact-me">
+            <div id="contact" className={`contact-me ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="contact-me-text ">
                     <h2>Contacto</h2>
                     <p>Contáctame si quieres que trabajemos juntos.</p>
@@ -297,13 +282,8 @@ const BodyHome = ({ onSectionChange }) => {
                 </div>
 
             </div>
-            <div className="wsp" >
-                <a href="https://wa.link/cjq5u5" className='btn-wsp' target='_blank' rel="noopener noreferrer">
-                <i className="fa-brands fa-whatsapp fa-2xl" ></i>
-                </a>
-            </div>
 
-            <div className="copyright pt-5">
+            <div className={`copyright pt-5 ${darkMode ? 'dark-mode' : ''}`}>
                 <p className="text-center">
                     Copyright © {currentYear}. @augusto.romera. All Rights Reserved.
                 </p>
