@@ -101,10 +101,10 @@ body {
     white-space: nowrap;
     border-right: 4px solid;
     color: var(--text-dark);
-    width: 19.5ch;
+    width: 26.5ch;
     font-size: 2.5em;
     animation:
-        typing 2s steps(12),
+        typing 2s steps(26),
         blink 0.5s infinite step-end alternate;
     overflow: hidden;
 }
@@ -659,9 +659,9 @@ body {
     }
 
     .home_text3 {
-        font-family: sans-serif;
+        font-family: monospace;
         color: #ffffff;
-        width: 16.2ch;
+        width: 26.5ch;
         font-size: 2rem;
     }
 }

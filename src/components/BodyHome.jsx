@@ -39,8 +39,8 @@ const BodyHome = ({ onSectionChange }) => {
     // const [showModal, setShowModal] = useState(false); // Removed custom modal state
 
     const projects = [
-        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
-        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
+        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/romeraugustoo/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/romeraugustoo/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
+        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/romeraugustoo/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
         { id: 3, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
 
@@ -167,7 +167,7 @@ const BodyHome = ({ onSectionChange }) => {
                     </div>
                     <div className="hometext">
                         <h1 className="home_text2">Augusto Romera</h1>
-                        <h1 className="home_text3" >Fullstack Developer</h1>
+                        <h1 className="home_text3" >Desarrollador de software </h1>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,15 @@ const BodyHome = ({ onSectionChange }) => {
                     </p>
 
                     <p className='description'>
-                        Soy Augusto Romera, un estudiante de 24 años de Ingeniería en Sistemas. Mi formación académica incluye dos años completo de estudios para fullstack, respaldado por experiencia en desarrollo web. Busco oportunidades de tiempo completo para aplicar y expandir mis habilidades.
+                        Soy Augusto Romera (27), Desarrollador de Software y estudiante de Ingeniería en Sistemas.
+
+                        Me apasiona la arquitectura de sistemas. A lo largo de mi formación, he cultivado una perspectiva analítica que me permite formular soluciones innovadoras y optimizar procesos en cada oportunidad.
+
+                        Mi perfil técnico puentea dos mundos: combino la solidez de los entornos corporativos (desarrollando APIs escalables con Java, Spring Boot y MySQL) con la agilidad de las tecnologías modernas (creando interfaces y backends reactivos con el Stack MERN: React, Node.js y MongoDB).
+
+                        Académicamente, mantengo un promedio de 7.55 con 19 materias superadas. Actualmente curso mis tres asignaturas finales para obtener mi doble titulación intermedia como Analista en Sistemas y Programador Universitario.
+
+                        Bienvenido a mi espacio. Este portafolio está en constante actualización.
                     </p>
                     <a href={curriculumPDF} download className="download-button" onClick={handleDownload}>
                         <span className="download-text">Descargar CV</span>
@@ -320,7 +328,7 @@ const BodyHome = ({ onSectionChange }) => {
                         </div>
 
                         <div className="col-6 col-md-3 p-2 d-flex align-items-center flex-column">
-                            <a href="https://github.com/Augustoromera" className="plain-link" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/romeraugustoo" className="plain-link" target="_blank" rel="noopener noreferrer">
                                 <i className="fab fa-github fa-3x text-dark iconlink"></i>
                             </a>
                             <span className="textcontact">Ver Repo</span>
