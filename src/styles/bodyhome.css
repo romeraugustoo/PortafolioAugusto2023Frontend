@@ -20,7 +20,7 @@
     --text-dark: #ffffff;
     --text-muted: #414141;
     
-    /* Legacy variables mapping (for gradual refactor if needed, but we will try to replace all) */
+    /* Legacy variables mapping */
     --gold: var(--primary-color);
     --white: var(--bg-light);
     --gray: var(--text-muted);
@@ -43,10 +43,9 @@ body {
     background-image: url("../assets/images/background/bg.png");
     background-size: cover;
     background-attachment: fixed;
-    background-attachment: fixed;
-    min-height: 100vh; /* Fallback */
-    min-height: 100dvh; /* Dynamic viewport height for mobile */
-    height: auto; /* Allow content to grow */
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,8 +128,8 @@ body {
     width: 100%;
     min-height: 100vh;
     padding: 30px 0 100px;
-    background-color: var(--bg-light); /* Default Light Mode */
-    color: var(--text-light); /* Default Light Mode */
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -148,12 +147,12 @@ body {
 .about_skills {
     padding: 30px;
     margin-top: 40px;
-    margin-right: 20px; /* Space for shadow */
-    margin-bottom: 20px; /* Space for shadow */
+    margin-right: 20px;
+    margin-bottom: 20px;
     border: 3px solid var(--primary-color);
-    box-shadow: 10px 10px 0px var(--primary-color); /* Hard shadow */
+    box-shadow: 10px 10px 0px var(--primary-color);
     border-radius: 20px;
-    background-color: var(--bg-light); /* Solid background to look like an object */
+    background-color: var(--bg-light);
     transition: all 0.3s ease;
     width: fit-content;
     position: relative;
@@ -161,7 +160,7 @@ body {
 }
 
 .about.dark-mode .about_skills {
-    background-color: var(--bg-dark); /* Dark background in dark mode */
+    background-color: var(--bg-dark);
 }
 
 .about_skills:hover {
@@ -220,7 +219,6 @@ body {
     overflow: hidden;
 }
 
-/* Glossy shine effect */
 .download-button::after {
     content: '';
     position: absolute;
@@ -253,15 +251,15 @@ body {
 .download-text {
     color: white;
     font-weight: 700;
-    font-size: 0.9em; /* Smaller font */
+    font-size: 0.9em;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     z-index: 1;
     text-transform: uppercase;
-    letter-spacing: 2px; /* Increased spacing for better readability */
+    letter-spacing: 2px;
     text-align: center;
     width: 100%;
-    line-height: 1.2; /* Better vertical alignment if wrapping */
-    display: flex; /* Ensure centering within the span if needed */
+    line-height: 1.2;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -275,8 +273,8 @@ body {
     padding: 30px;
     padding-left: 0%;
     width: 100%;
-    background-color: var(--bg-light); /* Default Light Mode */
-    color: var(--text-light); /* Default Light Mode */
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -298,7 +296,6 @@ body {
     transform: scale(1.02);
 }
 
-/* Flip Card Styles */
 .flip-card {
     background-color: transparent;
     width: 100%;
@@ -308,7 +305,7 @@ body {
 
 @media (max-width: 768px) {
     .flip-card {
-        aspect-ratio: 4/3; /* Taller on mobile to fit content */
+        aspect-ratio: 4/3;
     }
 }
 
@@ -349,7 +346,6 @@ body {
 }
 
 .flip-card-back {
-    /* Luxury dark gradient background */
     background: linear-gradient(135deg, #2c2c2c 0%, #000000 100%);
     color: var(--primary-color);
     transform: rotateY(180deg);
@@ -361,8 +357,8 @@ body {
     border: 1px solid var(--primary-color);
     box-shadow: 
         inset 0 0 20px rgba(250, 188, 93, 0.1),
-        0 0 15px var(--primary-color), /* Outer neon glow */
-        0 0 30px rgba(250, 188, 93, 0.3); /* Softer outer glow */
+        0 0 15px var(--primary-color),
+        0 0 30px rgba(250, 188, 93, 0.3);
 }
 
 .flip-card-back h3 {
@@ -377,8 +373,8 @@ body {
 
 .project-links-container {
     display: flex;
-    flex-direction: row; /* Change to row for matrix/wrap layout */
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
     width: 100%;
@@ -389,17 +385,15 @@ body {
     background-color: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 6px 12px; /* Reduce padding slightly for better fit */
+    padding: 6px 12px;
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.3s ease;
     font-weight: 500;
-    /* width: 80%;  Remove fixed width to allow flex sizing */
-    /* max-width: 200px; */
-    flex: 1 1 40%; /* Allow items to grow/shrink, base 40% width */
-    min-width: 100px; /* Minimum width */
+    flex: 1 1 40%;
+    min-width: 100px;
     text-transform: uppercase;
-    font-size: 0.75rem; /* Slightly smaller font */
+    font-size: 0.75rem;
     letter-spacing: 1px;
     display: flex;
     justify-content: center;
@@ -422,11 +416,10 @@ body {
     padding-left: 50px;
 }
 
-/* Estilos de la sección "Contacto" */
 .contact-me {
     padding: 190px 0 100px;
-    background-color: var(--bg-light); /* Default Light Mode */
-    color: var(--text-light); /* Default Light Mode */
+    background-color: var(--bg-light);
+    color: var(--text-light);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -462,11 +455,11 @@ body {
     line-height: 55px;
     bottom: 30px;
     right: 30px;
-    background: #25D366; /* Fixed WhatsApp Green */
+    background: #25D366;
     color: #ffffff;
     border-radius: 50px;
     text-align: center;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3)  !important;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
     z-index: 100;
 }
 .btn-wsp:hover {
@@ -480,7 +473,7 @@ body {
     width: 55px;
     height: 55px;
     line-height: 55px;
-    bottom: 95px; /* Stacked above WhatsApp button */
+    bottom: 95px;
     right: 30px;
     background: var(--primary-color);
     color: var(--text-light);
@@ -504,7 +497,7 @@ body {
     width: 55px;
     height: 55px;
     line-height: 55px;
-    bottom: 160px; /* Stacked above Theme Toggle */
+    bottom: 160px;
     right: 30px;
     background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
     color: white;
@@ -518,22 +511,20 @@ body {
 }
 
 .magic-wand-btn-floating:hover {
-    transform: scale(1.1) rotate(0deg) !important; /* Force straight */
+    transform: scale(1.1) rotate(0deg) !important;
     filter: brightness(1.2);
 }
 
-/* Tooltip Styles for Floating Buttons */
 .btn-wsp, .btn-theme-toggle, .magic-wand-btn-floating {
-    position: fixed; /* Ensure they stay fixed */
+    position: fixed;
 }
 
-/* Common Tooltip Base */
 .btn-wsp::after,
 .btn-theme-toggle::after,
 .magic-wand-btn-floating::after {
     content: attr(data-tooltip);
     position: absolute;
-    right: 70px; /* Position to the left of the button */
+    right: 70px;
     top: 50%;
     transform: translateY(-50%) scale(0.8);
     background-color: #333;
@@ -544,7 +535,7 @@ body {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy pop effect */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     pointer-events: none;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     font-family: 'Roboto', sans-serif;
@@ -552,25 +543,23 @@ body {
     z-index: 1000;
 }
 
-/* Tooltip Arrow (Triangle) */
 .btn-wsp::before,
 .btn-theme-toggle::before,
 .magic-wand-btn-floating::before {
     content: '';
     position: absolute;
-    right: 62px; /* Connects to the bubble */
+    right: 62px;
     top: 50%;
     transform: translateY(-50%) scale(0);
     border-width: 6px;
     border-style: solid;
-    border-color: transparent transparent transparent #333; /* Default arrow color */
+    border-color: transparent transparent transparent #333;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 1000;
 }
 
-/* Hover State - Show Tooltip */
 .btn-wsp:hover::after,
 .btn-theme-toggle:hover::after,
 .magic-wand-btn-floating:hover::after {
@@ -587,8 +576,6 @@ body {
     transform: translateY(-50%) scale(1);
 }
 
-/* Specific Colors */
-/* WhatsApp - Green */
 .btn-wsp::after {
     background-color: #25D366;
 }
@@ -596,25 +583,21 @@ body {
     border-color: transparent transparent transparent #25D366;
 }
 
-/* Theme Toggle - Primary Color */
 .btn-theme-toggle::after {
     background-color: var(--primary-color);
-    color: var(--text-light); /* Ensure contrast */
+    color: var(--text-light);
 }
 .btn-theme-toggle::before {
     border-color: transparent transparent transparent var(--primary-color);
 }
 
-/* Magic Wand - Purple/Gradient Fallback */
 .magic-wand-btn-floating::after {
-    background-color: #a855f7; /* Purple from the gradient */
+    background-color: #a855f7;
 }
 .magic-wand-btn-floating::before {
     border-color: transparent transparent transparent #a855f7;
 }
 
-
-/* Media queries */
 @media (max-width: 991px) {
     .hometext {
         display: flex;
@@ -624,10 +607,10 @@ body {
     }
     .home {
         display: flex;
-        background-attachment: scroll; /* Fix for mobile browsers */
+        background-attachment: scroll;
         height: auto;
         min-height: 100dvh;
-        padding-bottom: 50px; /* Ensure space for bottom bars */
+        padding-bottom: 50px;
     }
 
     .homebg {
@@ -685,8 +668,6 @@ body {
         padding: 1rem;
     }
 
-    /* Removed fixed width overrides for portfolio images */
-    
     .about {
         flex-direction: column;
     }
@@ -718,7 +699,6 @@ body {
     color: var(--text-dark) !important;
 }
 
-/* Solution Page Styles */
 .solution-page {
     background-color: var(--bg-light);
     color: var(--text-light);
@@ -730,36 +710,33 @@ body {
     color: var(--text-dark) !important;
 }
 
-/* Accordion Light Mode Overrides */
 .accordion-button:not(.collapsed) {
-    background-color: #e9ecef; /* Light gray instead of default blue */
+    background-color: #e9ecef;
     color: var(--text-light);
-    box-shadow: none; /* Remove default blue shadow */
+    box-shadow: none;
 }
 
 .accordion-button:focus {
-    box-shadow: none; /* Remove focus ring */
+    box-shadow: none;
     border-color: rgba(0,0,0,.125);
 }
 
-/* Accordion Dark Mode Overrides */
 .solution-page.dark-mode .accordion-item {
     background-color: var(--bg-dark);
     border-color: #444;
 }
 
 .solution-page.dark-mode .accordion-button {
-    background-color: #1a1a1a; /* Dark gray for header */
+    background-color: #1a1a1a;
     color: var(--text-dark);
 }
 
 .solution-page.dark-mode .accordion-button:not(.collapsed) {
-    background-color: #333; /* Slightly lighter for active state */
-    color: var(--primary-color); /* Highlight active text */
-    box-shadow: none; /* Remove default blue shadow */
+    background-color: #333;
+    color: var(--primary-color);
+    box-shadow: none;
 }
 
-/* Fix the arrow icon color */
 .solution-page.dark-mode .accordion-button::after {
     filter: invert(1);
 }
@@ -770,7 +747,6 @@ body {
     border-top: 1px solid #444;
 }
 
-/* Theme Utility Classes */
 .theme-text-primary {
     color: var(--primary-color) !important;
 }
@@ -786,6 +762,6 @@ body {
 
 .theme-btn-outline:hover {
     background-color: var(--primary-color);
-    color: var(--text-light); /* Or white depending on contrast */
+    color: var(--text-light);
     border-color: var(--primary-color);
 }

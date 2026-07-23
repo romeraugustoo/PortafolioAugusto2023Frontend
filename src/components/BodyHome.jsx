@@ -14,6 +14,7 @@ import spring from '../assets/images/logo/spring-boot-logo.png.webp'
 import mysql from '../assets/images/logo/mysql.png'
 
 import rapiburger from '../assets/images/portfolio/Rapiburger.png';
+import relicario from '../assets/images/portfolio/Relicario.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
 import tslc from '../assets/images/portfolio/TransporteSantaLucia.png';
 
@@ -39,9 +40,10 @@ const BodyHome = ({ onSectionChange }) => {
     // const [showModal, setShowModal] = useState(false); // Removed custom modal state
 
     const projects = [
-        { id: 1, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/romeraugustoo/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/romeraugustoo/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
-        { id: 2, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/romeraugustoo/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
-        { id: 3, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
+        // { id: 1, name: 'Relicario Studio', image: relicario, website: 'https://relicariostudio.netlify.app/', github: 'https://github.com/romeraugustoo/relicario-project', text: 'Ir a Relicario', solutionRoute: '/solution/relicario' },
+        { id: 2, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
+        { id: 3, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
+        { id: 4, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
 
     const handleDownload = (e) => {
@@ -173,21 +175,17 @@ const BodyHome = ({ onSectionChange }) => {
             </div>
             <div id="about" className={`about ${darkMode ? 'dark-mode' : ''}`}>
                 <div className="about_description">
-                    <h2 className='about_title'>Sobre mi</h2>
+                    <h2 className='about_title'>Sobre mí</h2>
                     <p className='about_title2'>
-                        Desarrollador fullstack MERN.
+                        Full-Stack Software Engineer & Estudiante de Ingeniería en Sistemas
                     </p>
 
                     <p className='description'>
-                        Soy Augusto Romera (27), Desarrollador de Software y estudiante de Ingeniería en Sistemas.
+                        Soy Augusto Romera, Desarrollador de Software y estudiante avanzado de Ingeniería en Sistemas de Información (UTN-FRT).
 
-                        Me apasiona la arquitectura de sistemas. A lo largo de mi formación, he cultivado una perspectiva analítica que me permite formular soluciones innovadoras y optimizar procesos en cada oportunidad.
+                        Me apasiona el diseño de arquitectura de software, la optimización de rendimiento en el cliente y la creación de soluciones digitales eficientes. Mi perfil técnico combina la agilidad de las tecnologías modernas (MERN Stack: React, Node.js, Express, MongoDB) con la solidez de entornos corporativos (Java, Spring Boot, MySQL, Python).
 
-                        Mi perfil técnico puentea dos mundos: combino la solidez de los entornos corporativos (desarrollando APIs escalables con Java, Spring Boot y MySQL) con la agilidad de las tecnologías modernas (creando interfaces y backends reactivos con el Stack MERN: React, Node.js y MongoDB).
-
-                        Académicamente, mantengo un promedio de 7.55 con 19 materias superadas. Actualmente curso mis tres asignaturas finales para obtener mi doble titulación intermedia como Analista en Sistemas y Programador Universitario.
-
-                        Bienvenido a mi espacio. Este portafolio está en constante actualización.
+                        Me enfoco en entregar software limpio, escalable y con impacto directo en el negocio.
                     </p>
                     <a href={curriculumPDF} download className="download-button" onClick={handleDownload}>
                         <span className="download-text">Descargar CV</span>

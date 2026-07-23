@@ -4,6 +4,7 @@ import PageLayout from '../components/PageLayout';
 import TransporteSantaLucia from '../components/solutions/TransporteSantaLucia';
 import RapiburguerSolution from '../components/solutions/RapiburguerSolution';
 import PortfolioSolution from '../components/solutions/PortfolioSolution';
+import RelicarioSolution from '../components/solutions/RelicarioSolution';
 
 const SolutionScreen = () => {
     const { id } = useParams();
@@ -16,6 +17,8 @@ const SolutionScreen = () => {
                 return <RapiburguerSolution />;
             case 'portfolio':
                 return <PortfolioSolution />;
+            case 'relicario':
+                return <RelicarioSolution />;
             default:
                 return <Navigate to="/" replace />;
         }
