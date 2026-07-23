@@ -37,14 +37,24 @@ const BodyHome = ({ onSectionChange }) => {
     const currentYear = new Date().getFullYear();
     const { darkMode } = useTheme();
     const { showAvatar } = useMagic();
-    // const [showModal, setShowModal] = useState(false); // Removed custom modal state
+    const [isUnlocked, setIsUnlocked] = useState(localStorage.getItem('unlocked_projects') === 'true');
 
-    const projects = [
-        // { id: 1, name: 'Relicario Studio', image: relicario, website: 'https://relicariostudio.netlify.app/', github: 'https://github.com/romeraugustoo/relicario-project', text: 'Ir a Relicario', solutionRoute: '/solution/relicario' },
+    useEffect(() => {
+        const handleUnlockChange = () => {
+            setIsUnlocked(localStorage.getItem('unlocked_projects') === 'true');
+        };
+        window.addEventListener('unlock_changed', handleUnlockChange);
+        return () => window.removeEventListener('unlock_changed', handleUnlockChange);
+    }, []);
+
+    const allProjects = [
+        { id: 1, name: 'Relicario Studio', image: relicario, website: 'https://relicariostudio.netlify.app/', github: 'https://github.com/romeraugustoo/relicario-project', text: 'Ir a Relicario', solutionRoute: '/solution/relicario', isProtected: true },
         { id: 2, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
         { id: 3, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
         { id: 4, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
+
+    const projects = allProjects.filter(p => !p.isProtected || isUnlocked);
 
     const handleDownload = (e) => {
         e.preventDefault(); // Prevent immediate download

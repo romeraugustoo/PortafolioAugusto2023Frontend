@@ -515,13 +515,37 @@ body {
     filter: brightness(1.2);
 }
 
-.btn-wsp, .btn-theme-toggle, .magic-wand-btn-floating {
+.secret-key-btn-floating {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 225px;
+    right: 30px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    z-index: 100;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secret-key-btn-floating:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.btn-wsp, .btn-theme-toggle, .magic-wand-btn-floating, .secret-key-btn-floating {
     position: fixed;
 }
 
 .btn-wsp::after,
 .btn-theme-toggle::after,
-.magic-wand-btn-floating::after {
+.magic-wand-btn-floating::after,
+.secret-key-btn-floating::after {
     content: attr(data-tooltip);
     position: absolute;
     right: 70px;
@@ -545,7 +569,8 @@ body {
 
 .btn-wsp::before,
 .btn-theme-toggle::before,
-.magic-wand-btn-floating::before {
+.magic-wand-btn-floating::before,
+.secret-key-btn-floating::before {
     content: '';
     position: absolute;
     right: 62px;
@@ -562,7 +587,8 @@ body {
 
 .btn-wsp:hover::after,
 .btn-theme-toggle:hover::after,
-.magic-wand-btn-floating:hover::after {
+.magic-wand-btn-floating:hover::after,
+.secret-key-btn-floating:hover::after {
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%) scale(1) rotate(0deg) !important;
@@ -570,7 +596,8 @@ body {
 
 .btn-wsp:hover::before,
 .btn-theme-toggle:hover::before,
-.magic-wand-btn-floating:hover::before {
+.magic-wand-btn-floating:hover::before,
+.secret-key-btn-floating:hover::before {
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%) scale(1);
@@ -596,6 +623,13 @@ body {
 }
 .magic-wand-btn-floating::before {
     border-color: transparent transparent transparent #a855f7;
+}
+
+.secret-key-btn-floating::after {
+    background-color: #f59e0b;
+}
+.secret-key-btn-floating::before {
+    border-color: transparent transparent transparent #f59e0b;
 }
 
 @media (max-width: 991px) {
