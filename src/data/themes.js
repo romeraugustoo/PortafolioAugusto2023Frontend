@@ -43,7 +43,7 @@ export const themes = [
             background: "#022C22",
             primary: "#22C55E",
             secondary: "#86EFAC",
-            text: "#ECFDF5"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/icongreen.png"
     },
@@ -59,7 +59,7 @@ export const themes = [
             background: "#2E1065",
             primary: "#8B5CF6",
             secondary: "#DDD6FE",
-            text: "#F5F3FF"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/iconpurple.png"
     },
@@ -75,7 +75,7 @@ export const themes = [
             background: "#450A0A",
             primary: "#ef4444", // Kept same or make brighter? Let's keep for now or make slightly more vibrant if needed.
             secondary: "#FCA5A5",
-            text: "#FEF2F2"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/iconred.png"
     },
@@ -91,7 +91,7 @@ export const themes = [
             background: "#431407",
             primary: "#F97316",
             secondary: "#FED7AA",
-            text: "#FFF7ED"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/iconorange.png"
     },
@@ -108,7 +108,7 @@ export const themes = [
             background: "#500724",
             primary: "#EC4899",
             secondary: "#FBCFE8",
-            text: "#FDF2F8"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/iconpink.png"
     },
@@ -124,7 +124,7 @@ export const themes = [
             background: "#365314",
             primary: "#84CC16",
             secondary: "#BEF264",
-            text: "#ECFCCB"
+            text: "#F8FAFC"
         },
         icon: "/assets/iconcolors/icongreen.png"
     },
