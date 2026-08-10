@@ -11,7 +11,7 @@ function cleanupStaleIps(now) {
     }
 }
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
     if (context) context.callbackWaitsForEmptyEventLoop = false;
     const now = Date.now();
     cleanupStaleIps(now);
