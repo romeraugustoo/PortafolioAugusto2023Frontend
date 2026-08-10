@@ -13,34 +13,24 @@ El **Portafolio de Augusto Romera** es una aplicación web interactiva desarroll
 
 ---
 
-## 🛡️ 2. Sistema de Seguridad y Rate-Limiting por IP (Implementado 2026-08-10)
+## 📱 2. Corrección Responsiva de Desbordamiento Móvil (2026-08-10)
 
-Para resistir ataques de fuerza bruta y automatización sobre el código de acceso a proyectos restringidos, se diseñó e implementó un sistema de protección en 2 capas:
-
-1. **Netlify Serverless Function (`netlify/functions/verify-code.cjs`):**
-   - Extrae la IP pública real del cliente desde la cabecera `x-nf-client-connection-ip` / `x-forwarded-for`.
-   - Oculta el código de acceso en el servidor (`process.env.ACCESS_CODE`), eliminándolo del bundle público de JavaScript.
-   - Formato `.cjs` optimizado para runtime de AWS Lambda en Netlify.
-   - Aplica **Regla de Sanción por IP**:
-     - 3 intentos erróneos → IP bloqueada temporalmente por **5 minutos**.
-     - 5 o más intentos erróneos → IP bloqueada por **30 minutos**.
-   - **Demora Penalizadora Anti-Timing:** Los intentos fallidos imponen 1 segundo de retraso deliberado para neutralizar bots de alta velocidad.
-
-2. **Módulo Cliente & Fallback (`src/utils/securityManager.js`):**
-   - Realiza la petición asíncrona a la función serverless con indicadores de carga visuales en SweetAlert2.
-   - Hash Salted SHA-256 actualizado para validación local en dev mode.
-   - Muestra el tiempo formateado de penalización (`mm:ss`) si la IP de un usuario resulta bloqueada.
+- **Corrección de Animación Typing (`.home_text3`):**
+  - Se eliminó el tamaño estático rígido en pantallas móviles que hacía desbordar la frase `"Desarrollador de software"` fuera del viewport (causando scroll horizontal y franjas blancas laterales en dispositivos como smartphones).
+  - Implementación de escala fluida responsiva mediante `clamp(0.75rem, 4.2vw, 1.6rem)` y `max-width: 90vw`.
+- **Aislamiento Horizontal (`html, body, .home, .homebg`):**
+  - Aplicación de `overflow-x: hidden` y `max-width: 100vw` garantizando que ningún elemento pueda generar desplazamiento horizontal involuntario.
+- **Ajuste de Botones Flotantes Móviles:**
+  - Reducción táctil adaptativa en pantallas de `< 575px` (`46px`, `right: 15px`).
 
 ---
 
-## 🎨 3. Optimización de Modo Oscuro & Refactor del Botón Mágico (2026-08-10)
+## 🛡️ 3. Sistema de Seguridad y Rate-Limiting por IP
 
-- **Contraste de Alto Nivel en Modo Oscuro (`bodyhome.css`):**
-  - Redefinición de colores para tarjetas (`#18181b`), bordes nítidos (`#3f3f46`), textos atenuados (`#a1a1aa`), bloques de código `pre` (`#0f172a`), inline `code` (`#38bdf8`) y tablas (`#27272a`).
-- **Refactor de MagicContext & Botón Flotante (`MagicContext.jsx` & `PageLayout.jsx`):**
-  - Notificaciones flotantes interactivas en vivo (SweetAlert2 Toasts) al conmutar paletas de color con el nombre exacto de la paleta activa.
-  - Sincronización de ráfaga de partículas de confeti basadas en la paleta primaria/secundaria activa.
-  - Tooltips dinámicos indicando el modo actual en el botón de varita mágica.
+- **Netlify Serverless Function (`netlify/functions/verify-code.cjs`):**
+  - Extrae la IP pública real del cliente desde la cabecera `x-nf-client-connection-ip`.
+  - Formato `.cjs` optimizado para runtime de AWS Lambda en Netlify.
+  - Sanción por IP: 3 intentos ➔ 5 min / 5 intentos ➔ 30 min. Delay anti-timing de 1s.
 
 ---
 
@@ -49,5 +39,5 @@ Para resistir ataques de fuerza bruta y automatización sobre el código de acce
 ### 📅 2026-08-10
 - **Seguridad por IP & Serverless:** `netlify.toml`, `netlify/functions/verify-code.cjs`, `src/utils/securityManager.js`, `PageLayout.jsx`, `SolutionScreen.jsx`.
 - **Caso de Estudio ProfeBook Studio:** `ProfeBookSolution.jsx` con mapa ASCII, 6 fases de ciclo de vida y bloque `[METADATA]`.
-- **UI/UX & Dark Mode:** Refuerzo de contraste global en CSS y refactorización del motor `MagicContext`.
-- **Verificación:** Compilación limpia verificada con `npm run build` (10.41s).
+- **UI/UX & Responsividad:** Eliminación del desbordamiento en `.home_text3` en smartphones y ajuste del layout horizontal.
+- **Verificación:** Compilación limpia verificada con `npm run build` (7.08s).
