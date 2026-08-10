@@ -11,7 +11,7 @@ function cleanupStaleIps(now) {
     }
 }
 
-export async function handler(event, context) {
+exports.handler = async (event, context) => {
     if (context) context.callbackWaitsForEmptyEventLoop = false;
     const now = Date.now();
     cleanupStaleIps(now);
@@ -43,7 +43,6 @@ export async function handler(event, context) {
     
     // Tomar la primera IP si hay proxies encadenados
     const clientIp = rawIp.split(',')[0].trim();
-    const now = Date.now();
 
     let ipData = ipRateMap.get(clientIp) || { failedAttempts: 0, lockoutUntil: 0 };
 
