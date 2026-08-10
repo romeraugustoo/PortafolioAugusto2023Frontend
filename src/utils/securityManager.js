@@ -2,7 +2,7 @@
 // Se conecta a /.netlify/functions/verify-code y proporciona fallback resiliente para entorno local.
 
 // Salted SHA-256 para el código por defecto "1221122" en fallback local
-const FALLBACK_CODE_HASH = '31b5c464c8d5a1b3beed5f98e6b185fae461a87754d9bbf45814041b63e8a47a';
+const FALLBACK_CODE_HASH = '5530dab1a6e632fa7d09ca8c204c142edc62d037fd26b86ca3f08a301523cdc8';
 
 async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message + '_salt_augusto_2026');
@@ -32,6 +32,7 @@ export async function verifyAccessCode(inputCode) {
 
         if (response.ok) {
             const data = await response.json();
+            localStorage.removeItem('sec_ip_rate_limit');
             return { success: true, message: data.message || 'Acceso Concedido' };
         }
 
