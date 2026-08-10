@@ -758,6 +758,59 @@ body {
     color: var(--text-dark) !important;
 }
 
+/* Reglas de Alto Contraste para Modo Oscuro */
+.dark-mode .text-muted,
+.dark-mode .text-secondary,
+.solution-page.dark-mode .text-secondary,
+.solution-page.dark-mode .text-muted {
+    color: #a1a1aa !important;
+}
+
+.dark-mode .lead,
+.solution-page.dark-mode .lead {
+    color: #e4e4e7 !important;
+}
+
+.dark-mode .card,
+.solution-page.dark-mode .card {
+    background-color: #18181b !important;
+    color: #f4f4f5 !important;
+    border-color: #3f3f46 !important;
+}
+
+.dark-mode pre,
+.solution-page.dark-mode pre {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    border-radius: 8px;
+}
+
+.dark-mode code,
+.solution-page.dark-mode code {
+    color: #38bdf8 !important;
+}
+
+.dark-mode table,
+.solution-page.dark-mode table {
+    color: #f4f4f5 !important;
+    border-color: #3f3f46 !important;
+}
+
+.dark-mode th,
+.solution-page.dark-mode th {
+    background-color: #27272a !important;
+    color: #ffffff !important;
+    border-color: #3f3f46 !important;
+}
+
+.dark-mode td,
+.solution-page.dark-mode td {
+    background-color: #18181b !important;
+    color: #e4e4e7 !important;
+    border-color: #27272a !important;
+}
+
 .accordion-button:not(.collapsed) {
     background-color: #e9ecef;
     color: var(--text-light);
@@ -770,17 +823,17 @@ body {
 }
 
 .solution-page.dark-mode .accordion-item {
-    background-color: var(--bg-dark);
-    border-color: #444;
+    background-color: #18181b;
+    border-color: #3f3f46;
 }
 
 .solution-page.dark-mode .accordion-button {
-    background-color: #1a1a1a;
-    color: var(--text-dark);
+    background-color: #27272a;
+    color: #f4f4f5;
 }
 
 .solution-page.dark-mode .accordion-button:not(.collapsed) {
-    background-color: #333;
+    background-color: #3f3f46;
     color: var(--primary-color);
     box-shadow: none;
 }
@@ -790,9 +843,9 @@ body {
 }
 
 .solution-page.dark-mode .accordion-body {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-    border-top: 1px solid #444;
+    background-color: #18181b;
+    color: #e4e4e7;
+    border-top: 1px solid #3f3f46;
 }
 
 .theme-text-primary {
@@ -813,3 +866,12 @@ body {
     color: var(--text-light);
     border-color: var(--primary-color);
 }
+
+/* Toast flotante de Varita Mágica */
+.swal-magic-toast {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 12px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+}
+

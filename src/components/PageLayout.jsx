@@ -12,7 +12,7 @@ import { verifyAccessCode, formatTimeRemaining } from '../utils/securityManager'
 const LayoutContent = ({ children, activeSection }) => {
     const [navBarClass, setNavBarClass] = useState('');
     const { darkMode, toggleTheme } = useTheme();
-    const { handleMagicClick } = useMagic();
+    const { handleMagicClick, themeName } = useMagic();
     const [isUnlocked, setIsUnlocked] = useState(localStorage.getItem('unlocked_projects') === 'true');
 
     useEffect(() => {
@@ -24,17 +24,8 @@ const LayoutContent = ({ children, activeSection }) => {
     }, []);
 
     const onMagicClick = (e) => {
-        e.preventDefault();
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { x, y }
-        });
-
-        handleMagicClick();
+        if (e) e.preventDefault();
+        handleMagicClick(e);
     };
 
     const handleWhatsAppClick = (e) => {
@@ -194,7 +185,7 @@ const LayoutContent = ({ children, activeSection }) => {
                 <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} fa-2xl`}></i>
             </button>
 
-            <button className="magic-wand-btn-floating" onClick={onMagicClick} data-tooltip="Cambiar Tema">
+            <button className="magic-wand-btn-floating" onClick={onMagicClick} data-tooltip={`Modo Mágico (${themeName})`}>
                 <i className="fa-solid fa-wand-magic-sparkles"></i>
             </button>
 

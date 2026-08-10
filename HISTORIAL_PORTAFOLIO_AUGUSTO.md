@@ -15,11 +15,12 @@ El **Portafolio de Augusto Romera** es una aplicación web interactiva desarroll
 
 ## 🛡️ 2. Sistema de Seguridad y Rate-Limiting por IP (Implementado 2026-08-10)
 
-Para resistir ataques de fuerza bruta y automatización sobre el código de acceso a proyectos restringidos (`1221122`), se diseñó e implementó un sistema de protección en 2 capas:
+Para resistir ataques de fuerza bruta y automatización sobre el código de acceso a proyectos restringidos, se diseñó e implementó un sistema de protección en 2 capas:
 
-1. **Netlify Serverless Function (`netlify/functions/verify-code.js`):**
+1. **Netlify Serverless Function (`netlify/functions/verify-code.cjs`):**
    - Extrae la IP pública real del cliente desde la cabecera `x-nf-client-connection-ip` / `x-forwarded-for`.
    - Oculta el código de acceso en el servidor (`process.env.ACCESS_CODE`), eliminándolo del bundle público de JavaScript.
+   - Formato `.cjs` optimizado para runtime de AWS Lambda en Netlify.
    - Aplica **Regla de Sanción por IP**:
      - 3 intentos erróneos → IP bloqueada temporalmente por **5 minutos**.
      - 5 o más intentos erróneos → IP bloqueada por **30 minutos**.
@@ -27,33 +28,26 @@ Para resistir ataques de fuerza bruta y automatización sobre el código de acce
 
 2. **Módulo Cliente & Fallback (`src/utils/securityManager.js`):**
    - Realiza la petición asíncrona a la función serverless con indicadores de carga visuales en SweetAlert2.
-   - Incluye hash SHA-256 saltado y simulador de rate-limiting por IP local para mantener operabilidad en entornos de desarrollo sin CLI de Netlify.
+   - Hash Salted SHA-256 actualizado para validación local en dev mode.
    - Muestra el tiempo formateado de penalización (`mm:ss`) si la IP de un usuario resulta bloqueada.
 
 ---
 
-## 🎓 3. Integración Promocional e Integral de ProfeBook Studio (2026-08-10)
+## 🎨 3. Optimización de Modo Oscuro & Refactor del Botón Mágico (2026-08-10)
 
-- **Captura Oficial:** Imagen de portada de alta fidelidad tomada de la Landing Page de Cátedra Studio / ProfeBook Studio (`ProfeBook.png`).
-- **Showcase Promocional Integral (`ProfeBookSolution.jsx`):**
-  - **Banner Hero & Call To Action:** Botón destacado direct-to-repo a `https://github.com/romeraugustoo/ProfeBook.git`.
-  - **Propuesta de Valor:** Comparativa entre la frustrante experiencia tradicional con IAs vs. la solución automatizada de ProfeBook.
-  - **Diagrama de Arquitectura de Capas en ASCII:** Mapa completo del flujo desde `ProjectSetupModal` hasta `A4PagedPreview`.
-  - **El Ciclo de Vida en 6 Pasos:** Tarjetas detalladas del origen del árbol, Prompt Maestro, Copy-Paste, bloque `[METADATA]`, Smart Import y Compilador PDF.
-  - **Sintaxis KaTeX & LaTeX:** Tabla de demostración vectorial a 300 DPI.
-  - **Retos Técnicos de Ingeniería:** Paginador DOM 1:1, Sincronización del TOC (`toc-N`), Glosario A-Z y Respaldo Workspace (`.json`).
+- **Contraste de Alto Nivel en Modo Oscuro (`bodyhome.css`):**
+  - Redefinición de colores para tarjetas (`#18181b`), bordes nítidos (`#3f3f46`), textos atenuados (`#a1a1aa`), bloques de código `pre` (`#0f172a`), inline `code` (`#38bdf8`) y tablas (`#27272a`).
+- **Refactor de MagicContext & Botón Flotante (`MagicContext.jsx` & `PageLayout.jsx`):**
+  - Notificaciones flotantes interactivas en vivo (SweetAlert2 Toasts) al conmutar paletas de color con el nombre exacto de la paleta activa.
+  - Sincronización de ráfaga de partículas de confeti basadas en la paleta primaria/secundaria activa.
+  - Tooltips dinámicos indicando el modo actual en el botón de varita mágica.
 
 ---
 
 ## 📝 4. Bitácora de Trabajo (Sesión Actual)
 
 ### 📅 2026-08-10
-- **Seguridad por IP:** `netlify.toml`, `netlify/functions/verify-code.js`, `src/utils/securityManager.js`, `PageLayout.jsx`, `SolutionScreen.jsx`.
-- **Caso de Estudio & Ajustes UI:**
-  - Reescribir `PortfolioSolution.jsx`.
-  - Padding responsivo dinámico en `.solution-page` (`bodyhome.css`).
-- **Integración Promocional de ProfeBook Studio:**
-  - Capturada imagen real de la Landing Page.
-  - Rediseñado `ProfeBookSolution.jsx` como vitrina promocional integral con diagrama ASCII, comparativa de propuesta de valor, badges y enlaces directos a GitHub.
-  - Enlazado a la ruta protegida `/solution/profebook`.
-- **Verificación:** Compilación limpia verificada con `npm run build`.
+- **Seguridad por IP & Serverless:** `netlify.toml`, `netlify/functions/verify-code.cjs`, `src/utils/securityManager.js`, `PageLayout.jsx`, `SolutionScreen.jsx`.
+- **Caso de Estudio ProfeBook Studio:** `ProfeBookSolution.jsx` con mapa ASCII, 6 fases de ciclo de vida y bloque `[METADATA]`.
+- **UI/UX & Dark Mode:** Refuerzo de contraste global en CSS y refactorización del motor `MagicContext`.
+- **Verificación:** Compilación limpia verificada con `npm run build` (10.41s).
