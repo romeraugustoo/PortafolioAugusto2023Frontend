@@ -3,17 +3,18 @@
 
 const ipRateMap = new Map();
 
-// Limpieza periódica de registros antiguos cada 1 hora para evitar consumo de memoria
-setInterval(() => {
-    const now = Date.now();
+function cleanupStaleIps(now) {
     for (const [ip, data] of ipRateMap.entries()) {
         if (data.lockoutUntil && data.lockoutUntil < now) {
             ipRateMap.delete(ip);
         }
     }
-}, 3600000);
+}
 
 exports.handler = async (event, context) => {
+    if (context) context.callbackWaitsForEmptyEventLoop = false;
+    const now = Date.now();
+    cleanupStaleIps(now);
     // Permitir preflight CORS si fuera necesario
     if (event.httpMethod === 'OPTIONS') {
         return {
