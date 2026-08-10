@@ -10,22 +10,43 @@
   height: 100%;
   overflow: hidden;
   border-radius: 50%;
-  border: 4px solid var(--avatar-accent-color);
-  box-shadow: 0 0 20px rgba(250, 188, 93, 0.5);
-  background: #808080; /* Gray background */
-  margin: 0 auto; /* Center it */
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 25px var(--primary-color);
+  background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
+  margin: 0 auto;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  animation: avatarPulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes avatarPulseGlow {
+  0% {
+    box-shadow: 0 0 15px var(--primary-color);
+  }
+  100% {
+    box-shadow: 0 0 32px var(--primary-color), 0 0 45px rgba(250, 188, 93, 0.3);
+  }
 }
 
 .box {
   position: absolute;
-  top: 60%;
+  top: 52%;
   left: 50%;
   width: 1000px;
   height: 1000px;
-  background: #808080;
+  background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0.2);
+  transform: translate(-50%, -50%) scale(0.145);
   transform-origin: center center;
+  animation: avatarBreathe 5s ease-in-out infinite alternate;
+}
+
+@keyframes avatarBreathe {
+  0% {
+    transform: translate(-50%, -50%) scale(0.145);
+  }
+  100% {
+    transform: translate(-50%, -51%) scale(0.148);
+  }
 }
 
 .shirt-box {
@@ -46,15 +67,135 @@
 .layer6 { z-index: 6; }
 .layer7 { z-index: 7; }
 
+/* ROSTRO Y CABEZA */
 .head {
   position: absolute;
   top: -5%;
   left: 26%;
   width: 47.3%;
   height: 59.3%;
-  background: #e7cdb0;
+  background: linear-gradient(180deg, #edd6bd 0%, #e0c2a2 100%);
   border-radius: 47% 47% 60% 60% / 51% 51% 54% 54%;
   overflow: hidden;
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* RIGGING 2D: CEJAS, OJOS Y PARPADEO AUTOMÁTICO */
+.eyebrows-box {
+  position: absolute;
+  top: 10.2%;
+  left: 36%;
+  width: 28%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.eyebrow {
+  width: 105px;
+  height: 18px;
+  background-color: #231208;
+  border-radius: 9px;
+}
+
+.eyebrow-left  { transform: rotate(2deg); }
+.eyebrow-right { transform: rotate(-2deg); }
+
+.eyes-box {
+  position: absolute;
+  top: 12.8%;
+  left: 36%;
+  width: 28%;
+  height: 9%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.eye {
+  width: 108px;
+  height: 69px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50% 50% 45% 45% / 55% 55% 40% 40%;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.25);
+  border: 3px solid #4a3625;
+}
+
+.sclera {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.pupil-iris {
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle, #3d2412 35%, #180d05 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 28px;
+}
+
+.eye-shine {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 13px;
+  height: 13px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255,255,255,0.9);
+}
+
+/* Párpado superior con animación de parpadeo automático */
+.eyelid-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #edd6bd;
+  border-bottom: 2px solid #4a3625;
+  z-index: 5;
+  animation: eyeBlink 5.5s ease-in-out infinite;
+}
+
+@keyframes eyeBlink {
+  0%, 93%, 100% {
+    height: 0%;
+  }
+  96% {
+    height: 100%;
+  }
+}
+
+/* VOLUMEN 2.5D: PUENTE DE NARIZ Y SOMBRA DE MENTÓN */
+.nose-bridge {
+  width: 14px;
+  height: 80px;
+  position: absolute;
+  top: 42%;
+  left: 48.5%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.06) 0%, transparent 100%);
+  border-radius: 7px;
+  pointer-events: none;
+}
+
+.chin-shadow {
+  position: absolute;
+  bottom: 4%;
+  left: 28%;
+  width: 44%;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .head-copy {
@@ -62,7 +203,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background: #e7cdb0;
+  background: linear-gradient(180deg, #edd6bd 0%, #e0c2a2 100%);
   border-radius: 47% 47% 60% 60% / 51% 51% 69% 69%;
   bottom: 10%;
 }
@@ -71,22 +212,24 @@
   content: '';
   position: absolute;
   bottom: -2%;
-  background: #e7cdb0;
+  background: transparent;
   border-radius: 26px;
   left: 27%;
   width: 46%;
   height: 23%;
   border: none;
 }
+
 .mouth {
   width: 200px;
   height: 100px;
   position: absolute;
   top: 6%;
-  background-color: #434330;
+  background-color: #38291a;
   border-radius: 25px 25px 200px 200px;
   left: 4%;
   overflow: hidden;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .mouth::after {
@@ -111,106 +254,35 @@
   border-radius: 0px 0px 40px 40px;
 }
 
-.glasses {
-  height: 16%;
-  width: 47%;
-  position: relative;
-  top: 11.2%;
-  left: 26%;
-}
-
-.left-lens-frame { left: 5%; }
-.right-lens-frame { right: 5%; }
-
-.frame-rim {
-  width: 3%;
-  height: 3%;
-  border-radius: 10px;
+.nose {
+  width: 90px;
+  height: 35px;
   position: absolute;
-  background: var(--primary-color);
-  top: 13.5%;
-}
-
-.frame-rim::after {
-  content: '';
-  position: absolute;
-  top: 42%;
-  left: 42%;
-  height: 15%;
-  width: 15%;
-  border-radius: 40%;
-  background-color: white;
-}
-
-.frame-rim-joiner {
-  background: var(--primary-color);
-  width: 20%;
-  height: 19%;
-  position: absolute;
-  top: 14.3%;
-}
-
-.frame-rim-joiner-left { left: 1%; }
-.frame-rim-joiner-right { right: 1%; }
-
-.frame-rim-left { left: 25.6%; }
-.frame-rim-right { right: 26.3%; }
-
-.lens-frame {
-  background-color: var(--primary-color);
-  border-radius: 50% 50% 38% 38% / 27% 27% 58% 55%;
-  width: 41%;
-  height: 90%;
-  position: absolute;
-}
-
-.lens-bridge {
-  width: 20%;
-  height: 16%;
-  position: absolute;
-  background: var(--primary-color);
-  top: 15%;
+  top: 58%;
+  background-color: #D6B896;
+  border-radius: 0px 0px 70px 70px;
   left: 40%;
-}
-
-.lens-bridge-cutout {
-  width: 12%;
-  height: 10%;
-  position: absolute;
-  border-radius: 50%;
-  background: #e7cdb0;
-  top: 29%;
-  left: 44%;
-}
-
-.lens {
-  border-radius: 50% 50% 38% 38% / 27% 27% 58% 55%;
-  width: 91%;
-  height: 90%;
-  position: absolute;
-  left: 5%;
-  top: 5%;
-  margin: 0 auto;
   overflow: hidden;
-  background: linear-gradient(140deg, rgba(255,255,255,1) 24%, rgba(219,228,235,1) 64%);
 }
 
+/* OREJAS */
 .ear-left {
   position: absolute;
   width: 10%;
   height: 15%;
   left: 21%;
   top: 15%;
-  background: #e7cdb0;
+  background: #edd6bd;
   border-radius: 37% 58% 30% 70% / 26% 55% 0% 71%;
 }
+
 .ear-right {
   position: absolute;
   width: 10%;
   height: 15%;
   right: 21.5%;
   top: 15%;
-  background: #e7cdb0;
+  background: #edd6bd;
   border-radius: 58% 37% 70% 30% / 55% 26% 71% 0%;
 }
 
@@ -234,25 +306,15 @@
   background: #ceb79b;
 }
 
-.nose {
-  width: 90px;
-  height: 35px;
-  position: absolute;
-  top: 58%;
-  background-color: #D6B896;
-  border-radius: 0px 0px 70px 70px;
-  left: 40%;
-  overflow: hidden;
-}
-
-.hair { 
+/* CABELLO */
+.hair {
   position: absolute;
   width: 473px;
   height: 362px;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(53,26,8,1) 56%, rgba(112,80,78,1) 100%);
+  background: linear-gradient(180deg, rgba(35, 18, 8, 1) 56%, rgba(75, 45, 30, 1) 100%);
   top: -12%;
   left: 26%;
 }
@@ -261,7 +323,7 @@
   position: absolute;
   width: 95.8%;
   height: 126%;
-  background-color: #e7cdb0;
+  background-color: #edd6bd;
   border-radius: 100% 100% 0% 0% / 100% 100% 0% 0%;
   bottom: -47%;
   left: 2.1%;
@@ -271,7 +333,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #3a1d09;
+  background-color: #231208;
   position: absolute;
   bottom: 40%;
 }
@@ -284,14 +346,15 @@
   height: 30%;
   position: absolute;
   top: 0%;
-  background-color: #3a1d09;
+  background-color: #231208;
   left: 14%;
 }
 
 .hair-flick {
   position: absolute;
-  background-color: #3a1d09;
+  background-color: #231208;
 }
+
 .flick1 {
   width: 16%;
   height: 9%;
@@ -313,6 +376,146 @@
   right: 28%;
 }
 
+/* GAFAS Y ANIMACIÓN VOLADORA */
+.glasses {
+  height: 16%;
+  width: 47%;
+  position: relative;
+  top: 11.2%;
+  left: 26%;
+  transition: transform 0.3s ease;
+}
+
+.glasses-fly-in-anim {
+  animation: glassesFlyIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes glassesFlyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-380px) rotate(-35deg) scale(1.6);
+    filter: drop-shadow(0 25px 20px rgba(0, 0, 0, 0.6));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px) rotate(8deg) scale(0.92);
+  }
+  80% {
+    transform: translateY(-6px) rotate(-3deg) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+.left-lens-frame { left: 5%; }
+.right-lens-frame { right: 5%; }
+
+.frame-rim {
+  width: 3%;
+  height: 3%;
+  border-radius: 10px;
+  position: absolute;
+  background: var(--primary-color);
+  top: 13.5%;
+  transition: background 0.4s ease;
+}
+
+.frame-rim::after {
+  content: '';
+  position: absolute;
+  top: 42%;
+  left: 42%;
+  height: 15%;
+  width: 15%;
+  border-radius: 40%;
+  background-color: white;
+}
+
+.frame-rim-joiner {
+  background: var(--primary-color);
+  width: 20%;
+  height: 19%;
+  position: absolute;
+  top: 14.3%;
+  transition: background 0.4s ease;
+}
+
+.frame-rim-joiner-left { left: 1%; }
+.frame-rim-joiner-right { right: 1%; }
+
+.frame-rim-left { left: 25.6%; }
+.frame-rim-right { right: 26.3%; }
+
+.lens-frame {
+  background-color: var(--primary-color);
+  border-radius: 50% 50% 38% 38% / 27% 27% 58% 55%;
+  width: 41%;
+  height: 90%;
+  position: absolute;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.4s ease;
+}
+
+.lens-bridge {
+  width: 20%;
+  height: 16%;
+  position: absolute;
+  background: var(--primary-color);
+  top: 15%;
+  left: 40%;
+  transition: background 0.4s ease;
+}
+
+.lens-bridge-cutout {
+  width: 12%;
+  height: 10%;
+  position: absolute;
+  border-radius: 50%;
+  background: #e0c2a2;
+  top: 29%;
+  left: 44%;
+}
+
+.lens {
+  border-radius: 50% 50% 38% 38% / 27% 27% 58% 55%;
+  width: 91%;
+  height: 90%;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  margin: 0 auto;
+  overflow: hidden;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.85) 24%, rgba(219, 228, 235, 0.45) 64%);
+}
+
+.lens-glare {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 55%
+  );
+  animation: lensGlareAnim 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes lensGlareAnim {
+  0%, 80%, 100% {
+    transform: translateX(-100%) translateY(-100%);
+  }
+  90% {
+    transform: translateX(100%) translateY(100%);
+  }
+}
+
+/* CUELLO Y ROPA */
 .neck-shadow {
   height: 15%;
   width: 18%;
@@ -329,7 +532,7 @@
   width: 18%;
   position: absolute;
   border-radius: 0% 0% 50% 50% / 0% 0% 37% 37%;
-  background: #e7cdb0;
+  background: #edd6bd;
   margin: 0 auto;
   top: 50%;
   left: 41%;
@@ -339,7 +542,7 @@
   height: 114%;
   width: 79%;
   position: relative;
-  background: #e7cdb0;
+  background: #edd6bd;
   margin: 0 auto;
   top: 41%;
   left: -5%;
@@ -353,7 +556,7 @@
   height: 45%;
   position: relative;
   border-radius: 50% 50% 50% 50% / 34% 34% 0% 0%;
-  background-color: #1a1a1a; /* Black shirt */
+  background-color: #121212;
   top: 56%;
   left: 5%;
   border: 3px solid #000;
@@ -363,51 +566,56 @@
   height: 18%;
   width: 22%;
   position: absolute;
-  background: #1a1a1a;
+  background: #18181b;
   top: 5%;
   left: 29%;
   transform: rotate(15deg) skewX(-10deg);
   border-radius: 5px;
   border: 3px solid #000;
-  border-bottom: 4px solid var(--primary-color); /* Gold trim */
+  border-bottom: 4px solid var(--primary-color);
   z-index: 2;
+  transition: border-bottom-color 0.4s ease;
 }
 
 .collar-right {
   height: 18%;
   width: 22%;
   position: absolute;
-  background: #1a1a1a;
+  background: #18181b;
   top: 5%;
   right: 29%;
   transform: rotate(-15deg) skewX(10deg);
   border-radius: 5px;
   border: 3px solid #000;
-  border-bottom: 4px solid var(--primary-color); /* Gold trim */
+  border-bottom: 4px solid var(--primary-color);
   z-index: 2;
+  transition: border-bottom-color 0.4s ease;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
-  background: var(--primary-color); /* Gold color */
+  width: 42px;
+  height: 42px;
+  background: var(--primary-color);
   position: absolute;
   top: 30%;
   left: 20%;
-  transform: rotate(45deg); /* Rhombus shape */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  transform: rotate(45deg);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  transition: background 0.4s ease;
 }
 
 .logo::after {
-  content: 'K'; /* Adding a letter like the reference image */
+  content: 'AR';
   position: absolute;
   transform: rotate(-45deg);
-  color: #1a1a1a;
-  font-weight: bold;
-  font-size: 24px;
-  top: 2px;
-  left: 10px;
+  color: #0f172a;
+  font-weight: 900;
+  font-size: 16px;
+  top: 9px;
+  left: 7px;
   font-family: sans-serif;
+  letter-spacing: -1px;
 }
 
 .buttons {
@@ -417,9 +625,10 @@
   width: 20px;
   height: 20px;
   left: 48%;
-  top: -10%; /* Adjusted position */
+  top: -10%;
   margin: 15% 0;
   z-index: 3;
+  transition: background-color 0.4s ease;
 }
 
 .buttons-trim {
@@ -429,72 +638,7 @@
   width: 8%;
   left: 45%;
   top: 13%;
-  background: #1a1a1a;
+  background: #121212;
   position: absolute;
   z-index: 1;
-}
-
-/* Magic Wand Button Styles */
-.magic-wand-btn-floating {
-  position: fixed;
-  bottom: 160px;
-  right: 30px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
-  z-index: 100;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.magic-wand-btn-floating:hover {
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  background-size: 400%;
-  animation: glowing 20s linear infinite;
-  transform: scale(1.1) rotate(15deg);
-}
-
-@keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
-}
-
-/* Transition container */
-.profile-container {
-  position: relative;
-  width: 30vh;
-  height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-content {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-content.hidden {
-  opacity: 0;
-  transform: scale(0.8);
-  pointer-events: none;
-}
-
-.profile-content.visible {
-  opacity: 1;
-  transform: scale(1);
 }

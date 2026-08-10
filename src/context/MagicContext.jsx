@@ -12,7 +12,7 @@ export const MagicProvider = ({ children }) => {
     // 0 to themes.length - 1: Theme Palettes
     const [themeIndex, setThemeIndex] = useState(() => {
         const savedIndex = localStorage.getItem('themeIndex');
-        return savedIndex ? parseInt(savedIndex, 10) : -2;
+        return (savedIndex !== null && savedIndex !== undefined) ? parseInt(savedIndex, 10) : -1;
     });
     const { darkMode } = useTheme();
 

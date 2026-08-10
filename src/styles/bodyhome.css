@@ -86,7 +86,30 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    overflow: hidden;
+}
+
+.profile-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-content.hidden {
+    opacity: 0;
+    transform: scale(0.85);
+    pointer-events: none;
+}
+
+.profile-content.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 .profile-image {
@@ -108,7 +131,7 @@ body {
     font-family: monospace;
     white-space: nowrap;
     border-right: 4px solid;
-    color: var(--text-dark);
+    color: #ffffff !important;
     width: 26.5ch;
     max-width: 100%;
     font-size: clamp(1.4rem, 2.5vw, 2.5rem);
