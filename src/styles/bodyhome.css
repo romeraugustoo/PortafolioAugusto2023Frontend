@@ -736,7 +736,21 @@ body {
 .solution-page {
     background-color: var(--bg-light);
     color: var(--text-light);
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.5s ease, color 0.5s ease, padding-top 0.3s ease;
+    padding-top: 140px !important; /* Dynamic headroom to prevent fixed Navbar overlap on Desktop */
+    padding-bottom: 80px;
+}
+
+@media (max-width: 991px) {
+    .solution-page {
+        padding-top: 115px !important; /* Headroom for tablet & expanded Navbar */
+    }
+}
+
+@media (max-width: 576px) {
+    .solution-page {
+        padding-top: 95px !important; /* Headroom for mobile screens */
+    }
 }
 
 .solution-page.dark-mode {

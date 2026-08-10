@@ -17,6 +17,7 @@ import rapiburger from '../assets/images/portfolio/Rapiburger.png';
 import relicario from '../assets/images/portfolio/Relicario.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
 import tslc from '../assets/images/portfolio/TransporteSantaLucia.png';
+import profebook from '../assets/images/portfolio/ProfeBook.png';
 
 import instagram from '../assets/images/logo/Instagram-Glyph-Color-Logo.wine.png';
 import downloadIcon from '../assets/images/logo/gold-button-009.svg';
@@ -49,6 +50,7 @@ const BodyHome = ({ onSectionChange }) => {
 
     const allProjects = [
         { id: 1, name: 'Relicario Studio', image: relicario, website: 'https://relicariostudio.netlify.app/', github: 'https://github.com/romeraugustoo/relicario-project', text: 'Ir a Relicario', solutionRoute: '/solution/relicario', isProtected: true },
+        { id: 5, name: 'ProfeBook Studio', image: profebook, website: '', github: 'https://github.com/romeraugustoo/ProfeBook.git', text: 'ProfeBook AI', solutionRoute: '/solution/profebook', isProtected: true },
         { id: 2, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
         { id: 3, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
         { id: 4, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
@@ -57,20 +59,17 @@ const BodyHome = ({ onSectionChange }) => {
     const projects = allProjects.filter(p => !p.isProtected || isUnlocked);
 
     const handleDownload = (e) => {
-        e.preventDefault(); // Prevent immediate download
+        e.preventDefault();
 
-        // Calculate origin
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
 
-        // Confetti
         confetti({
             particleCount: 100,
             spread: 70,
             origin: { x, y }
         });
 
-        // Show Modal after 1 second
         setTimeout(() => {
             Swal.fire({
                 title: '¡Descarga Exitosa! 🎉',
@@ -94,12 +93,10 @@ const BodyHome = ({ onSectionChange }) => {
             });
         }, 1000);
 
-        // Delay download (3 seconds total)
         setTimeout(() => {
-            // Trigger download
             const link = document.createElement('a');
             link.href = curriculumPDF;
-            link.download = 'Curriculum Vitae augusto.pdf'; // Optional: specify filename
+            link.download = 'Curriculum Vitae augusto.pdf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -130,7 +127,6 @@ const BodyHome = ({ onSectionChange }) => {
                 currentSection = 'portfolio';
             }
 
-
             if (scrollPosition >= contactTop - offset && scrollPosition < contactBottom) {
                 currentSection = 'contact';
             }
@@ -148,7 +144,6 @@ const BodyHome = ({ onSectionChange }) => {
         ScrollReveal().reveal('.skill_item', { delay: 600 });
         ScrollReveal().reveal('.about_skills', { delay: 600 });
 
-        // Target inner containers instead of the main section to keep background visible
         ScrollReveal().reveal('.portfolio .description-container', { delay: 600 });
         ScrollReveal().reveal('.portfolio .container', { delay: 600 });
 

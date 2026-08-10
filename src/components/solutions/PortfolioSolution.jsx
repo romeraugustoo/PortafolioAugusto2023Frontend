@@ -7,54 +7,108 @@ const PortfolioSolution = () => {
     const { darkMode } = useTheme();
 
     return (
-        <div className={`solution-page pt-5 pb-5 ${darkMode ? 'dark-mode' : ''}`} style={{ minHeight: '100vh' }}>
+        <div className={`solution-page ${darkMode ? 'dark-mode' : ''}`} style={{ minHeight: '100vh' }}>
             <Container>
 
-                {/* Header */}
+                {/* Header Principal */}
                 <section className="mb-5 text-center">
-                    <h1 className="display-4 theme-text-primary mb-3">Portfolio Interactivo 💻✨</h1>
+                    <h1 className="display-4 theme-text-primary mb-3">Portfolio Interactivo & Arquitectura Integral 💻🛡️✨</h1>
                     <h3 className={`h5 mb-4 ${darkMode ? 'text-light' : 'text-secondary'}`}>
-                        Plataforma personal de presentación profesional construida con Vite, React y arquitectura de temas.
+                        Documentación técnica completa del sistema: SPA React 18, Funciones Serverless, Rate-Limiting por IP, Context API, Criptografía SHA-256 y UX Interactiva.
                     </h3>
 
-                    <div className="mb-3">
-                        <Badge bg="info" className="me-2 p-2">Vite + React SPA</Badge>
-                        <Badge bg="primary" className="me-2 p-2">Context API (Theme Management)</Badge>
-                        <Badge bg="success" className="me-2 p-2">Diseño Adaptativo UI/UX</Badge>
-                        <Badge bg="secondary" className="p-2">Routing Dinámico</Badge>
+                    <div className="mb-3 flex-wrap d-flex justify-content-center gap-2">
+                        <Badge bg="info" className="p-2">React 18 + Vite SPA</Badge>
+                        <Badge bg="warning" text="dark" className="p-2">Netlify Serverless Functions</Badge>
+                        <Badge bg="danger" className="p-2">IP Rate Limiting & Anti-Timing</Badge>
+                        <Badge bg="dark" className="p-2">Web Crypto API (SHA-256)</Badge>
+                        <Badge bg="primary" className="p-2">Context API (Theme & Magic)</Badge>
+                        <Badge bg="success" className="p-2">Route Protection & Event Bus</Badge>
+                        <Badge bg="secondary" className="p-2">3D Flip Cards & ScrollReveal</Badge>
+                        <Badge bg="info" text="dark" className="p-2">SweetAlert2 & Canvas Confetti</Badge>
                     </div>
                 </section>
 
-                <hr className="theme-border-primary" />
+                <hr className="theme-border-primary mb-5" />
 
-                {/* El Problema */}
+                {/* Visión General */}
                 <section className="mb-5">
-                    <h2 className="theme-text-primary mb-4">Objetivo de Ingeniería</h2>
+                    <h2 className="theme-text-primary mb-4">📌 1. Visión General del Proyecto</h2>
                     <p className="lead">
-                        Crear una vitrina digital interactiva de alto rendimiento que presente mi perfil como Desarrollador Full-Stack e Ingeniero en Sistemas de Información. La plataforma debía ser veloz, modular, adaptable a modo oscuro/claro y permitir mostrar casos de estudio técnicos profundos para cada proyecto.
+                        Esta plataforma fue diseñada y construida por <strong>Augusto Romera</strong> (Desarrollador Full-Stack e Ingeniero en Sistemas de Información) no solo como una vitrina profesional, sino como una **demostración en vivo de ingeniería de software avanzada**. 
+                    </p>
+                    <p>
+                        Combina un frontend altamente responsivo y animado con patrones de ciberseguridad corporativa: validación serverless off-bundle, restricción de intentos por IP real, protección criptográfica y alternancia dinámica de temas mediante variables CSS y Context API.
                     </p>
                 </section>
 
-                {/* Arquitectura */}
+                {/* Funcionalidades de la Página Completa */}
                 <section className="mb-5">
-                    <h2 className="theme-text-primary mb-4">Arquitectura & Componentes Destacados</h2>
+                    <h2 className="theme-text-primary mb-4">🧩 2. Mapa Completo de Capacidades del Sistema</h2>
                     <Row>
                         <Col md={6} className="mb-4">
-                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100`}>
+                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100 shadow-sm`}>
                                 <Card.Body>
-                                    <Card.Title className="text-info">🎨 Gestor de Temas (Context API)</Card.Title>
+                                    <Card.Title className="text-warning d-flex align-items-center gap-2">
+                                        🛡️ Motor Serverless & Rate Limiting por IP
+                                    </Card.Title>
                                     <Card.Text className={darkMode ? 'text-light' : 'text-dark'}>
-                                        Implementación de `ThemeContext` y `MagicContext` para control global de Dark/Light mode y efectos interactivos en toda la jerarquía de componentes sin *prop-drilling*.
+                                        <ul>
+                                            <li><strong>Función Serverless:</strong> Endpoint <code>/.netlify/functions/verify-code</code> que procesa peticiones aisladas del bundle público.</li>
+                                            <li><strong>Inspección de IP Real:</strong> Detección de cabeceras <code>x-nf-client-connection-ip</code> y <code>x-forwarded-for</code>.</li>
+                                            <li><strong>Políticas de Sanción:</strong> 3 intentos erróneos bloquean por 5 minutos; 5 fallos bloquean por 30 minutos.</li>
+                                            <li><strong>Defensa Anti-Timing:</strong> Inyección de 1s de delay asíncrono en errores para inutilizar bots de fuerza bruta.</li>
+                                        </ul>
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
+
                         <Col md={6} className="mb-4">
-                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100`}>
+                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100 shadow-sm`}>
                                 <Card.Body>
-                                    <Card.Title className="text-success">🚀 Bundling Ultra-Rápido (Vite)</Card.Title>
+                                    <Card.Title className="text-danger d-flex align-items-center gap-2">
+                                        🔐 Respaldo Criptográfico & Route Guard
+                                    </Card.Title>
                                     <Card.Text className={darkMode ? 'text-light' : 'text-dark'}>
-                                        Configuración con Vite HMR para tiempos de carga y respuesta de renderizado instantáneos en producción.
+                                        <ul>
+                                            <li><strong>Zero-Knowledge Client:</strong> 0% de credenciales o claves secretas almacenadas en código JavaScript plano.</li>
+                                            <li><strong>SHA-256 Salted Fallback:</strong> En entornos locales sin Netlify CLI, <code>securityManager.js</code> valida firmas con <code>crypto.subtle</code>.</li>
+                                            <li><strong>Protección de Rutas VIP:</strong> Restricción de acceso a proyectos exclusivos en <code>/solution/:id</code> sincronizada en tiempo real vía <code>EventBus (unlock_changed)</code>.</li>
+                                        </ul>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+
+                        <Col md={6} className="mb-4">
+                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100 shadow-sm`}>
+                                <Card.Body>
+                                    <Card.Title className="text-info d-flex align-items-center gap-2">
+                                        🎨 Context API: Tema Global & Modo Mágico
+                                    </Card.Title>
+                                    <Card.Text className={darkMode ? 'text-light' : 'text-dark'}>
+                                        <ul>
+                                            <li><strong>ThemeContext:</strong> Control bidireccional Claro/Oscuro con persistencia en <code>localStorage</code> y variables CSS nativas.</li>
+                                            <li><strong>MagicContext:</strong> Motor multipaleta que conmuta entre la <strong>Fotografía de Perfil Real</strong> y el <strong>Avatar 3D animado</strong>, además de modificar la iconografía del Header.</li>
+                                        </ul>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+
+                        <Col md={6} className="mb-4">
+                            <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} h-100 shadow-sm`}>
+                                <Card.Body>
+                                    <Card.Title className="text-success d-flex align-items-center gap-2">
+                                        ⚡ Floating Widgets & UX Micro-Interacciones
+                                    </Card.Title>
+                                    <Card.Text className={darkMode ? 'text-light' : 'text-dark'}>
+                                        <ul>
+                                            <li><strong>Botones Flotantes:</strong> WhatsApp con confeti, Conmutador Claro/Oscuro, Varita Mágica y Llave Secreta.</li>
+                                            <li><strong>SweetAlert2 + Timer:</strong> Feedback emergente con temporizador regresivo (<code>mm:ss</code>) si la IP resulta sancionada.</li>
+                                            <li><strong>Descarga de CV:</strong> Disparo asíncrono de ráfaga de confeti y modal de confirmación profesional.</li>
+                                        </ul>
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -62,20 +116,32 @@ const PortfolioSolution = () => {
                     </Row>
                 </section>
 
-                {/* Funcionalidades */}
+                {/* Desglose Arquitectónico por Componentes */}
                 <section className="mb-5">
-                    <h2 className="theme-text-primary mb-4">Detalles de Implementación</h2>
+                    <h2 className="theme-text-primary mb-4">🏗️ 3. Desglose Módulo por Módulo</h2>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header>Casos de Estudio Dinámicos (/solution/:id)</Accordion.Header>
+                            <Accordion.Header>Hero, Avatar 3D y Header Inteligente (Header.jsx & Avatar.jsx)</Accordion.Header>
                             <Accordion.Body className={darkMode ? 'bg-dark text-white' : ''}>
-                                Enrutamiento con React Router v6 que permite descomponer proyectos complejos en páginas dedicadas con desgloses de arquitectura, métricas de impacto y diagramas.
+                                Navbar reactivo que detecta el scroll del usuario para condensarse (<code>inline-block-class</code>) y resalta automáticamente la sección activa (<code>#home</code>, <code>#about</code>, <code>#portfolio</code>, <code>#contact</code>). Alterna la vista entre la foto real y el modelo de avatar con animación CSS.
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
-                            <Accordion.Header>Animaciones & Feedback Visual</Accordion.Header>
+                            <Accordion.Header>Galería de Proyectos & Tarjetas 3D Flip Card (BodyHome.jsx)</Accordion.Header>
                             <Accordion.Body className={darkMode ? 'bg-dark text-white' : ''}>
-                                Integración de ScrollReveal para animaciones de entrada, Canvas Confetti para feedback de interacción al descargar el CV y modal reactivo con SweetAlert2.
+                                Presenta las tarjetas de proyectos utilizando efectos de rotación 3D en Hover, ocultando dinámicamente los proyectos protegidos según el estado del candado.
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="2">
+                            <Accordion.Header>Enrutador Dinámico y Casos de Estudio (SolutionScreen.jsx)</Accordion.Header>
+                            <Accordion.Body className={darkMode ? 'bg-dark text-white' : ''}>
+                                Arquitectura de subpáginas en <code>/solution/:id</code> que carga asíncronamente los desgloses técnicos detallados de cada proyecto de ingeniería.
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="3">
+                            <Accordion.Header>Infraestructura Serverless & Netlify Integration (verify-code.js & netlify.toml)</Accordion.Header>
+                            <Accordion.Body className={darkMode ? 'bg-dark text-white' : ''}>
+                                Configuración de compilación para Netlify Functions (<code>functions = "netlify/functions"</code>) y middleware de control de tráfico en JavaScript ES Modules.
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
@@ -83,12 +149,45 @@ const PortfolioSolution = () => {
 
                 {/* Tecnologías */}
                 <section className="mb-5">
-                    <h2 className="theme-text-primary mb-4">Tecnologías Principales</h2>
-                    <ul>
-                        <li><strong>Core:</strong> React 18, Vite, JavaScript ES6+.</li>
-                        <li><strong>UI/Styling:</strong> React-Bootstrap, CSS Custom Properties, FontAwesome.</li>
-                        <li><strong>Librerías:</strong> React Router DOM, ScrollReveal, Canvas-Confetti, SweetAlert2.</li>
-                    </ul>
+                    <h2 className="theme-text-primary mb-4">🛠️ 4. Stack Tecnológico Completo</h2>
+                    <Row>
+                        <Col md={3} className="mb-3">
+                            <h5 className="text-info">Core Frontend</h5>
+                            <ul>
+                                <li>React 18 SPA</li>
+                                <li>Vite Bundler (HMR)</li>
+                                <li>React Router DOM v6</li>
+                                <li>JavaScript ES6+</li>
+                            </ul>
+                        </Col>
+                        <Col md={3} className="mb-3">
+                            <h5 className="text-warning">Backend & Seguridad</h5>
+                            <ul>
+                                <li>Netlify Serverless Functions</li>
+                                <li>HTTP IP Inspection</li>
+                                <li>Web Crypto API (SHA-256)</li>
+                                <li>Anti-Brute Force Delay</li>
+                            </ul>
+                        </Col>
+                        <Col md={3} className="mb-3">
+                            <h5 className="text-success">UI & Estilos</h5>
+                            <ul>
+                                <li>React-Bootstrap</li>
+                                <li>CSS Custom Properties</li>
+                                <li>FontAwesome 6 Icons</li>
+                                <li>Google Fonts (Roboto)</li>
+                            </ul>
+                        </Col>
+                        <Col md={3} className="mb-3">
+                            <h5 className="text-danger">Librerías & FX</h5>
+                            <ul>
+                                <li>SweetAlert2</li>
+                                <li>Canvas-Confetti</li>
+                                <li>ScrollReveal</li>
+                                <li>React-Scroll</li>
+                            </ul>
+                        </Col>
+                    </Row>
                 </section>
 
             </Container>

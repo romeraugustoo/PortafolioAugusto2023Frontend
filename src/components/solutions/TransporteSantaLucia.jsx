@@ -13,7 +13,7 @@ const TransporteSantaLucia = () => {
     const { darkMode } = useTheme();
 
     return (
-        <div className={`solution-page pt-5 pb-5 ${darkMode ? 'dark-mode' : ''}`} style={{ minHeight: '100vh' }}>
+        <div className={`solution-page ${darkMode ? 'dark-mode' : ''}`} style={{ minHeight: '100vh' }}>
             <Container>
 
                 {/* 1. Título + Subtítulo */}

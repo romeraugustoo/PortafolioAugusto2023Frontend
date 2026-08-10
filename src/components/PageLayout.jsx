@@ -7,6 +7,7 @@ import '../styles/bodyhome.css';
 import '../styles/avatar.css';
 import confetti from 'canvas-confetti';
 import Swal from 'sweetalert2';
+import { verifyAccessCode, formatTimeRemaining } from '../utils/securityManager';
 
 const LayoutContent = ({ children, activeSection }) => {
     const [navBarClass, setNavBarClass] = useState('');
@@ -54,7 +55,7 @@ const LayoutContent = ({ children, activeSection }) => {
         }, 3000);
     };
 
-    const handleSecretKeyClick = () => {
+    const handleSecretKeyClick = async () => {
         const currentlyUnlocked = localStorage.getItem('unlocked_projects') === 'true';
 
         if (currentlyUnlocked) {
@@ -86,7 +87,7 @@ const LayoutContent = ({ children, activeSection }) => {
             return;
         }
 
-        Swal.fire({
+        const { value: inputCode, isConfirmed } = await Swal.fire({
             title: '🔑 Acceso Protegido',
             text: 'Ingresa el código para desbloquear proyectos exclusivos:',
             input: 'password',
@@ -101,32 +102,54 @@ const LayoutContent = ({ children, activeSection }) => {
                 popup: 'swal-custom-popup',
                 title: 'swal-custom-title',
             }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                if (result.value === '1221122') {
-                    localStorage.setItem('unlocked_projects', 'true');
-                    window.dispatchEvent(new Event('unlock_changed'));
-                    confetti({ particleCount: 120, spread: 80 });
-                    Swal.fire({
-                        title: '¡Acceso Concedido! 🎉',
-                        text: 'Se han desbloqueado los proyectos protegidos.',
-                        icon: 'success',
-                        confirmButtonColor: '#25D366',
-                        background: darkMode ? '#1a1a1a' : '#ffffff',
-                        color: darkMode ? '#ffffff' : '#000000',
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Código Incorrecto 🔒',
-                        text: 'El código ingresado no es válido.',
-                        icon: 'error',
-                        confirmButtonColor: '#ef4444',
-                        background: darkMode ? '#1a1a1a' : '#ffffff',
-                        color: darkMode ? '#ffffff' : '#000000',
-                    });
-                }
-            }
         });
+
+        if (isConfirmed) {
+            Swal.fire({
+                title: 'Verificando seguridad...',
+                text: 'Comprobando credenciales y origen IP',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                background: darkMode ? '#1a1a1a' : '#ffffff',
+                color: darkMode ? '#ffffff' : '#000000',
+            });
+
+            const res = await verifyAccessCode(inputCode);
+
+            if (res.success) {
+                localStorage.setItem('unlocked_projects', 'true');
+                window.dispatchEvent(new Event('unlock_changed'));
+                confetti({ particleCount: 120, spread: 80 });
+                Swal.fire({
+                    title: '¡Acceso Concedido! 🎉',
+                    text: 'Se han desbloqueado los proyectos protegidos.',
+                    icon: 'success',
+                    confirmButtonColor: '#25D366',
+                    background: darkMode ? '#1a1a1a' : '#ffffff',
+                    color: darkMode ? '#ffffff' : '#000000',
+                });
+            } else if (res.locked) {
+                Swal.fire({
+                    title: '🚫 Acceso Bloqueado por IP',
+                    html: `<p>${res.message}</p><p style="font-weight: bold; color: #ef4444; margin-top: 10px;">Tiempo de espera: ${formatTimeRemaining(res.secondsRemaining)} min</p>`,
+                    icon: 'error',
+                    confirmButtonColor: '#ef4444',
+                    background: darkMode ? '#1a1a1a' : '#ffffff',
+                    color: darkMode ? '#ffffff' : '#000000',
+                });
+            } else {
+                Swal.fire({
+                    title: 'Código Incorrecto 🔒',
+                    text: res.message,
+                    icon: 'warning',
+                    confirmButtonColor: '#ef4444',
+                    background: darkMode ? '#1a1a1a' : '#ffffff',
+                    color: darkMode ? '#ffffff' : '#000000',
+                });
+            }
+        }
     };
 
     const { pathname } = useLocation();
