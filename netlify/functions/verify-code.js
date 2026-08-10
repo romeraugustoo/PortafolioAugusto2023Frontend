@@ -73,10 +73,11 @@ exports.handler = async (event, context) => {
         };
     }
 
-    const SECRET_CODE = (process.env.ACCESS_CODE || '1221122').trim();
+    const defaultCode = '1221122';
+    const envCode = (process.env.ACCESS_CODE || '').replace(/['"]/g, '').trim();
 
-    // Validación exitosa
-    if (inputCode === SECRET_CODE) {
+    // Validación exitosa (acepta código por defecto o variable de entorno de Netlify)
+    if (inputCode === defaultCode || (envCode && inputCode === envCode)) {
         ipRateMap.delete(clientIp);
         return {
             statusCode: 200,
