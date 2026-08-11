@@ -18,6 +18,7 @@ import relicario from '../assets/images/portfolio/Relicario.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
 import tslc from '../assets/images/portfolio/TransporteSantaLucia.png';
 import profebook from '../assets/images/portfolio/ProfeBook.png';
+import seamospuente from '../assets/images/portfolio/SeamosPuente.png';
 
 import instagram from '../assets/images/logo/Instagram-Glyph-Color-Logo.wine.png';
 import downloadIcon from '../assets/images/logo/gold-button-009.svg';
@@ -53,6 +54,7 @@ const BodyHome = ({ onSectionChange }) => {
         { id: 5, name: 'ProfeBook Studio', image: profebook, website: '', github: 'https://github.com/romeraugustoo/ProfeBook.git', text: 'ProfeBook AI', solutionRoute: '/solution/profebook', isProtected: true },
         { id: 2, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
         { id: 3, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
+        { id: 6, name: 'ONG Seamos Puente', image: seamospuente, website: 'https://somospuente.netlify.app/', github: 'https://github.com/romeraugustoo/seamospuente.git', text: 'Ir a Seamos Puente', solutionRoute: '/solution/seamospuente' },
         { id: 4, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
 

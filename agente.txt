@@ -1,0 +1,178 @@
+# HISTORIAL DE CONVERSACIÓN - AGENTE ANTIGRAVITY
+# Proyecto: Portafolio Augusto Romera
+# Conversación ID: 8adfa087-4f94-4006-af01-060646c5f021
+# Fecha: 2026-08-10
+# ====================================================
+
+## RESUMEN EJECUTIVO
+Sesión de trabajo completa en el portafolio web de Augusto Romera.
+Repositorio: romeraugustoo/PortafolioAugusto2023Frontend
+Deploy: https://augustoromera.netlify.app
+
+---
+
+## CRONOLOGÍA DE CAMBIOS
+
+### 1. CAPTURA DE LANDING PAGE
+- Usuario pidió captura de la landing page (http://localhost:5173) para ProfeBook Studio
+- Se tomó screenshot de la landing correcta, no del menú de proyecto
+
+### 2. SECCIÓN SOLUCIÓN - PROFEBOOK
+- Se creó ProfeBookSolution.jsx con:
+  - 6 fases del ciclo de vida de un proyecto de clase
+  - Diagrama ASCII de arquitectura
+  - Especificación de metadatos [METADATA]
+  - Fórmulas KaTeX
+  - Acordeón FAQ
+  - Link a GitHub: https://github.com/romeraugustoo/ProfeBook.git
+- Se integró en BodyHome.jsx con isProtected: true
+- Se configuró ruta /solution/profebook en SolutionScreen.jsx
+
+### 3. SEGURIDAD - NETLIFY FUNCTION (Bug Fix Crítico)
+- PROBLEMA: 502 Bad Gateway en la función verify-code
+- CAUSA 1: setInterval() top-level bloqueaba el event loop de AWS Lambda
+- CAUSA 2: netlify.toml tenía from = "*" interceptando llamadas internas
+- SOLUCIÓN:
+  - Convertido verify-code.js a verify-code.cjs (CommonJS para Lambda)
+  - Eliminado setInterval, limpieza inline con cleanupStaleIps(now)
+  - Cambiado from = "*" a from = "/*" en netlify.toml
+- Verificado: endpoint live devuelve 200 OK
+
+### 4. HISTORIAL GIT LIMPIADO
+- PROBLEMA: Código secreto de acceso visible en mensajes de commit
+- SOLUCIÓN: git commit --amend + force push sobre commits:
+  b30b76f, 74009be, 103919a, 99dd9f1, 667c2e1, a5bda90
+- REGLA ESTABLECIDA: NUNCA incluir códigos secretos en commits
+- Hash SHA-256 actualizado en securityManager.js
+
+### 5. AUDITORÍA MODO OSCURO + BOTÓN MÁGICO (Sesión Principal)
+- COMMIT: 45eb347 "refactor: enhance dark mode contrast and add live palette toast feedback"
+- Cambios en bodyhome.css:
+  - Tarjetas dark: #18181b, bordes: #3f3f46
+  - Textos atenuados: #a1a1aa / #e4e4e7
+  - Bloques de código pre: #0f172a, code inline: #38bdf8
+  - Tablas: encabezados #27272a, celdas #18181b
+  - Acordeones: item #18181b, button #27272a, body #e4e4e7
+- Cambios en MagicContext.jsx (refactorización):
+  - Toast SweetAlert2 al cambiar paleta (nombre del tema activo)
+  - Partículas de confeti sincronizadas con colores de paleta activa
+  - Exportación de themeName
+- Cambios en PageLayout.jsx:
+  - onMagicClick simplificado delegando a MagicContext
+  - Tooltip dinámico: "Modo Mágico (nombre_paleta)"
+
+### 6. FIX DESBORDAMIENTO HORIZONTAL EN MÓVIL
+- PROBLEMA: "software" al final de "Desarrollador de software" salía del viewport
+- CAUSA: font-size fijo 2rem + width: 26.5ch en pantallas de 360-420px
+- COMMIT: 1a064a8 "fix: prevent mobile horizontal overflow on typing animation text"
+- Soluciones en bodyhome.css:
+  - html, body: overflow-x: hidden + max-width: 100vw
+  - .home + .homebg: overflow: hidden
+  - .home_text3: font-size: clamp(0.75rem, 4.2vw, 1.6rem) + max-width: 90vw
+  - .home_text2: font-size: clamp(1.6rem, 6vw, 2.5rem)
+  - Botones flotantes en < 575px: right: 15px, 46px de tamaño
+
+### 7. MEJORAS VISUALES AL AVATAR 3D CSS (Solo Local - NO pusheado)
+- Cambios en Avatar.jsx y avatar.css:
+
+  7.1 PRIMERA VERSIÓN (Avatar upgrade):
+  - Logo cambiado de 'K' genérico a 'AR' (Augusto Romera)
+  - Gafas con reflejo dinámico animado (lens-glare)
+  - Ojos expresivos con pupilas y punto de brillo
+  - Sombra de barba sutil (beard-stubble)
+  - Piel con degradados 3D en lugar de color plano
+  - Micro-animación de respiración (avatarBreathe)
+  - Borde neón pulsante (pulseGlow)
+
+  7.2 AJUSTE DE ZOOM Y ANIMACIÓN DE GAFAS:
+  - Zoom out: scale(0.2) → scale(0.145) para ver todo el personaje
+  - top: 60% → top: 52% para centrar verticalmente
+  - NUEVA FUNCIONALIDAD: Al presionar Botón Mágico 🪄:
+    * Las gafas viejas desaparecen
+    * Las nuevas gafas entran volando desde arriba con rotación -35deg
+    * Animación: glassesFlyIn con cubic-bezier elástico (0.7s)
+    * React usa key={`glasses-${themeIndex}`} para forzar re-mount
+    * Estado isGlassesAnimating controla la clase CSS
+
+  7.3 OJOS Y CEJAS EN ROSTRO (WIP - Problema pendiente):
+  - Se agregaron cejas .eyebrow-left / .eyebrow-right
+  - Ojos 95x65px con pupilas oscuras y reflejo blanco
+  - PROBLEMA ACTUAL: "parche en los ojos arriba" - posicionamiento incorrecto
+  - Última corrección: top: 31% para ojos, top: 22% para cejas, justify-content: space-around
+  - El fondo de head-copy o beard-stubble posiblemente solapa los ojos
+
+---
+
+## ARCHIVOS CLAVE MODIFICADOS
+
+### Pushados a GitHub:
+- src/styles/bodyhome.css - Dark mode contrast + mobile overflow fix
+- src/context/MagicContext.jsx - Toast feedback + partículas sincronizadas
+- src/components/PageLayout.jsx - Tooltip dinámico botón mágico
+- src/components/solutions/ProfeBookSolution.jsx - Caso de estudio
+- src/components/BodyHome.jsx - Card ProfeBook integrada
+- src/pages/SolutionScreen.jsx - Ruta /solution/profebook
+- netlify/functions/verify-code.cjs - Fix 502 + rate limiting
+- netlify.toml - Fix SPA redirect from "/*"
+- src/utils/securityManager.js - Hash SHA-256 actualizado
+- HISTORIAL_PORTAFOLIO_AUGUSTO.md - Bitácora de proyecto
+
+### Solo en Local (NO pusheados):
+- src/components/Avatar.jsx - Ojos, cejas, gafas animadas
+- src/styles/avatar.css - Zoom out, pulseGlow, glassesFlyIn
+
+---
+
+## REGLAS Y RESTRICCIONES ESTABLECIDAS
+
+1. NUNCA incluir códigos de acceso en mensajes de commit (son públicos)
+2. La ruta del proyecto protegido es SECRETA (no revelar cuál es)
+3. Screenshots de landing page: usar http://localhost:5173 (no menú de proyecto)
+4. Builds de producción solo cuando se va a hacer push o validar antes de Netlify
+5. En desarrollo local usar npm run dev (HMR automático, no hace falta build)
+
+---
+
+## PRÓXIMO PENDIENTE
+
+### Avatar - Bug Visual:
+- Los ojos muestran un "parche" arriba cuando se cambian las gafas
+- Posible causa: .head tiene overflow: hidden y los ojos están en top: 31% del head
+- .head-copy puede estar solapando los ojos con su background
+- Solución propuesta: revisar z-index de eyes-container vs head-copy
+  y asegurar que los ojos estén FUERA del .head-copy pero DENTRO del .head
+
+---
+
+## COMMITS DE LA SESIÓN
+
+| Hash     | Mensaje                                                                    |
+|----------|----------------------------------------------------------------------------|
+| 45eb347  | refactor: enhance dark mode contrast and add live palette toast feedback   |
+| 1a064a8  | fix: prevent mobile horizontal overflow on typing animation text           |
+| a5bda90  | (commit anterior limpiado de historial sensible)                           |
+
+---
+
+## DATOS TÉCNICOS DEL PROYECTO
+
+- Framework: React + Vite v4.5.0
+- Estilos: Vanilla CSS (bodyhome.css, avatar.css, header.css)
+- Bootstrap: React-Bootstrap para Navbar
+- Animaciones: Canvas-Confetti, SweetAlert2
+- Deploy: Netlify (auto-deploy desde branch main)
+- Functions: Netlify Serverless (Node 18/20/22, CommonJS .cjs)
+- Routing: React Router DOM v6
+- Scroll: react-scroll para navegación en home
+- PDF: Import directo de asset para curriculum
+
+---
+
+## TOKENS TÉCNICOS RELEVANTES
+
+- ThemeContext: darkMode, toggleTheme
+- MagicContext: themeIndex (-2=foto, -1=avatar, 0+= paletas), showAvatar, 
+                currentIcon, themeName, handleMagicClick
+- themes.js: array de 9 paletas (Azul Moderno, Minimal Gris, Verde Natural,
+             Morado Creativo, Rojo Elegante, Naranja Energía, Rosa Suave, 
+             Lima Ácido, Cyber Dark Tech)

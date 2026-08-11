@@ -1,7 +1,7 @@
-// Security Manager: Puente de validación de código con rate-limiting por IP
-// Se conecta a /.netlify/functions/verify-code y proporciona fallback resiliente para entorno local.
+// Security Manager: Validación de código con Netlify Serverless Function en Producción y Fallback en Dev
+// Producción: Validación del lado del servidor AWS Lambda (verify-code.cjs) con Rate-Limiting por IP
+// Dev (Localhost): Fallback con SHA-256 salted hash
 
-// Salted SHA-256 para el código por defecto "1221122" en fallback local
 const FALLBACK_CODE_HASH = '5530dab1a6e632fa7d09ca8c204c142edc62d037fd26b86ca3f08a301523cdc8';
 
 async function sha256(message) {
@@ -20,34 +20,44 @@ export function formatTimeRemaining(seconds) {
 
 export async function verifyAccessCode(inputCode) {
     const codeStr = (inputCode || '').toString().trim();
+    const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-    try {
-        const response = await fetch('/.netlify/functions/verify-code', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ code: codeStr })
-        });
+    // 1. PRODUCCIÓN (Netlify Live): Petición estricta a Serverless Function
+    if (!isLocalDev) {
+        try {
+            const response = await fetch('/.netlify/functions/verify-code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ code: codeStr })
+            });
 
-        if (response.ok) {
-            const data = await response.json();
-            localStorage.removeItem('sec_ip_rate_limit');
-            return { success: true, message: data.message || 'Acceso Concedido' };
+            const contentType = response.headers.get('content-type') || '';
+
+            if (contentType.includes('application/json')) {
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.removeItem('sec_ip_rate_limit');
+                    return { success: true, message: data.message || 'Acceso Concedido' };
+                }
+
+                const errData = await response.json().catch(() => ({}));
+                return {
+                    success: false,
+                    locked: errData.locked || response.status === 429,
+                    attemptsLeft: errData.attemptsLeft ?? 0,
+                    secondsRemaining: errData.secondsRemaining || 0,
+                    message: errData.message || 'Código de acceso incorrecto.'
+                };
+            }
+        } catch (networkError) {
+            console.warn('Servidor serverless en producción no disponible.', networkError);
         }
-
-        const errData = await response.json().catch(() => ({}));
-        return {
-            success: false,
-            locked: errData.locked || response.status === 429,
-            attemptsLeft: errData.attemptsLeft ?? 0,
-            secondsRemaining: errData.secondsRemaining || 0,
-            message: errData.message || 'Código de acceso incorrecto.'
-        };
-    } catch (networkError) {
-        console.warn('Servidor serverless no disponible. Ejecutando validación de seguridad local...', networkError);
-        return handleLocalFallback(codeStr);
     }
+
+    // 2. DESARROLLO LOCAL (Vite dev server sin Netlify CLI)
+    return handleLocalFallback(codeStr);
 }
 
 async function handleLocalFallback(inputCode) {

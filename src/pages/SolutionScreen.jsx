@@ -6,6 +6,7 @@ import RapiburguerSolution from '../components/solutions/RapiburguerSolution';
 import PortfolioSolution from '../components/solutions/PortfolioSolution';
 import RelicarioSolution from '../components/solutions/RelicarioSolution';
 import ProfeBookSolution from '../components/solutions/ProfeBookSolution';
+import SeamosPuenteSolution from '../components/solutions/SeamosPuenteSolution';
 import { useTheme } from '../context/ThemeContext';
 import Swal from 'sweetalert2';
 import confetti from 'canvas-confetti';
@@ -32,6 +33,8 @@ const SolutionScreen = () => {
                 return <RapiburguerSolution />;
             case 'portfolio':
                 return <PortfolioSolution />;
+            case 'seamospuente':
+                return <SeamosPuenteSolution />;
             case 'relicario':
             case 'profebook':
                 if (!isUnlocked) {
