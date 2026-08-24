@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import PageLayout from '../components/PageLayout';
 import TransporteSantaLucia from '../components/solutions/TransporteSantaLucia';
@@ -7,6 +7,7 @@ import PortfolioSolution from '../components/solutions/PortfolioSolution';
 import RelicarioSolution from '../components/solutions/RelicarioSolution';
 import ProfeBookSolution from '../components/solutions/ProfeBookSolution';
 import SeamosPuenteSolution from '../components/solutions/SeamosPuenteSolution';
+import MiMusicaSolution from '../components/solutions/MiMusicaSolution';
 import { useTheme } from '../context/ThemeContext';
 import Swal from 'sweetalert2';
 import confetti from 'canvas-confetti';
@@ -27,6 +28,8 @@ const SolutionScreen = () => {
 
     const renderContent = () => {
         switch (id) {
+            case 'mimusica':
+                return <MiMusicaSolution />;
             case 'tslc':
                 return <TransporteSantaLucia />;
             case 'rapiburguer':
@@ -79,7 +82,7 @@ const SolutionScreen = () => {
                                 });
                             } else if (res.locked) {
                                 Swal.fire({
-                                    title: '🚫 Acceso Bloqueado por IP',
+                                    title: '🛑 Acceso Bloqueado por IP',
                                     html: `<p>${res.message}</p><p style="font-weight: bold; color: #ef4444; margin-top: 10px;">Tiempo de espera: ${formatTimeRemaining(res.secondsRemaining)} min</p>`,
                                     icon: 'error',
                                     confirmButtonColor: '#ef4444',
@@ -90,7 +93,7 @@ const SolutionScreen = () => {
                                 });
                             } else {
                                 Swal.fire({
-                                    title: 'Código Incorrecto 🔒',
+                                    title: 'Código Incorrecto ❌',
                                     text: res.message,
                                     icon: 'error',
                                     confirmButtonColor: '#ef4444',

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/bodyhome.css';
 import profileImage from '../assets/images/profile/profile-augusto.png';
@@ -13,6 +13,7 @@ import jvs from '../assets/images/logo/js.png'
 import spring from '../assets/images/logo/spring-boot-logo.png.webp'
 import mysql from '../assets/images/logo/mysql.png'
 
+import mimusica from '../assets/images/portfolio/MiMusicaOrganizada.png';
 import rapiburger from '../assets/images/portfolio/Rapiburger.png';
 import relicario from '../assets/images/portfolio/Relicario.png';
 import portfolio from '../assets/images/portfolio/portfolioIcon.jpg';
@@ -50,11 +51,12 @@ const BodyHome = ({ onSectionChange }) => {
     }, []);
 
     const allProjects = [
+        { id: 7, name: 'Mi Música Organizada', image: mimusica, website: 'https://mimusicaorganizada.netlify.app/', github: 'https://github.com/romeraugustoo/myorganizedsound', text: 'Ir a Mi Música', solutionRoute: '/solution/mimusica' },
         { id: 1, name: 'Relicario Studio', image: relicario, website: 'https://relicariostudio.netlify.app/', github: 'https://github.com/romeraugustoo/relicario-project', text: 'Ir a Relicario', solutionRoute: '/solution/relicario', isProtected: true },
         { id: 5, name: 'ProfeBook Studio', image: profebook, website: '', github: 'https://github.com/romeraugustoo/ProfeBook.git', text: 'ProfeBook AI', solutionRoute: '/solution/profebook', isProtected: true },
+        { id: 6, name: 'ONG Seamos Puente', image: seamospuente, website: 'https://somospuente.netlify.app/', github: 'https://github.com/romeraugustoo/seamospuente.git', text: 'Ir a Seamos Puente', solutionRoute: '/solution/seamospuente' },
         { id: 2, name: 'RapiBurger', image: rapiburger, website: 'https://rapiburger.netlify.app/', github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code', github2: 'https://github.com/Augustoromera/Proyecto-Final-RC-Grupo3-Backend', text: 'Ir a rapiburger', solutionRoute: '/solution/rapiburguer' },
         { id: 3, name: 'Portfolio', image: portfolio, website: '', github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend', text: 'Ir al portafolio', solutionRoute: '/solution/portfolio' },
-        { id: 6, name: 'ONG Seamos Puente', image: seamospuente, website: 'https://somospuente.netlify.app/', github: 'https://github.com/romeraugustoo/seamospuente.git', text: 'Ir a Seamos Puente', solutionRoute: '/solution/seamospuente' },
         { id: 4, name: 'Transporte Santa Lucía', image: tslc, website: 'https://transportesantalucia.netlify.app/', github: '#', github2: '#', text: 'Ir al sitio', solutionRoute: '/solution/tslc' },
     ];
 
@@ -176,7 +178,7 @@ const BodyHome = ({ onSectionChange }) => {
                     </div>
                     <div className="hometext">
                         <h1 className="home_text2">Augusto Romera</h1>
-                        <h1 className="home_text3" >Desarrollador de software </h1>
+                        <h1 className="home_text3">Desarrollador de Software con IA</h1>
                     </div>
                 </div>
             </div>
@@ -184,15 +186,15 @@ const BodyHome = ({ onSectionChange }) => {
                 <div className="about_description">
                     <h2 className='about_title'>Sobre mí</h2>
                     <p className='about_title2'>
-                        Full-Stack Software Engineer & Estudiante de Ingeniería en Sistemas
+                        Full-Stack Software Engineer & AI-Augmented Developer
                     </p>
 
                     <p className='description'>
                         Soy Augusto Romera, Desarrollador de Software y estudiante avanzado de Ingeniería en Sistemas de Información (UTN-FRT).
 
-                        Me apasiona el diseño de arquitectura de software, la optimización de rendimiento en el cliente y la creación de soluciones digitales eficientes. Mi perfil técnico combina la agilidad de las tecnologías modernas (MERN Stack: React, Node.js, Express, MongoDB) con la solidez de entornos corporativos (Java, Spring Boot, MySQL, Python).
+                        Diseño, orquesto y audito sistemas de software complejos apalancado con Inteligencia Artificial como multiplicador de ingeniería. Mi perfil técnico combina arquitecturas modernas asíncronas (Python, FastAPI, WebSockets, MERN Stack) con la solidez de entornos corporativos (Java, Spring Boot, MySQL).
 
-                        Me enfoco en entregar software limpio, escalable y con impacto directo en el negocio.
+                        Me enfoco en entregar software con Clean Architecture, alta concurrencia no bloqueante y blindaje de seguridad listo para producción en tiempos récord.
                     </p>
                     <a href={curriculumPDF} download className="download-button" onClick={handleDownload}>
                         <span className="download-text">Descargar CV</span>
@@ -271,11 +273,11 @@ const BodyHome = ({ onSectionChange }) => {
             </div>
             {/* Portafolio Section */}
             <div id="portfolio" className={`portfolio d-flex align-content-center justify-content-center ${darkMode ? 'dark-mode' : ''}`}>
-                <div className="description-container  ">
+                <div className="description-container">
                     <div className="description-port">
                         <h2>Portafolio</h2>
                         <p>
-                            Proyectos en los que he participado.
+                            Proyectos destacados y casos de estudio de arquitectura.
                         </p>
                     </div>
                 </div>
@@ -316,9 +318,9 @@ const BodyHome = ({ onSectionChange }) => {
                         ))}
                     </div>
                 </div>
-            </div >
+            </div>
             <div id="contact" className={`contact-me ${darkMode ? 'dark-mode' : ''}`}>
-                <div className="contact-me-text ">
+                <div className="contact-me-text">
                     <h2>Contacto</h2>
                     <p>Contáctame si quieres que trabajemos juntos.</p>
                 </div>
