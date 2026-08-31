@@ -190,17 +190,6 @@ const CreativeModeView = () => {
                                         <span className="dock-badge"><i className="fas fa-tachometer-alt me-1 text-success"></i> 60 FPS</span>
                                     </div>
 
-                                    {/* 4. Aviso de Proyectos Privados & Acceso Completo */}
-                                    <div className="dock-private-projects-notice mb-2">
-                                        <i className="fas fa-lock text-warning flex-shrink-0"></i>
-                                        <span>
-                                            Para acceder a proyectos privados o conocer la arquitectura completa,{' '}
-                                            <a href="#contact" className="dock-contact-link">
-                                                comunícate conmigo <i className="fas fa-arrow-right ms-1"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-
                                     <p className="dock-caption mb-0">
                                         Personaje vectorial interactivo programado con propiedades personalizadas de CSS y animación procedural.
                                     </p>
