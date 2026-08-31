@@ -2860,6 +2860,38 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 }
 
 @media (max-width: 768px) {
+  /* Snap-like Full Viewport Blocks in CTO Mode */
+  .cto-mode-view section {
+    min-height: calc(100dvh - 64px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 1.5rem 0.5rem !important;
+    box-sizing: border-box !important;
+    scroll-margin-top: 64px !important;
+  }
+
+  .compact-mobile-frame {
+    margin: 0 auto 0.65rem auto !important;
+  }
+  .compact-mobile-frame .cto-avatar-content-wrap {
+    width: 95px !important;
+    height: 95px !important;
+    border-radius: 50% !important;
+    border: 2px solid var(--accent-color-light, #60a5fa) !important;
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.35) !important;
+  }
+  .compact-mobile-frame .cto-avatar-badge {
+    padding: 0.2rem 0.6rem !important;
+    font-size: 0.65rem !important;
+    bottom: -8px !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+  }
+  .compact-mobile-frame .badge-role {
+    font-size: 0.65rem !important;
+  }
+
   /* Contact Showcase on Mobile: Descuenta navbar y compacta tarjeta */
   .contact-showcase-section {
     padding: 2.5rem 0 !important;
@@ -2905,9 +2937,9 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 
   /* CTO Mode Mobile Refinements: Descuenta Navbar Fija (64px) */
   .cto-hero-section {
-    min-height: auto !important;
+    min-height: calc(100dvh - 64px) !important;
     padding-top: calc(64px + 1.25rem) !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 1.5rem !important;
   }
   .cto-hero-h1 {
     font-size: 1.6rem !important;

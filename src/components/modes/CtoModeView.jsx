@@ -58,7 +58,8 @@ const CtoModeView = () => {
                             </div>
                         </div>
 
-                        <div className="col-12 col-lg-5 d-flex justify-content-center align-items-center">
+                        {/* Desktop Avatar Column */}
+                        <div className="col-12 col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
                             <div className="cto-avatar-frame">
                                 <div className="cto-avatar-content-wrap">
                                     <img src={profileImg} alt="Augusto Romera" className="cto-profile-image" />
@@ -79,7 +80,20 @@ const CtoModeView = () => {
                  ========================================================================= */}
             <section id="portfolio" className="cto-gateways-section">
                 <div className="container">
-                    <div className="section-header text-center mb-5">
+                    
+                    {/* Compact Profile Avatar on Mobile Screen 2 */}
+                    <div className="d-lg-none text-center mb-3">
+                        <div className="cto-avatar-frame compact-mobile-frame mx-auto">
+                            <div className="cto-avatar-content-wrap">
+                                <img src={profileImg} alt="Augusto Romera" className="cto-profile-image" />
+                            </div>
+                            <div className="cto-avatar-badge">
+                                <span className="badge-role">Desarrollador de Software &amp; Analista Funcional</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="section-header text-center mb-3 mb-md-5">
                         <span className="section-tag">Metamorfosis de Experiencia</span>
                         <h2 className="section-title text-white font-heading">Exploración de Proyectos &amp; Sistemas</h2>
                         <p className="section-subtitle" style={{ maxWidth: '750px', margin: '0 auto' }}>
