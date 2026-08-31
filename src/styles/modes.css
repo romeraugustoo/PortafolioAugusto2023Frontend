@@ -2888,8 +2888,8 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 }
 
 @media (max-width: 768px) {
-  /* Snap-like Full Viewport Blocks in CTO Mode */
-  .cto-mode-view section {
+  /* Snap-like Full Viewport Blocks in CTO Mode (Except Hero which flows naturally from top) */
+  .cto-mode-view section:not(.cto-hero-section) {
     min-height: calc(100dvh - 64px) !important;
     display: flex !important;
     flex-direction: column !important;
@@ -2975,10 +2975,11 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 
   /* CTO Mode Mobile Refinements: Inicio estricto debajo de la navbar fija */
   .cto-hero-section {
+    display: block !important;
     min-height: calc(100dvh - 64px) !important;
-    padding-top: calc(64px + 1.75rem) !important;
+    padding-top: calc(64px + 2.5rem) !important;
     padding-bottom: 2rem !important;
-    justify-content: flex-start !important;
+    box-sizing: border-box !important;
   }
   .cto-hero-h1 {
     font-size: 1.55rem !important;
