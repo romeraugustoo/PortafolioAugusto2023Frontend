@@ -307,17 +307,20 @@ canvas[style*="pointer-events"] {
 /* ==========================================================================
    SWEETALERT2 THEMED DESIGN SYSTEM (CTO / SAAS, CREATIVE 3D, CYBER)
    ========================================================================== */
-.swal2-container {
-  z-index: var(--z-swal-toast, 10001) !important;
-}
-
-.swal2-container.swal2-backdrop-show {
+/* Solo aplicar backdrop-filter en modales centrales de pantalla completa, NUNCA en Toasts */
+.swal2-container:not(.swal2-bottom-end):not(.swal2-bottom-right):not(.swal2-top-end):not(:has(.swal2-toast)).swal2-backdrop-show {
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
 }
 
+/* Forzar que los contenedores de Toasts no tengan backdrop ni difuminado de pantalla */
 .swal2-container.swal2-bottom-end,
-.swal2-container.swal2-bottom-right {
+.swal2-container.swal2-bottom-right,
+.swal2-container:has(.swal2-toast),
+.swal2-container.swal2-no-backdrop {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: transparent !important;
   bottom: 24px !important;
   right: 92px !important; /* Desplazado a la izquierda de los botones flotantes */
   left: auto !important;
@@ -417,7 +420,7 @@ html[data-portfolio-mode="cto"] .swal2-input:focus,
 /* --------------------------------------------------------------------------
    2. MODO CREATIVE UI & WEBGL 3D (Cosmic Violet & Pink Neon Glow)
    -------------------------------------------------------------------------- */
-html[data-portfolio-mode="creative"] .swal2-container.swal2-backdrop-show {
+html[data-portfolio-mode="creative"] .swal2-container:not(.swal2-bottom-end):not(.swal2-bottom-right):not(.swal2-top-end):not(:has(.swal2-toast)).swal2-backdrop-show {
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
 }

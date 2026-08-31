@@ -83,11 +83,24 @@ const ParticleCanvas = () => {
             mouse.y = null;
         };
 
-        // Pausar animación si el usuario scrolleó más allá del Hero (Ahorro total de CPU/GPU al navegar proyectos)
+        // Pausar animación solo cuando el usuario llega a la primera tarjeta de proyectos
         const handleScroll = () => {
             const scrollY = window.scrollY || window.pageYOffset;
-            const heroHeight = window.innerHeight * 1.1;
-            const shouldBeVisible = scrollY < heroHeight;
+            
+            // Buscar la primera tarjeta de proyecto o inicio de la sección de proyectos
+            const firstProject = document.querySelector('.project-card, .creative-projects-section, .cto-about-section');
+            let scrollLimit;
+
+            if (firstProject) {
+                const rect = firstProject.getBoundingClientRect();
+                // Sigue activo hasta que la primera tarjeta pase por completo el tercio superior de la pantalla
+                scrollLimit = scrollY + rect.top + (isMobile ? rect.height * 0.5 : 150);
+            } else {
+                // Fallback dinámico generoso para móviles y desktop
+                scrollLimit = window.innerHeight * (isMobile ? 2.8 : 1.6);
+            }
+
+            const shouldBeVisible = scrollY < scrollLimit;
 
             if (shouldBeVisible !== isVisibleOnScreen) {
                 isVisibleOnScreen = shouldBeVisible;

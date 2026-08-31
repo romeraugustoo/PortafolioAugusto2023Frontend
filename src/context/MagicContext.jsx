@@ -53,6 +53,7 @@ export const MagicProvider = ({ children }) => {
             showConfirmButton: false,
             timer: 2200,
             timerProgressBar: true,
+            backdrop: false,
             title: nextConfig.badge,
             text: nextConfig.subtitle,
             background: '#0e121a',

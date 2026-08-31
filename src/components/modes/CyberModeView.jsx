@@ -99,7 +99,8 @@ const MOTOE6S_STREAM_STEPS = [
         delay: 200, 
         type: 'cta-button', 
         text: 'Abrir Caso de Estudio Completo (Moto E6s)',
-        internalRoute: '/solution/motoe6s'
+        url: 'https://e6s.netlify.app/',
+        external: true
     }
 ];
 
@@ -615,6 +616,24 @@ const CyberModeView = () => {
                             );
                         }
                         if (line.type === 'cta-button' || line.internalRoute) {
+                            if (line.external || (line.url && line.url.startsWith('http'))) {
+                                return (
+                                    <div key={idx} className="terminal-log-line line-cta my-3">
+                                        <a 
+                                            href={line.url || 'https://e6s.netlify.app/'} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className="btn-terminal-cta"
+                                            onClick={(e) => e.stopPropagation()}
+                                            title="Abrir Caso de Estudio Completo (Moto E6s)"
+                                        >
+                                            <i className="fas fa-external-link-alt me-2"></i>
+                                            <span>{line.text}</span>
+                                            <i className="fas fa-arrow-right ms-2"></i>
+                                        </a>
+                                    </div>
+                                );
+                            }
                             return (
                                 <div key={idx} className="terminal-log-line line-cta my-3">
                                     <RouterLink 
