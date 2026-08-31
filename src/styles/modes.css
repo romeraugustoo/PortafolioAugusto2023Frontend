@@ -203,12 +203,13 @@
    CREATIVE HERO SECTION & RESPONSIVE SCROLL FLOW (MOBILE 1st & 2nd SCROLL)
    ========================================================================== */
 .creative-hero-section {
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: calc(64px + 0.5rem);
-  padding-bottom: 0.5rem;
+  padding-top: calc(64px + 2.5rem);
+  padding-bottom: 2.5rem;
   box-sizing: border-box;
 }
 
@@ -243,22 +244,22 @@
 }
 
 .creative-avatar-col .cto-avatar-frame {
-  margin: 0 auto 1rem auto;
+  margin: 1.25rem auto 1.25rem auto;
 }
 
 .creative-avatar-col .cto-avatar-content-wrap {
-  width: clamp(170px, 15vw, 210px);
-  height: clamp(170px, 15vw, 210px);
+  width: clamp(160px, 14vw, 195px);
+  height: clamp(160px, 14vw, 195px);
 }
 
 .creative-avatar-col .cto-avatar-hint-pill {
-  top: -12px;
+  top: -14px;
   font-size: 0.72rem;
   padding: 0.25rem 0.75rem;
 }
 
 .creative-avatar-col .cto-avatar-badge {
-  bottom: -12px;
+  bottom: -14px;
   font-size: 0.76rem;
   padding: 0.28rem 0.8rem;
 }
