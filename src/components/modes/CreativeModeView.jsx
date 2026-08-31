@@ -207,9 +207,6 @@ const CreativeModeView = () => {
 
                         </div>
                     </div>
-
-                        </div>
-                    </div>
                 </section>
 
                 {/* Creative Projects Showcase (With Generous Vertical Spacing) */}
