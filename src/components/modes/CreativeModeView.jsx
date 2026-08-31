@@ -65,7 +65,7 @@ const CreativeModeView = () => {
                         <div className="row align-items-center justify-content-between g-4 g-lg-5">
                             
                             {/* Scroll 1 (Mobile / Desktop Left): Heading & Value Proposition (Centered on Mobile) */}
-                            <div className="col-12 col-lg-7 text-center text-lg-start creative-hero-left-col">
+                            <div className="col-12 col-lg-6 text-center text-lg-start creative-hero-left-col">
                                 <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4 mx-auto mx-lg-0" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
                                     <span className="pulse-indicator" style={{ background: '#a78bfa', boxShadow: '0 0 10px #a78bfa' }}></span>
                                     <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>
@@ -106,7 +106,7 @@ const CreativeModeView = () => {
                             </div>
 
                             {/* Scroll 2 on Mobile (Desktop Right): Interactive Dynamic Color Avatar & Dock */}
-                            <div id="about" className="col-12 col-lg-5 creative-avatar-col">
+                            <div id="about" className="col-12 col-lg-6 creative-avatar-col">
                                 <div 
                                     className="cto-avatar-frame active-css-mode"
                                     onClick={handleAvatarClick}
@@ -120,7 +120,7 @@ const CreativeModeView = () => {
                                 >
                                     <div className="cto-avatar-hint-pill" style={{ borderColor: activePalette.color }}>
                                         <i className="fas fa-palette me-1" style={{ color: activePalette.color }}></i>
-                                        {`PALETA: ${activePalette.name} (CLIC MUTAR)`}
+                                        {`PALETA: ${activePalette.name} (toca para cambiar)`}
                                     </div>
 
                                     <div className="cto-avatar-content-wrap" style={{ borderColor: activePalette.color }}>

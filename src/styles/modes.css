@@ -235,8 +235,11 @@
 
 .creative-avatar-col {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.25rem;
+  width: 100%;
 }
 
 /* Mobile Viewport Adaptation: Scroll 1 (Hero Text) & Scroll 2 (Character Spotlight) */
@@ -1237,7 +1240,7 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   height: 82%;
   border-radius: 9999px;
   background: var(--dynamic-aura, linear-gradient(135deg, #3b82f6 0%, #8b5cf6 40%, #10b981 80%, #06b6d4 100%));
-  animation: rotateAura 14s linear infinite;
+  animation: rotateAura 18s linear infinite;
   opacity: 0.85;
   filter: blur(14px);
   box-shadow: 0 0 35px rgba(59, 130, 246, 0.55), 0 0 60px rgba(139, 92, 246, 0.35);
@@ -1253,7 +1256,7 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   height: 85%;
   opacity: 0.95;
   box-shadow: 0 0 45px rgba(139, 92, 246, 0.7), 0 0 70px rgba(139, 92, 246, 0.45);
-  animation: rotateAura 10s linear infinite;
+  animation: rotateAura 13s linear infinite;
 }
 
 @keyframes rotateAura {
