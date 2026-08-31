@@ -1126,6 +1126,53 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   margin-bottom: 1.5rem;
 }
 
+.cto-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.btn-cta-blueprints {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  border: 1.5px solid #60a5fa !important;
+  color: #ffffff !important;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  padding: 0.65rem 1.4rem !important;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-cta-blueprints:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  box-shadow: 0 6px 26px rgba(59, 130, 246, 0.65);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-cta-cv-matte {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+  border: 1.5px solid rgba(96, 165, 250, 0.55) !important;
+  color: #ffffff !important;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  padding: 0.65rem 1.4rem !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 20px rgba(96, 165, 250, 0.2);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-cta-cv-matte:hover {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 30px rgba(96, 165, 250, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
 .cto-metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
