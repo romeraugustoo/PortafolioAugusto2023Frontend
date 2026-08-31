@@ -19,12 +19,23 @@ const LayoutContent = ({ children, activeSection }) => {
 
     const isSolutionPage = pathname.startsWith('/solution');
 
-    // Scroll listener para activar el tooltip al llegar a la sección de Metamorfosis
+    // Si el modo cambia por cualquier vía (Gateway, Header, etc.), cerrar y descartar el tooltip para siempre
+    useEffect(() => {
+        setShowModeTooltip(false);
+        if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
+    }, [activeConfig.mode]);
+
+    // Scroll listener para activar el tooltip al llegar a la sección de Metamorfosis (solo primera vez)
     useEffect(() => {
         if (isSolutionPage) return;
         if (localStorage.getItem('mode_tooltip_dismissed') === 'true') return;
 
         const checkScrollPosition = () => {
+            if (localStorage.getItem('mode_tooltip_dismissed') === 'true') {
+                setShowModeTooltip(false);
+                return;
+            }
+
             const metamorfosisEl = document.getElementById('portfolio') || document.querySelector('.cto-gateways-section, .creative-projects-section');
             if (!metamorfosisEl) return;
 
@@ -129,7 +140,12 @@ const LayoutContent = ({ children, activeSection }) => {
                 {!isSolutionPage && (
                     <div className="floating-mode-wrapper">
                         {showModeTooltip && (
-                            <div className="floating-mode-tooltip" role="tooltip">
+                            <div 
+                                className="floating-mode-tooltip" 
+                                role="tooltip"
+                                onClick={handleModeButtonClick}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <div className="tooltip-inner-content">
                                     <span className="tooltip-pill-badge">✨ Metamorfosis</span>
                                     <p className="tooltip-msg">

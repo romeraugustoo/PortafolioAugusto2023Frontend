@@ -25,6 +25,7 @@ export const MagicProvider = ({ children }) => {
 
         setCurrentMode(nextMode);
         localStorage.setItem('portfolio_mode', nextMode);
+        localStorage.setItem('mode_tooltip_dismissed', 'true');
 
         // Garantizar que la nueva vista comience siempre en el Hero superior
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
