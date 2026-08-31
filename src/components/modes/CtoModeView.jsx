@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { useMagic } from '../../context/MagicContext';
-import ContactShowcase from '../contact/ContactShowcase';
-import ArchitectureBlueprint from '../architecture/ArchitectureBlueprint';
 import profileImg from '../../assets/images/profile/profile-augusto.webp';
+
+const ContactShowcase = lazy(() => import('../contact/ContactShowcase'));
 
 const CtoModeView = () => {
     const { setMode, MODES } = useMagic();
@@ -489,7 +489,9 @@ const CtoModeView = () => {
             </section>
 
             {/* Zero-Friction Contact Showcase */}
-            <ContactShowcase />
+            <Suspense fallback={<div className="py-5 text-center" />}>
+                <ContactShowcase />
+            </Suspense>
 
         </div>
     );
