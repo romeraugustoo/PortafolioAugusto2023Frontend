@@ -4,6 +4,7 @@ import { useMagic } from '../../context/MagicContext';
 import profileImg from '../../assets/images/profile/profile-augusto.webp';
 
 const ContactShowcase = lazy(() => import('../contact/ContactShowcase'));
+const ArchitectureBlueprint = lazy(() => import('../architecture/ArchitectureBlueprint'));
 
 const CtoModeView = () => {
     const { setMode, MODES } = useMagic();
@@ -360,7 +361,9 @@ const CtoModeView = () => {
                         </span>
                     </div>
 
-                    <ArchitectureBlueprint />
+                    <Suspense fallback={<div className="py-4 text-center" />}>
+                        <ArchitectureBlueprint />
+                    </Suspense>
                 </div>
             </section>
 
