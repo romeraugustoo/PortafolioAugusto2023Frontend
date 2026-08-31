@@ -243,27 +243,27 @@
 @media (max-width: 991px) {
   .creative-hero-section {
     min-height: auto;
-    padding-top: 4.5rem;
+    padding-top: calc(64px + 1.25rem);
     padding-bottom: 2rem;
   }
 
   .creative-hero-left-col {
-    min-height: calc(100vh - 100px);
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   .creative-avatar-col {
-    min-height: calc(100vh - 90px);
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3rem 0;
-    margin-top: 2rem;
+    padding: 2rem 0 1rem 0;
+    margin-top: 1rem;
     border-top: 1px solid rgba(139, 92, 246, 0.18);
   }
 }
@@ -2719,6 +2719,35 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 }
 
 @media (max-width: 768px) {
+  /* Contact Showcase on Mobile: Descuenta navbar y compacta tarjeta */
+  .contact-showcase-section {
+    padding: 2.5rem 0 !important;
+  }
+  .contact-hero-card {
+    padding: 1.35rem 1.1rem !important;
+    border-radius: 16px !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .contact-status-pill {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.65rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .contact-hero-title {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+    margin: 0.5rem 0 !important;
+  }
+  .contact-hero-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .contact-form-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
   .contact-cards-grid {
     grid-template-columns: 1fr;
   }
@@ -2733,35 +2762,44 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     justify-content: center;
   }
 
-  /* CTO Mode Mobile Refinements */
+  /* CTO Mode Mobile Refinements: Descuenta Navbar Fija (64px) */
   .cto-hero-section {
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
+    min-height: auto !important;
+    padding-top: calc(64px + 1.25rem) !important;
+    padding-bottom: 2rem !important;
+  }
+  .cto-hero-h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.6rem !important;
   }
   .cto-hero-lead {
-    margin: 0 0 1.5rem 0;
-    font-size: 1rem !important;
+    margin: 0 0 1.25rem 0 !important;
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
   }
   .cto-avatar-frame {
-    margin: 2rem auto 0 auto;
+    margin: 1.5rem auto 0 auto;
   }
   .cto-avatar-content-wrap {
-    width: clamp(190px, 55vw, 230px);
-    height: clamp(190px, 55vw, 230px);
+    width: clamp(180px, 50vw, 220px);
+    height: clamp(180px, 50vw, 220px);
   }
   .cto-metrics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
+    gap: 0.65rem !important;
+    margin-top: 1rem !important;
+    padding-top: 0.75rem !important;
   }
   .cto-metric-box {
     background: rgba(15, 23, 42, 0.75);
     border: 1px solid var(--border-subtle);
     border-radius: 14px;
-    padding: 0.85rem 0.75rem !important;
+    padding: 0.75rem 0.65rem !important;
     text-align: center;
   }
   .cto-metric-box .metric-val {
-    font-size: 1.35rem !important;
+    font-size: 1.25rem !important;
   }
   /* Unified Mobile Typography Hierarchy (Harmonious Type Scale) */
   .section-title {
