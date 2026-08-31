@@ -1,45 +1,12 @@
 import React from 'react';
-import confetti from 'canvas-confetti';
-import Swal from 'sweetalert2';
+import { Link as ScrollLink } from 'react-scroll';
 import { useMagic } from '../../context/MagicContext';
 import ContactShowcase from '../contact/ContactShowcase';
 import ArchitectureBlueprint from '../architecture/ArchitectureBlueprint';
 import profileImg from '../../assets/images/profile/profile-augusto.webp';
-import curriculumPDF from '../../assets/files/Curriculum Vitae augusto.pdf';
 
 const CtoModeView = () => {
     const { setMode, MODES } = useMagic();
-
-    const handleDownloadCV = (e) => {
-        e.preventDefault();
-        const x = e.clientX ? e.clientX / window.innerWidth : 0.5;
-        const y = e.clientY ? e.clientY / window.innerHeight : 0.5;
-
-        confetti({
-            particleCount: 80,
-            spread: 70,
-            origin: { x, y }
-        });
-
-        Swal.fire({
-            title: '¡Descarga Exitosa! 🎉',
-            text: 'Descargaste el CV de Augusto Romera.',
-            icon: 'success',
-            confirmButtonText: 'Genial',
-            background: '#0e121a',
-            color: '#ffffff',
-            confirmButtonColor: '#3b82f6'
-        });
-
-        setTimeout(() => {
-            const link = document.createElement('a');
-            link.href = curriculumPDF;
-            link.download = 'Curriculum_Vitae_Augusto_Romera.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }, 1200);
-    };
 
     return (
         <div className="cto-mode-view">
@@ -61,19 +28,29 @@ const CtoModeView = () => {
                             </p>
 
                             <div className="cto-hero-cta-group d-flex align-items-center gap-3 flex-wrap mb-4">
-                                <a href="#blueprints" className="btn btn-cta-blueprints px-4 py-2 fw-bold">
+                                <ScrollLink 
+                                    to="blueprints" 
+                                    smooth="easeInOutCubic" 
+                                    offset={-60} 
+                                    duration={600} 
+                                    className="btn btn-cta-blueprints px-4 py-2 fw-bold"
+                                    role="button"
+                                >
                                     <i className="fas fa-project-diagram me-2"></i>
                                     Explorar Blueprints
-                                </a>
-                                <button 
-                                    type="button" 
-                                    onClick={handleDownloadCV} 
+                                </ScrollLink>
+                                <ScrollLink 
+                                    to="contact" 
+                                    smooth="easeInOutCubic" 
+                                    offset={-60} 
+                                    duration={600} 
                                     className="btn btn-cta-cv-matte px-4 py-2 fw-bold"
-                                    title="Descargar Curriculum Vitae en PDF"
+                                    title="Ver y Descargar Curriculum Vitae en PDF"
+                                    role="button"
                                 >
                                     <i className="fas fa-file-pdf me-2 text-danger"></i>
                                     Descargar CV
-                                </button>
+                                </ScrollLink>
                             </div>
 
                             {/* Executive Bento Metrics Grid */}
