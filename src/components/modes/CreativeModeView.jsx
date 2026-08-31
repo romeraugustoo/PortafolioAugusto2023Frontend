@@ -98,7 +98,7 @@ const CreativeModeView = () => {
                                 </div>
                             </div>
 
-                            {/* Scroll 2 on Mobile (Desktop Right): Interactive Dynamic Color Avatar */}
+                            {/* Scroll 2 on Mobile (Desktop Right): Interactive Dynamic Color Avatar & Dock */}
                             <div id="about" className="col-12 col-lg-5 creative-avatar-col">
                                 <div 
                                     className="cto-avatar-frame active-css-mode"
@@ -124,6 +124,77 @@ const CreativeModeView = () => {
                                         <span className="badge-role">Creative Frontend & 3D UI</span>
                                     </div>
                                 </div>
+
+                                {/* Combined Glassmorphism Dock: Swatches + Metrics + Badges */}
+                                <div className="creative-avatar-dock-card mt-3">
+                                    {/* 1. Selector de 6 Paletas */}
+                                    <div className="dock-swatches-header d-flex align-items-center justify-content-between mb-2">
+                                        <span className="dock-swatches-title">
+                                            <i className="fas fa-palette me-1 text-warning"></i> Selector de Paletas
+                                        </span>
+                                        <span className="dock-active-palette-name" style={{ color: activePalette.color }}>
+                                            {activePalette.name}
+                                        </span>
+                                    </div>
+
+                                    <div className="dock-swatches-row mb-3">
+                                        {AVATAR_PALETTES.map((palette, idx) => (
+                                            <button
+                                                key={palette.name}
+                                                type="button"
+                                                className={`dock-swatch-btn ${paletteIndex === idx ? 'active' : ''}`}
+                                                style={{
+                                                    '--swatch-color': palette.color
+                                                }}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setPaletteIndex(idx);
+                                                    confetti({ particleCount: 30, spread: 55, origin: { y: 0.4 } });
+                                                }}
+                                                title={`Cambiar a paleta ${palette.name}`}
+                                            >
+                                                <span className="swatch-circle" style={{ background: palette.color }}></span>
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {/* 2. Mini-Grilla de 3 Píldoras Métricas */}
+                                    <div className="dock-metrics-grid mb-3">
+                                        <div className="dock-metric-item">
+                                            <span className="metric-icon"><i className="fas fa-cubes text-primary"></i></span>
+                                            <div className="metric-info">
+                                                <strong>18 Proyectos</strong>
+                                                <small>Catálogo dinámico</small>
+                                            </div>
+                                        </div>
+                                        <div className="dock-metric-item">
+                                            <span className="metric-icon"><i className="fas fa-atom text-info"></i></span>
+                                            <div className="metric-info">
+                                                <strong>WebGL 3D</strong>
+                                                <small>Aceleración GPU</small>
+                                            </div>
+                                        </div>
+                                        <div className="dock-metric-item">
+                                            <span className="metric-icon"><i className="fas fa-vector-square text-success"></i></span>
+                                            <div className="metric-info">
+                                                <strong>CSS 2.5D</strong>
+                                                <small>Rigging vectorial</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* 3. Badges de Especialidad */}
+                                    <div className="dock-tech-badges mb-2">
+                                        <span className="dock-badge"><i className="fas fa-brush me-1 text-warning"></i> 100% Pure CSS Art</span>
+                                        <span className="dock-badge"><i className="fas fa-bolt me-1 text-info"></i> React 18 Sync</span>
+                                        <span className="dock-badge"><i className="fas fa-tachometer-alt me-1 text-success"></i> 60 FPS</span>
+                                    </div>
+
+                                    <p className="dock-caption mb-0">
+                                        Personaje vectorial interactivo programado con propiedades personalizadas de CSS y animación procedural.
+                                    </p>
+                                </div>
+
                             </div>
 
                         </div>

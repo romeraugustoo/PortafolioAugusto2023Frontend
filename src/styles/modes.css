@@ -285,6 +285,147 @@
   z-index: 10 !important;
 }
 
+/* ==========================================================================
+   CREATIVE AVATAR COMBINED DOCK CARD (SWATCHES + METRICS + BADGES)
+   ========================================================================== */
+.creative-avatar-dock-card {
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 18px;
+  padding: 1.15rem 1.15rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.15);
+  max-width: 440px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+
+.creative-avatar-dock-card:hover {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(139, 92, 246, 0.25);
+}
+
+.dock-swatches-header {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.dock-swatches-title {
+  color: #e2e8f0;
+}
+.dock-active-palette-name {
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.dock-swatches-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.dock-swatch-btn {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dock-swatch-btn .swatch-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.dock-swatch-btn:hover {
+  transform: scale(1.15);
+  border-color: var(--swatch-color);
+  box-shadow: 0 0 10px var(--swatch-color);
+}
+
+.dock-swatch-btn.active {
+  border-color: #ffffff;
+  transform: scale(1.2);
+  box-shadow: 0 0 14px var(--swatch-color);
+}
+
+.dock-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.dock-metric-item {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.55rem 0.45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+}
+
+.dock-metric-item .metric-icon {
+  font-size: 0.95rem;
+}
+
+.dock-metric-item .metric-info strong {
+  display: block;
+  font-size: 0.80rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.dock-metric-item .metric-info small {
+  display: block;
+  font-size: 0.66rem;
+  color: #94a3b8;
+  line-height: 1.15;
+}
+
+.dock-tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.dock-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+}
+
+.dock-caption {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #94a3b8;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.55rem;
+}
+
 /* --------------------------------------------------------------------------
    4. PREVENCIÓN DE DESBORDAMIENTOS Y CONFLICTOS GLOBALES
    -------------------------------------------------------------------------- */
