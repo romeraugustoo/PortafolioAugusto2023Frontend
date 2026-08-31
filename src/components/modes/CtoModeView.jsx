@@ -87,10 +87,10 @@ const CtoModeView = () => {
                         </p>
                     </div>
 
-                    <div className="row g-4 justify-content-center">
+                    <div className="row g-2 g-md-4 justify-content-center cto-gateways-row">
                         
                         {/* Gateway 1: Consola Linux (Cyber Mode) */}
-                        <div className="col-12 col-md-6">
+                        <div className="col-6">
                             <div 
                                 className="cto-gateway-card gateway-cyber"
                                 onClick={() => setMode(MODES.CYBER)}
@@ -102,7 +102,7 @@ const CtoModeView = () => {
                                     <div className="gateway-icon-badge cyber">
                                         <i className="fas fa-terminal"></i>
                                     </div>
-                                    <span className="gateway-target-role">Para Tech Leads, Backend &amp; Linux/Sistemas</span>
+                                    <span className="gateway-target-role">Tech Leads &amp; Linux</span>
                                 </div>
 
                                 <div className="gateway-card-body">
@@ -110,21 +110,21 @@ const CtoModeView = () => {
                                         Consola Linux &amp; Kernel Telemetry
                                     </h3>
                                     <p className="gateway-desc">
-                                        Entorno interactivo estilo terminal Linux / POSIX Shell. Simula en tiempo real la ejecución de comandos y procesos de bajo nivel (Bypass MT6765, Little Kernel) e inspecciona telemetría simulada de auditorías y pipelines concurrentes.
+                                        Terminal interactiva POSIX Shell. Simulación de comandos y telemetría de bajo nivel (Bypass MT6765 / Little Kernel).
                                     </p>
 
                                     <ul className="gateway-feature-list">
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
-                                            <span>Simulación interactiva de comandos shell (<code>/help</code>, <code>/audit motoe6s</code>)</span>
+                                            <span>Simulación shell (<code>/help</code>, <code>/audit</code>)</span>
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
-                                            <span>Recreación de bitácoras de bajo nivel y criptoanálisis de hardware</span>
+                                            <span>Recreación de bitácoras y criptoanálisis</span>
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
-                                            <span>Telemetría simulada de arquitecturas ARM64 y pipelines concurrentes</span>
+                                            <span>Telemetría simulada ARM64</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -134,16 +134,16 @@ const CtoModeView = () => {
                                         className="btn-gateway-action cyber-btn"
                                         onClick={(e) => { e.stopPropagation(); setMode(MODES.CYBER); }}
                                     >
-                                        <i className="fas fa-terminal me-2"></i>
-                                        <span>&gt; Abrir Consola Linux (CLI)</span>
-                                        <i className="fas fa-arrow-right ms-2 arrow-icon"></i>
+                                        <i className="fas fa-terminal me-1"></i>
+                                        <span>&gt; Abrir Consola (CLI)</span>
+                                        <i className="fas fa-arrow-right ms-1 arrow-icon"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         {/* Gateway 2: Estudio 3D & Simulación WebGL (Creative Mode) */}
-                        <div className="col-12 col-md-6">
+                        <div className="col-6">
                             <div 
                                 className="cto-gateway-card gateway-creative"
                                 onClick={() => setMode(MODES.CREATIVE)}
@@ -155,29 +155,29 @@ const CtoModeView = () => {
                                     <div className="gateway-icon-badge creative">
                                         <i className="fas fa-cube"></i>
                                     </div>
-                                    <span className="gateway-target-role">Para Product Managers, UI/UX &amp; Founders</span>
+                                    <span className="gateway-target-role">Founders &amp; UI/UX</span>
                                 </div>
 
                                 <div className="gateway-card-body">
                                     <h3 className="gateway-title creative-text">
-                                        Estudio Visual 3D &amp; Catálogo Completo
+                                        Estudio Visual 3D &amp; Catálogo
                                     </h3>
                                     <p className="gateway-desc">
-                                        Experiencia interactiva inmersiva con renderizado WebGL 3D, lienzo de partículas en tiempo real, mutación de paletas del avatar y la galería completa de los 18 proyectos.
+                                        Experiencia WebGL 3D inmersiva con partículas en tiempo real, mutación de avatar y catálogo de 18 proyectos.
                                     </p>
 
                                     <ul className="gateway-feature-list">
                                         <li>
                                             <i className="fas fa-check text-info me-2"></i>
-                                            <span>Galería filtrable de los 18 proyectos con métricas de impacto</span>
+                                            <span>18 proyectos filtrables con métricas</span>
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-info me-2"></i>
-                                            <span>Canvas de partículas 3D interactivo acelerado por GPU</span>
+                                            <span>Canvas de partículas 3D WebGL</span>
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-info me-2"></i>
-                                            <span>Avatar con animaciones de gafas y mutación de paletas CSS</span>
+                                            <span>Avatar con mutación de paletas</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -187,15 +187,15 @@ const CtoModeView = () => {
                                         className="btn-gateway-action creative-btn"
                                         onClick={(e) => { e.stopPropagation(); setMode(MODES.CREATIVE); }}
                                     >
-                                        <i className="fas fa-magic me-2"></i>
-                                        <span>✨ Activar Estudio Creativo &amp; 3D</span>
-                                        <i className="fas fa-arrow-right ms-2 arrow-icon"></i>
+                                        <i className="fas fa-cube me-1"></i>
+                                        <span>✨ Abrir Estudio 3D</span>
+                                        <i className="fas fa-arrow-right ms-1 arrow-icon"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </section>
 
