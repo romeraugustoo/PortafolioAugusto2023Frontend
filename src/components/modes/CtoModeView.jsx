@@ -204,7 +204,7 @@ const CtoModeView = () => {
                  ========================================================================= */}
             <section id="about" className="cto-about-section">
                 <div className="container">
-                    <div className="section-header text-center mb-5">
+                    <div className="section-header text-center mb-4 mb-md-5">
                         <span className="section-tag">Metodología &amp; Criterio</span>
                         <h2 className="section-title text-white font-heading">Mi Enfoque de Ingeniería en 4 Fases</h2>
                         <p className="section-subtitle">
@@ -212,51 +212,51 @@ const CtoModeView = () => {
                         </p>
                     </div>
 
-                    <div className="row g-4">
-                        <div className="col-12 col-md-6 col-lg-3">
+                    <div className="row g-2 g-md-4">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-pillar-card">
                                 <div className="pillar-icon-box blue">
-                                    <i className="fas fa-clipboard-list fa-lg"></i>
+                                    <i className="fas fa-clipboard-list"></i>
                                 </div>
-                                <h4>01. Relevamiento &amp; Desambiguación</h4>
+                                <h4>01. Relevamiento</h4>
                                 <p>
-                                    Entrevistas técnicas, detección de cuellos de botella y especificación precisa de requerimientos funcionales y no funcionales para eliminar incertidumbre.
+                                    Entrevistas técnicas y especificación precisa de requerimientos funcionales para eliminar incertidumbre.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-pillar-card">
                                 <div className="pillar-icon-box green">
-                                    <i className="fas fa-sitemap fa-lg"></i>
+                                    <i className="fas fa-sitemap"></i>
                                 </div>
-                                <h4>02. Modelado de Dominio &amp; C4</h4>
+                                <h4>02. Modelado C4</h4>
                                 <p>
-                                    Diagramación de arquitectura (C4 Model, BPMN, UML) y esquemas de base de datos relacionales/NoSQL antes de la primera línea de código.
+                                    Diagramación de arquitectura (C4 Model, UML) y esquemas relacionales/NoSQL antes de programar.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-pillar-card">
                                 <div className="pillar-icon-box purple">
-                                    <i className="fas fa-code-branch fa-lg"></i>
+                                    <i className="fas fa-code-branch"></i>
                                 </div>
-                                <h4>03. Clean Architecture &amp; Código</h4>
+                                <h4>03. Clean Code</h4>
                                 <p>
-                                    Construcción desacoplada por capas (Dominio, Aplicación, Infraestructura), separación estricta de responsabilidades y tipado defensivo.
+                                    Construcción desacoplada por capas (Dominio, Aplicación, Infraestructura) y tipado defensivo.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-pillar-card">
                                 <div className="pillar-icon-box cyan">
-                                    <i className="fas fa-shield-alt fa-lg"></i>
+                                    <i className="fas fa-shield-alt"></i>
                                 </div>
-                                <h4>04. Trazabilidad &amp; Despliegue</h4>
+                                <h4>04. Despliegue</h4>
                                 <p>
-                                    Documentación técnica reproducible, validación de endpoints y contenedorización en Docker lista para producción y mantenimiento sostenible.
+                                    Documentación técnica, validación de endpoints y contenedorización Docker para producción.
                                 </p>
                             </div>
                         </div>
@@ -269,7 +269,7 @@ const CtoModeView = () => {
                  ========================================================================= */}
             <section id="blueprints" className="cto-blueprints-section">
                 <div className="container">
-                    <div className="section-header text-center mb-5">
+                    <div className="section-header text-center mb-4 mb-md-5">
                         <span className="section-tag green">Estándar C4 Architecture</span>
                         <h2 className="section-title text-white font-heading">Blueprints &amp; Mapas de Arquitectura</h2>
                         <p className="section-subtitle" style={{ maxWidth: '820px', margin: '0 auto' }}>
@@ -278,53 +278,53 @@ const CtoModeView = () => {
                     </div>
 
                     {/* C4 Model 4 Zoom Levels Interactive Guide */}
-                    <div className="c4-zoom-levels-grid mb-5">
+                    <div className="c4-zoom-levels-grid mb-4 mb-md-5">
                         <div className="c4-zoom-card">
                             <div className="c4-zoom-header">
                                 <span className="c4-zoom-badge">Zoom 1x</span>
-                                <i className="fas fa-globe text-primary fa-lg"></i>
+                                <i className="fas fa-globe text-primary"></i>
                             </div>
-                            <h5 className="c4-zoom-title">1. Contexto (Context)</h5>
+                            <h5 className="c4-zoom-title">1. Contexto</h5>
                             <p className="c4-zoom-desc">
-                                Visión global del sistema como una sola caja. Muestra usuarios reales, actores y conexiones con servicios o APIs externas.
+                                Visión global del sistema, usuarios y conexiones con servicios externos.
                             </p>
                         </div>
 
                         <div className="c4-zoom-card">
                             <div className="c4-zoom-header">
                                 <span className="c4-zoom-badge">Zoom 10x</span>
-                                <i className="fas fa-cubes text-success fa-lg"></i>
+                                <i className="fas fa-cubes text-success"></i>
                             </div>
-                            <h5 className="c4-zoom-title">2. Contenedor (Container)</h5>
+                            <h5 className="c4-zoom-title">2. Contenedor</h5>
                             <p className="c4-zoom-desc">
-                                Desglose de aplicaciones ejecutables independientes: Frontend SPA, Backend REST API, Microservicios y Bases de Datos.
+                                Aplicaciones independientes: Frontend SPA, REST API y Bases de Datos.
                             </p>
                         </div>
 
                         <div className="c4-zoom-card">
                             <div className="c4-zoom-header">
                                 <span className="c4-zoom-badge">Zoom 100x</span>
-                                <i className="fas fa-layer-group text-warning fa-lg"></i>
+                                <i className="fas fa-layer-group text-warning"></i>
                             </div>
-                            <h5 className="c4-zoom-title">3. Componente (Component)</h5>
+                            <h5 className="c4-zoom-title">3. Componente</h5>
                             <p className="c4-zoom-desc">
-                                Módulos internos del contenedor: Controladores, Servicios de Aplicación, Entidades de Dominio y Adaptadores (Clean Architecture).
+                                Módulos internos: Controladores, Servicios de Dominio y Adaptadores.
                             </p>
                         </div>
 
                         <div className="c4-zoom-card">
                             <div className="c4-zoom-header">
                                 <span className="c4-zoom-badge">Zoom 1000x</span>
-                                <i className="fas fa-code text-danger fa-lg"></i>
+                                <i className="fas fa-code text-danger"></i>
                             </div>
-                            <h5 className="c4-zoom-title">4. Código (Code)</h5>
+                            <h5 className="c4-zoom-title">4. Código</h5>
                             <p className="c4-zoom-desc">
-                                Implementación detallada: algoritmos, diagramas de clases, contratos de interfaces y mitigación de concurrencia.
+                                Clases, contratos de interfaces y mitigación de concurrencia.
                             </p>
                         </div>
                     </div>
 
-                    <div className="blueprint-explorer-divider text-center mb-4">
+                    <div className="blueprint-explorer-divider text-center mb-3 mb-md-4">
                         <span className="divider-label">
                             <i className="fas fa-microscope me-2 text-info"></i>
                             Explorador Interactivo de Blueprints de Ejecución
@@ -340,72 +340,72 @@ const CtoModeView = () => {
                  ========================================================================= */}
             <section className="cto-stack-section">
                 <div className="container">
-                    <div className="section-header text-center mb-5">
+                    <div className="section-header text-center mb-4 mb-md-5">
                         <span className="section-tag">Capacidades Técnicas</span>
                         <h2 className="section-title text-white font-heading">Stack Tecnológico por Dominios</h2>
                     </div>
 
-                    <div className="row g-4">
-                        <div className="col-12 col-md-6 col-lg-3">
+                    <div className="row g-2 g-md-4">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-domain-card">
                                 <div className="domain-header">
                                     <i className="fas fa-laptop-code text-primary me-2"></i>
-                                    <h5>Frontend & UI/UX</h5>
+                                    <h5>Frontend &amp; UI</h5>
                                 </div>
                                 <ul className="domain-list">
                                     <li>React 18 / Vite</li>
-                                    <li>TypeScript & JavaScript ES6</li>
-                                    <li>HTML5 / CSS3 Avanzado</li>
-                                    <li>Three.js / WebGL 3D</li>
-                                    <li>Bootstrap 5 / Responsive UI</li>
+                                    <li>TypeScript / ES6</li>
+                                    <li>HTML5 / CSS3</li>
+                                    <li>Three.js / WebGL</li>
+                                    <li>Bootstrap 5</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-domain-card">
                                 <div className="domain-header">
                                     <i className="fas fa-server text-success me-2"></i>
-                                    <h5>Backend & Microservicios</h5>
+                                    <h5>Backend API</h5>
                                 </div>
                                 <ul className="domain-list">
-                                    <li>Java 21 / Spring Boot</li>
-                                    <li>Python (FastAPI / Flask)</li>
-                                    <li>Node.js / Express.js</li>
-                                    <li>Arquitectura REST & WebSockets</li>
-                                    <li>JWT / Spring Security RBAC</li>
+                                    <li>Java / Spring Boot</li>
+                                    <li>Python (FastAPI)</li>
+                                    <li>Node.js / Express</li>
+                                    <li>REST &amp; WebSockets</li>
+                                    <li>JWT &amp; Security</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-domain-card">
                                 <div className="domain-header">
                                     <i className="fas fa-database text-warning me-2"></i>
-                                    <h5>Datos & Cloud</h5>
+                                    <h5>Datos &amp; DB</h5>
                                 </div>
                                 <ul className="domain-list">
                                     <li>PostgreSQL / MySQL</li>
                                     <li>MongoDB / NoSQL</li>
-                                    <li>Docker & Docker Compose</li>
-                                    <li>Netlify & Render Deployments</li>
-                                    <li>Git & GitHub CI/CD Actions</li>
+                                    <li>Docker Compose</li>
+                                    <li>Cloud Deployments</li>
+                                    <li>CI/CD GitHub</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="cto-domain-card">
                                 <div className="domain-header">
                                     <i className="fas fa-shield-alt text-danger me-2"></i>
-                                    <h5>Seguridad &amp; DevOps</h5>
+                                    <h5>DevOps &amp; Sec</h5>
                                 </div>
                                 <ul className="domain-list">
-                                    <li>JWT &amp; Spring Security RBAC</li>
-                                    <li>Docker &amp; Docker Compose</li>
-                                    <li>Sanitización OWASP (SQLi / XSS)</li>
-                                    <li>Linux Bash &amp; Automatización</li>
-                                    <li>Git &amp; GitHub Actions CI/CD</li>
+                                    <li>Spring Security</li>
+                                    <li>Docker Containers</li>
+                                    <li>OWASP Standards</li>
+                                    <li>Linux Bash Shell</li>
+                                    <li>CI/CD Pipelines</li>
                                 </ul>
                             </div>
                         </div>
@@ -418,41 +418,41 @@ const CtoModeView = () => {
                  ========================================================================= */}
             <section className="cto-governance-section">
                 <div className="container">
-                    <div className="section-header text-center mb-5">
+                    <div className="section-header text-center mb-4 mb-md-5">
                         <span className="section-tag amber">Estándar de Calidad</span>
-                        <h2 className="section-title text-white font-heading">Gobernanza & Entrega Continua</h2>
+                        <h2 className="section-title text-white font-heading">Gobernanza &amp; Entrega Continua</h2>
                         <p className="section-subtitle">
                             Metodologías que garantizan transferibilidad, rendimiento y cero deuda técnica:
                         </p>
                     </div>
 
-                    <div className="row g-4">
-                        <div className="col-12 col-md-6 col-lg-3">
+                    <div className="row g-2 g-md-4">
+                        <div className="col-6 col-lg-3">
                             <div className="governance-box">
                                 <div className="governance-icon"><i className="fas fa-code-branch"></i></div>
                                 <h6>CI/CD Automatizado</h6>
-                                <p>Pipelines en GitHub Actions para pruebas unitarias, linting y compilación continua.</p>
+                                <p>GitHub Actions para pruebas, linting y build continuo.</p>
                             </div>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="governance-box">
                                 <div className="governance-icon"><i className="fab fa-docker"></i></div>
-                                <h6>Contenedores Docker</h6>
-                                <p>Aislamiento de servicios, dependencias inmutables y entornos reproducibles en 1 comando.</p>
+                                <h6>Docker Containers</h6>
+                                <p>Aislamiento y entornos reproducibles en 1 comando.</p>
                             </div>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="governance-box">
                                 <div className="governance-icon"><i className="fas fa-vial"></i></div>
-                                <h6>Testing & Calidad</h6>
-                                <p>Pruebas de estrés de alto volumen, validación de endpoints y cobertura estricta de código.</p>
+                                <h6>Testing &amp; Calidad</h6>
+                                <p>Validación de endpoints y cobertura estricta de código.</p>
                             </div>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-3">
+                        <div className="col-6 col-lg-3">
                             <div className="governance-box">
                                 <div className="governance-icon"><i className="fas fa-file-alt"></i></div>
                                 <h6>Documentación C4</h6>
-                                <p>Diagramas de arquitectura, bitácoras operativas y especificaciones técnicas reproducibles.</p>
+                                <p>Diagramas de arquitectura y especificaciones reproducibles.</p>
                             </div>
                         </div>
                     </div>
