@@ -3610,6 +3610,51 @@ canvas#particle-canvas,
   font-weight: 600;
 }
 
+.btn-cv-download-action {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  border: 1.5px solid #60a5fa !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-size: 0.92rem !important;
+  padding: 0.65rem 1.4rem !important;
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45), 0 0 15px rgba(96, 165, 250, 0.25);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-cv-download-action:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  border-color: #93c5fd !important;
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.65), 0 0 20px rgba(147, 197, 253, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.cv-btn-ext {
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 991px) {
+  .cv-banner-action-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 0.75rem !important;
+  }
+  .btn-cv-download-action {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+}
+
 .contact-channel-item {
   display: flex;
   align-items: center;

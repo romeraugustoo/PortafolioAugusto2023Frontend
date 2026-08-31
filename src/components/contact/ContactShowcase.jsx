@@ -118,8 +118,19 @@ const ContactShowcase = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="btn btn-outline-light btn-sm fw-bold px-3 py-2 flex-shrink-0">
-                            <i className="fas fa-download me-2"></i> Descargar CV
+                        <div className="cv-banner-action-wrap flex-shrink-0">
+                            <button 
+                                type="button" 
+                                className="btn btn-cv-download-action fw-bold px-4 py-2"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDownload(e);
+                                }}
+                            >
+                                <i className="fas fa-download me-2"></i>
+                                <span>Descargar CV</span>
+                                <span className="cv-btn-ext ms-2">PDF</span>
+                            </button>
                         </div>
                     </div>
                 </div>
