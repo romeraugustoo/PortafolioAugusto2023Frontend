@@ -84,6 +84,8 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 scroll.scrollToTop({ duration: 500, smooth: 'easeInOutCubic' });
                             }}
                             alt="Augusto Romera Logo"
+                            width="160"
+                            height="36"
                             style={{ cursor: 'pointer' }}
                         />
                     ) : (
@@ -92,6 +94,8 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 src={activeLogo}
                                 className="d-inline-block navbar-image"
                                 alt="Augusto Romera Logo"
+                                width="160"
+                                height="36"
                             />
                         </RouterLink>
                     )}
@@ -122,6 +126,7 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 <ScrollLink
                                     className={`nav-link ${activeSection === 'home' ? 'nav-link-scrolled' : ''}`}
                                     to="home"
+                                    href="#home"
                                     spy={true}
                                     smooth="easeInOutCubic"
                                     offset={-60}
@@ -133,6 +138,7 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 <ScrollLink
                                     className={`nav-link ${activeSection === 'about' ? 'nav-link-scrolled' : ''}`}
                                     to="about"
+                                    href="#about"
                                     spy={true}
                                     smooth="easeInOutCubic"
                                     offset={-60}
@@ -144,6 +150,7 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 <ScrollLink
                                     className={`nav-link ${activeSection === 'portfolio' ? 'nav-link-scrolled' : ''}`}
                                     to="portfolio"
+                                    href="#portfolio"
                                     spy={true}
                                     smooth="easeInOutCubic"
                                     offset={-60}
@@ -155,6 +162,7 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 <ScrollLink
                                     className={`nav-link ${activeSection === 'contact' ? 'nav-link-scrolled' : ''}`}
                                     to="contact"
+                                    href="#contact"
                                     spy={true}
                                     smooth="easeInOutCubic"
                                     offset={-60}
@@ -166,6 +174,7 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                                 <ScrollLink
                                     className="nav-btn-cv"
                                     to="contact"
+                                    href="#contact"
                                     spy={true}
                                     smooth="easeInOutCubic"
                                     offset={-60}

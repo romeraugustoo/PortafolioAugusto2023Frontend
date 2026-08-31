@@ -1,0 +1,26 @@
+# Augusto Romera - Portafolio de Desarrollo de Software & Análisis Funcional
+
+> Portafolio interactivo de ingeniería de software, arquitectura de sistemas y análisis funcional desarrollado por Augusto Romera (UTN-FRT).
+
+## Información Profesional
+- **Autor:** Augusto Romera
+- **Rol:** Desarrollador de Software & Analista Funcional
+- **Formación:** Universidad Tecnológica Nacional - Facultad Regional Tucumán (UTN-FRT)
+- **Especialidad:** Clean Architecture, Domain-Driven Design (DDD), Relevamiento de Requisitos, Optimización de Rendimiento, React 18, Node.js, Spring Boot, Python FastAPI.
+- **Sitio Web:** [https://augustoromera.netlify.app/](https://augustoromera.netlify.app/)
+- **LinkedIn:** [https://www.linkedin.com/in/augusto-romera/](https://www.linkedin.com/in/augusto-romera/)
+- **GitHub:** [https://github.com/romeraugustoo](https://github.com/romeraugustoo)
+
+## Modos de Navegación del Portafolio
+1. **Modo CTO & Arquitectura SaaS:** Métricas de impacto, C4 Model Explorer, gobernanza y modelado de dominio.
+2. **Consola Linux CLI & Auditoría:** Telemetría de bajo nivel en tiempo real (Bypass criptográfico MT6765) y terminal shell interactiva.
+3. **Estudio 3D & WebGL Canvas:** Simulación física WebGL, rigging de personaje 2.5D CSS y catálogo dinámico de 18 soluciones.
+
+## Proyectos y Soluciones Principales
+- [Transporte Santa Lucía](https://augustoromera.netlify.app/solution/transporte-santa-lucia): Sistema de gestión logística y despacho de carga con backend escalable.
+- [ProfeBook](https://augustoromera.netlify.app/solution/profebook): Plataforma de gestión académica y vinculación docente-estudiante.
+- [Mi Música Organizada](https://augustoromera.netlify.app/solution/mimusica): Gestor de repertorios y catálogos musicales.
+- [Relicario](https://augustoromera.netlify.app/solution/relicario): E-commerce y catálogo de productos con checkout optimizado.
+- [Seamos Puente](https://augustoromera.netlify.app/solution/seamospuente): Plataforma de impacto social y coordinación de voluntariado.
+- [Rapiburger](https://augustoromera.netlify.app/solution/rapiburger): Sistema de pedidos gastronómicos en tiempo real.
+- [Auditoría Forense Motorola Moto E6s](https://augustoromera.netlify.app/solution/moto-e6s): Ingeniería inversa bare-metal y análisis de seguridad en silicio MediaTek Helio P22.
