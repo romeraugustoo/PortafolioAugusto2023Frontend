@@ -417,6 +417,31 @@
   padding: 0.2rem 0.5rem;
 }
 
+.dock-private-projects-notice {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #fef08a;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.dock-contact-link {
+  color: #60a5fa !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dock-contact-link:hover {
+  color: #93c5fd !important;
+}
+
 .dock-caption {
   font-size: 0.72rem;
   line-height: 1.35;
@@ -2890,6 +2915,16 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   }
   .compact-mobile-frame .badge-role {
     font-size: 0.65rem !important;
+  }
+
+  /* Creative Avatar Dock Card Mobile Margins & Respiration */
+  .creative-avatar-dock-card {
+    width: calc(100% - 24px) !important;
+    max-width: 380px !important;
+    margin: 1.25rem auto 0 auto !important;
+    padding: 1rem 0.85rem !important;
+    box-sizing: border-box !important;
+    border-radius: 16px !important;
   }
 
   /* Contact Showcase on Mobile: Descuenta navbar y compacta tarjeta */

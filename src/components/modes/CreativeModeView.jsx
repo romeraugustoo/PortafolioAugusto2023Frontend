@@ -190,6 +190,17 @@ const CreativeModeView = () => {
                                         <span className="dock-badge"><i className="fas fa-tachometer-alt me-1 text-success"></i> 60 FPS</span>
                                     </div>
 
+                                    {/* 4. Aviso de Proyectos Privados & Acceso Completo */}
+                                    <div className="dock-private-projects-notice mb-2">
+                                        <i className="fas fa-lock text-warning flex-shrink-0"></i>
+                                        <span>
+                                            Para acceder a proyectos privados o conocer la arquitectura completa,{' '}
+                                            <a href="#contact" className="dock-contact-link">
+                                                comunícate conmigo <i className="fas fa-arrow-right ms-1"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+
                                     <p className="dock-caption mb-0">
                                         Personaje vectorial interactivo programado con propiedades personalizadas de CSS y animación procedural.
                                     </p>
@@ -202,14 +213,21 @@ const CreativeModeView = () => {
                 </section>
 
                 {/* Creative Projects Showcase (With Generous Vertical Spacing) */}
-                <section id="portfolio" className="creative-projects-section" style={{ paddingTop: '6rem', paddingBottom: '7rem' }}>
+                <section id="portfolio" className="creative-projects-section" style={{ paddingTop: '5rem', paddingBottom: '6rem' }}>
                     <div className="container">
-                        <div className="text-center mb-5">
-                            <span className="section-tag" style={{ color: '#c4b5fd', borderColor: 'rgba(139, 92, 246, 0.4)', background: 'rgba(139, 92, 246, 0.15)', fontSize: '0.9rem', padding: '0.4rem 1.2rem' }}>
+                        <div className="text-center mb-4">
+                            <span className="section-tag" style={{ color: '#c4b5fd', borderColor: 'rgba(139, 92, 246, 0.4)', background: 'rgba(139, 92, 246, 0.15)', fontSize: '0.85rem', padding: '0.35rem 1.1rem' }}>
                                 ✨ Galería Interactiva
                             </span>
                             <h2 className="display-5 fw-bold text-white mb-2 font-heading" style={{ marginTop: '0.8rem' }}>Catálogo de 18 Proyectos</h2>
-                            <p style={{ color: '#cbd5e1', fontSize: '1.05rem' }}>Filtra por dominio técnico y explora los casos de estudio en vivo</p>
+                            <p style={{ color: '#cbd5e1', fontSize: '0.95rem', maxWidth: '650px', margin: '0 auto 0.75rem auto' }}>
+                                Filtra por dominio técnico y explora los casos de estudio en vivo.
+                            </p>
+
+                            <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mt-1" style={{ background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.35)', color: '#fbbf24', fontSize: '0.78rem' }}>
+                                <i className="fas fa-key"></i>
+                                <span>Para acceder a proyectos confidenciales o documentación interna completa, contáctame directamente.</span>
+                            </div>
                         </div>
 
                         <ProjectFilterTabs
