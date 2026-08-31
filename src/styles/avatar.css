@@ -31,7 +31,7 @@
   }
 }
 
-/* Personaje centrado con la boca exactamente en el eje central del círculo */
+/* Personaje centrado con zoom óptimo para mostrar cabello completo y proporciones simétricas */
 .box {
   position: absolute;
   top: 50%;
@@ -40,23 +40,37 @@
   height: 1000px;
   background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
   border-radius: 50%;
-  transform: translate(-50%, -48%) scale(0.26);
+  transform: translate(-50%, -45%) scale(0.22);
   transform-origin: center center;
   animation: avatarBreathe 5s ease-in-out infinite alternate;
 }
 
 @supports (width: 100cqi) {
   .box {
-    transform: translate(-50%, -48%) scale(calc(100cqi / 1000 * 1.05));
+    transform: translate(-50%, -45%) scale(calc(100cqi / 1000 * 0.86));
   }
   @keyframes avatarBreathe {
     0% {
-      transform: translate(-50%, -48%) scale(calc(100cqi / 1000 * 1.05));
+      transform: translate(-50%, -45%) scale(calc(100cqi / 1000 * 0.86));
     }
     100% {
-      transform: translate(-50%, -48.5%) scale(calc(100cqi / 1000 * 1.065));
+      transform: translate(-50%, -45.5%) scale(calc(100cqi / 1000 * 0.875));
     }
   }
+}
+
+/* En móviles, asegurar zoom negativo para que el cabello tenga margen superior idéntico a desktop */
+@media (max-width: 991px) {
+  .box {
+    transform: translate(-50%, -44%) scale(calc(100cqi / 1000 * 0.84)) !important;
+  }
+}
+
+/* Cuando el avatar está dentro de cto-avatar-content-wrap, remover doble borde */
+.cto-avatar-content-wrap .avatar-wrapper-css {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .shirt-box {
