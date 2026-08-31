@@ -61,14 +61,14 @@ const CreativeModeView = () => {
                 
                 {/* Creative Hero (First Scroll: Intro & CTAs | Second Scroll on Mobile: Interactive Character) */}
                 <section id="home" className="creative-hero-section">
-                    <div className="container">
-                        <div className="row align-items-center justify-content-between g-4 g-lg-5">
+                    <div className="container-fluid px-3 px-xl-5">
+                        <div className="row align-items-center justify-content-between g-3 g-xl-4 creative-panoramic-row">
                             
-                            {/* Scroll 1 (Mobile / Desktop Left): Heading & Value Proposition (Centered on Mobile) */}
-                            <div className="col-12 col-lg-6 text-center text-lg-start creative-hero-left-col">
-                                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4 mx-auto mx-lg-0" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
+                            {/* Columna 1 (Izquierda): Pitch & Llamada a la Acción */}
+                            <div className="col-12 col-lg-5 text-center text-lg-start creative-hero-left-col">
+                                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 mx-auto mx-lg-0" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
                                     <span className="pulse-indicator" style={{ background: '#a78bfa', boxShadow: '0 0 10px #a78bfa' }}></span>
-                                    <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>
+                                    <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600 }}>
                                         ✨ MODO CREATIVE UI & 3D WEBGL ENGINE
                                     </span>
                                 </div>
@@ -105,8 +105,8 @@ const CreativeModeView = () => {
                                 </div>
                             </div>
 
-                            {/* Scroll 2 on Mobile (Desktop Right): Interactive Dynamic Color Avatar & Dock */}
-                            <div id="about" className="col-12 col-lg-6 creative-avatar-col">
+                            {/* Columna 2 (Centro): Avatar Interactivo con Halo */}
+                            <div id="about" className="col-12 col-md-6 col-lg-3 text-center creative-avatar-col">
                                 <div 
                                     className="cto-avatar-frame active-css-mode"
                                     onClick={handleAvatarClick}
@@ -116,7 +116,7 @@ const CreativeModeView = () => {
                                         '--dynamic-aura': activePalette.gradient,
                                         cursor: 'pointer'
                                     }}
-                                    title="Haz clic para mutar la paleta de color y disparar confeti"
+                                    title="Haz clic para cambiar la paleta de color y disparar confeti"
                                 >
                                     <div className="cto-avatar-hint-pill" style={{ borderColor: activePalette.color }}>
                                         <i className="fas fa-palette me-1" style={{ color: activePalette.color }}></i>
@@ -131,9 +131,11 @@ const CreativeModeView = () => {
                                         <span className="badge-role">Creative Frontend & 3D UI</span>
                                     </div>
                                 </div>
+                            </div>
 
-                                {/* Combined Glassmorphism Dock: Swatches + Metrics + Badges */}
-                                <div className="creative-avatar-dock-card mt-3">
+                            {/* Columna 3 (Derecha): Controlador / Dock Compacto de Paletas y Métricas */}
+                            <div className="col-12 col-md-6 col-lg-4 creative-dock-col">
+                                <div className="creative-avatar-dock-card">
                                     {/* 1. Selector de 6 Paletas */}
                                     <div className="dock-swatches-header d-flex align-items-center justify-content-between mb-2">
                                         <span className="dock-swatches-title">
@@ -144,7 +146,7 @@ const CreativeModeView = () => {
                                         </span>
                                     </div>
 
-                                    <div className="dock-swatches-row mb-3">
+                                    <div className="dock-swatches-row mb-2">
                                         {AVATAR_PALETTES.map((palette, idx) => (
                                             <button
                                                 key={palette.name}
@@ -166,7 +168,7 @@ const CreativeModeView = () => {
                                     </div>
 
                                     {/* 2. Mini-Grilla de 3 Píldoras Métricas */}
-                                    <div className="dock-metrics-grid mb-3">
+                                    <div className="dock-metrics-grid mb-2">
                                         <div className="dock-metric-item">
                                             <span className="metric-icon"><i className="fas fa-cubes text-primary"></i></span>
                                             <div className="metric-info">
@@ -201,8 +203,10 @@ const CreativeModeView = () => {
                                         Personaje vectorial interactivo programado con propiedades personalizadas de CSS y animación procedural.
                                     </p>
                                 </div>
-
                             </div>
+
+                        </div>
+                    </div>
 
                         </div>
                     </div>
