@@ -15,9 +15,9 @@ import curriculumPDF from '../assets/files/Curriculum Vitae augusto.pdf';
 
 const Header = ({ activeSection, navBarClass = '' }) => {
     const [expanded, setExpanded] = useState(false);
-    const { currentMode, activeConfig, cycleMode } = useMagic();
-    const { darkMode } = useTheme();
+    const { currentMode } = useMagic();
     const [isAnimating, setIsAnimating] = useState(false);
+    const navMenuRef = React.useRef(null);
 
     const activeLogo = currentMode === 'creative'
         ? logoCreative
@@ -30,6 +30,38 @@ const Header = ({ activeSection, navBarClass = '' }) => {
         const timer = setTimeout(() => setIsAnimating(false), 300);
         return () => clearTimeout(timer);
     }, [currentMode]);
+
+    // Cerrar menú al hacer clic afuera, presionar Escape o redimensionar
+    useEffect(() => {
+        if (!expanded) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setExpanded(false);
+        };
+
+        const handlePointerDown = (e) => {
+            if (
+                navMenuRef.current && 
+                !navMenuRef.current.contains(e.target) &&
+                !e.target.closest('.navbar-toggler')
+            ) {
+                setExpanded(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('pointerdown', handlePointerDown);
+
+        // Bloquear scroll de fondo mientras el modal está activo
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('pointerdown', handlePointerDown);
+            document.body.style.overflow = prevOverflow;
+        };
+    }, [expanded]);
 
     const handleLinkClick = () => {
         if (expanded) {
@@ -65,8 +97,26 @@ const Header = ({ activeSection, navBarClass = '' }) => {
                     )}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(!expanded)} />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto align-items-center gap-2">
+                <Navbar.Collapse 
+                    id="basic-navbar-nav"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            setExpanded(false);
+                        }
+                    }}
+                >
+                    <Nav ref={navMenuRef} className="ms-auto align-items-center gap-2">
+                        {/* Botón de Cierre Táctil para Móviles */}
+                        <button
+                            type="button"
+                            className="btn-close-mobile-nav"
+                            onClick={() => setExpanded(false)}
+                            aria-label="Cerrar menú"
+                            title="Cerrar navegación"
+                        >
+                            <i className="fas fa-times"></i>
+                        </button>
+
                         {isHome ? (
                             <>
                                 <ScrollLink
