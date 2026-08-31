@@ -3110,19 +3110,57 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     margin: 0 !important;
   }
   .blueprint-display-card {
-    padding: 1.25rem 0.9rem !important;
-    border-radius: 16px !important;
+    padding: 1rem 0.85rem !important;
+    border-radius: 14px !important;
   }
   .blueprint-header-row {
     flex-direction: column !important;
-    gap: 0.65rem !important;
+    gap: 0.5rem !important;
+  }
+  .blueprint-main-title {
+    font-size: 1.05rem !important;
+    line-height: 1.25 !important;
+  }
+  .blueprint-subtitle {
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+  }
+  .blueprint-badge {
+    font-size: 0.66rem !important;
+    padding: 0.2rem 0.55rem !important;
+  }
+  .blueprint-tab-btn {
+    font-size: 0.72rem !important;
+    padding: 0.3rem 0.65rem !important;
+    border-radius: 8px !important;
   }
   .blueprint-steps-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.55rem !important;
+    margin-top: 0.75rem !important;
   }
   .blueprint-step-box {
-    padding: 1rem 0.85rem !important;
+    padding: 0.7rem 0.6rem !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+  .step-phase-number {
+    font-size: 0.66rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .step-box-title {
+    font-size: 0.80rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.3rem !important;
+    color: #ffffff !important;
+  }
+  .step-box-desc {
+    font-size: 0.70rem !important;
+    line-height: 1.3 !important;
+    color: #cbd5e1 !important;
+    margin: 0 !important;
   }
 
   /* 3. Stack Tecnológico & Gobernanza on Mobile (2x2 Grid) */

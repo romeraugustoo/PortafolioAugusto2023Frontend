@@ -4,87 +4,90 @@ const BLUEPRINTS = [
     {
         id: 'enterprise-microservices',
         title: 'Flujo Transaccional & Microservicios Seguros',
+        shortTitle: 'Microservicios Java',
         badge: 'Caso: NEXUS-Shop · Backend Corporativo Java 21 / Docker',
         color: '#8b5cf6',
         subtitle: 'Cómo viaja una operación de compra desde el clic del usuario hasta la base de datos sin fallas',
         steps: [
             {
                 phase: '01. Seguridad',
-                title: 'Filtro de Acceso & Tokens',
-                desc: 'Validación instantánea de identidad con tokens JWT: solo los usuarios autenticados y autorizados pueden operar en el sistema.'
+                title: 'Filtro & Tokens',
+                desc: 'Validación instantánea JWT: solo usuarios autenticados y autorizados operan.'
             },
             {
                 phase: '02. Lógica',
-                title: 'Reglas de Negocio Aisladas',
-                desc: 'El backend (Spring Boot / Java) procesa precios, stock y validaciones sin mezclar código con la base de datos (Clean Architecture).'
+                title: 'Reglas Aisladas',
+                desc: 'Spring Boot procesa precios, stock y validaciones bajo Clean Architecture.'
             },
             {
                 phase: '03. Datos',
-                title: 'Transacciones ACID en BD',
-                desc: 'Si ocurre un error durante el cobro, la base de datos revierte todo automáticamente para no perder dinero ni duplicar órdenes.'
+                title: 'Transacciones ACID',
+                desc: 'Rollback automático ante fallos para garantizar integridad sin pérdida de datos.'
             },
             {
                 phase: '04. Producción',
-                title: 'Despliegue Aislado en Docker',
-                desc: 'Toda la aplicación corre en contenedores independientes y reproducibles, listos para la nube con CI/CD automatizado.'
+                title: 'Docker & CI/CD',
+                desc: 'Contenedores independientes listos para despliegue automatizado en la nube.'
             }
         ]
     },
     {
         id: 'silicon-forensics',
-        title: 'Auditoría de Seguridad en Sistemas Embebidos (MediaTek)',
+        title: 'Auditoría de Seguridad en Sistemas Embebidos',
+        shortTitle: 'Embebidos MediaTek',
         badge: 'Caso: Moto E6s · Auditoría a Bajo Nivel MediaTek',
         color: '#10b981',
         subtitle: 'Investigación técnica para auditar procesadores embebidos, protocolos de arranque seguro y diagnóstico de memoria',
         steps: [
             {
                 phase: '01. Intercepción',
-                title: 'Conexión Directa por USB',
-                desc: 'Forzado del procesador (SoC MediaTek) a comunicarse directamente por USB en modo bajo nivel antes de que cargue el sistema operativo dañado.'
+                title: 'Conexión USB',
+                desc: 'Forzado del SoC MediaTek por USB a bajo nivel antes de cargar el OS dañado.'
             },
             {
                 phase: '02. Inyección',
-                title: 'Carga de Controlador en RAM',
-                desc: 'Envío de binarios livianos a la memoria RAM para tomar control temporal de la placa madre sin alterar los datos del usuario.'
+                title: 'Controlador en RAM',
+                desc: 'Binarios livianos en RAM para control de placa madre sin alterar datos de usuario.'
             },
             {
                 phase: '03. Chequeo',
                 title: 'Auditoría Criptográfica',
-                desc: 'Consulta directa al procesador para verificar si las llaves de seguridad internas de fábrica estaban corruptas o intactas.'
+                desc: 'Consulta directa para verificar llaves de seguridad internas de fábrica.'
             },
             {
                 phase: '04. Veredicto',
-                title: 'Aislamiento de la Falla',
-                desc: 'Diagnóstico definitivo: detección del bloqueo físico en la memoria eMMC particionada, evitando gastos innecesarios en repuestos.'
+                title: 'Aislamiento de Falla',
+                desc: 'Diagnóstico de bloqueo físico en memoria eMMC, evitando gastos innecesarios.'
             }
         ]
     },
     {
         id: 'high-performance',
         title: 'Procesamiento de Alta Velocidad en Tiempo Real',
+        shortTitle: 'Tiempo Real Async',
         badge: 'Caso: LoopAI · Arquitectura Concurrente Asíncrona',
         color: '#3b82f6',
         subtitle: 'Arquitectura para recibir miles de datos concurrentes sin congelar la pantalla ni saturar el servidor',
         steps: [
             {
                 phase: '01. Entrada',
-                title: 'Recepción en Tiempo Real',
-                desc: 'Canales WebSockets y APIs reactivas que reciben eventos en vivo con respuesta inmediata menor a 200 milisegundos.'
+                title: 'Canal en Tiempo Real',
+                desc: 'WebSockets y APIs reactivas con respuesta inmediata menor a 200ms.'
             },
             {
                 phase: '02. Organización',
-                title: 'Cola de Espera Inteligente',
-                desc: 'Las tareas pesadas se organizan en una fila ordenada para que el servidor nunca se quede sin memoria bajo picos de tráfico.'
+                title: 'Cola Inteligente',
+                desc: 'Fila ordenada para que el servidor nunca agote memoria en picos de tráfico.'
             },
             {
                 phase: '03. Cómputo',
-                title: 'Ejecución en Segundo Plano',
-                desc: 'Los cálculos matemáticos y transformaciones complejas se procesan en hilos independientes para mantener la web rápida y fluida.'
+                title: 'Hilos en Background',
+                desc: 'Cálculos complejos en segundo plano manteniendo la web rápida y fluida.'
             },
             {
                 phase: '04. Control',
-                title: 'Monitoreo & Métricas en Vivo',
-                desc: 'Medición constante del consumo de memoria y CPU para detectar cuellos de botella antes de que afecten la experiencia del usuario.'
+                title: 'Monitoreo en Vivo',
+                desc: 'Medición de CPU y memoria para mitigar cuellos de botella preventivamente.'
             }
         ]
     }
@@ -97,7 +100,7 @@ const ArchitectureBlueprint = () => {
     return (
         <div className="architecture-blueprint-container">
             {/* Header / Selector */}
-            <div className="d-flex justify-content-center flex-wrap gap-2 mb-4">
+            <div className="d-flex justify-content-center flex-wrap gap-2 mb-3 mb-md-4">
                 {BLUEPRINTS.map((bp, idx) => (
                     <button
                         key={bp.id}
@@ -110,7 +113,8 @@ const ArchitectureBlueprint = () => {
                         }}
                     >
                         <span className="blueprint-tab-indicator" style={{ background: bp.color }}></span>
-                        <span>{bp.title}</span>
+                        <span className="d-none d-md-inline">{bp.title}</span>
+                        <span className="d-inline d-md-none">{bp.shortTitle}</span>
                     </button>
                 ))}
             </div>
