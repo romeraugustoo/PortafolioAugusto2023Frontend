@@ -71,7 +71,7 @@ const LayoutContent = ({ children, activeSection }) => {
                         <div class="swal-mode-icon"><i class="fas fa-terminal"></i></div>
                         <div class="swal-mode-text">
                             <strong>💻 Consola Linux &amp; Kernel Telemetry</strong>
-                            <span>Telemetría de bajo nivel en tiempo real (Bypass MT6765) y comandos shell.</span>
+                            <span>Telemetría simulada de bajo nivel en tiempo real (Bypass MT6765) y comandos shell.</span>
                         </div>
                         <i class="fas fa-arrow-right swal-mode-arrow"></i>
                     </button>

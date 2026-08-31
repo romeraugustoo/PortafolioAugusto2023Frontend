@@ -89,8 +89,8 @@ const CtoModeView = () => {
 
                     <div className="row g-4 justify-content-center">
                         
-                        {/* Gateway 1: Ciberseguridad & Terminal Forense (Cyber Mode) */}
-                        <div className="col-12 col-lg-6">
+                        {/* Gateway 1: Consola Linux (Cyber Mode) */}
+                        <div className="col-12 col-md-6">
                             <div 
                                 className="cto-gateway-card gateway-cyber"
                                 onClick={() => setMode(MODES.CYBER)}
@@ -110,7 +110,7 @@ const CtoModeView = () => {
                                         Consola Linux &amp; Kernel Telemetry
                                     </h3>
                                     <p className="gateway-desc">
-                                        Entorno interactivo estilo terminal Linux / POSIX Shell. Simula en tiempo real la ejecución de comandos y procesos de bajo nivel (Bypass MT6765, Little Kernel) e inspecciona telemetría de auditorías y pipelines concurrentes.
+                                        Entorno interactivo estilo terminal Linux / POSIX Shell. Simula en tiempo real la ejecución de comandos y procesos de bajo nivel (Bypass MT6765, Little Kernel) e inspecciona telemetría simulada de auditorías y pipelines concurrentes.
                                     </p>
 
                                     <ul className="gateway-feature-list">
@@ -124,7 +124,7 @@ const CtoModeView = () => {
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
-                                            <span>Telemetría de arquitecturas ARM64 y pipelines concurrentes</span>
+                                            <span>Telemetría simulada de arquitecturas ARM64 y pipelines concurrentes</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -143,7 +143,7 @@ const CtoModeView = () => {
                         </div>
 
                         {/* Gateway 2: Estudio 3D & Simulación WebGL (Creative Mode) */}
-                        <div className="col-12 col-lg-6">
+                        <div className="col-12 col-md-6">
                             <div 
                                 className="cto-gateway-card gateway-creative"
                                 onClick={() => setMode(MODES.CREATIVE)}
