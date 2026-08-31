@@ -666,6 +666,257 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
 }
 
+/* Floating Mode Wrapper */
+.floating-mode-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Animated Speech Bubble Tooltip */
+.floating-mode-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  bottom: 0;
+  width: 245px;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(59, 130, 246, 0.55);
+  border-radius: 16px;
+  padding: 0.85rem 1.85rem 0.85rem 1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(59, 130, 246, 0.25);
+  animation: popUpTooltip 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+[data-portfolio-mode="creative"] .floating-mode-tooltip {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(168, 85, 247, 0.3);
+}
+
+[data-portfolio-mode="cyber"] .floating-mode-tooltip {
+  border-color: rgba(16, 185, 129, 0.55);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(16, 185, 129, 0.25);
+  font-family: var(--font-mono, monospace);
+}
+
+.tooltip-inner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tooltip-pill-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #60a5fa;
+}
+
+[data-portfolio-mode="creative"] .tooltip-pill-badge {
+  color: #c084fc;
+}
+
+[data-portfolio-mode="cyber"] .tooltip-pill-badge {
+  color: #34d399;
+}
+
+.tooltip-msg {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.tooltip-speech-tail {
+  position: absolute;
+  right: -8px;
+  bottom: 18px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid rgba(59, 130, 246, 0.55);
+}
+
+[data-portfolio-mode="creative"] .tooltip-speech-tail {
+  border-left-color: rgba(168, 85, 247, 0.6);
+}
+
+[data-portfolio-mode="cyber"] .tooltip-speech-tail {
+  border-left-color: rgba(16, 185, 129, 0.55);
+}
+
+.btn-close-tooltip {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.btn-close-tooltip:hover {
+  color: #ffffff;
+}
+
+/* Pulsing Ring for Mode Button */
+.floating-btn-mode.pulse-attention {
+  animation: pulseModeButton 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulseModeButton {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7), 0 10px 30px rgba(0, 0, 0, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(59, 130, 246, 0), 0 14px 40px rgba(59, 130, 246, 0.5);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes popUpTooltip {
+  from {
+    opacity: 0;
+    transform: translateX(15px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* SweetAlert Onboarding Modal for Mode Selection */
+.swal-mode-onboarding-popup {
+  background: #0f172a !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  border-radius: 24px !important;
+  padding: 2rem 1.5rem !important;
+  max-width: 520px !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 45px rgba(59, 130, 246, 0.2) !important;
+}
+
+.swal-onboarding-desc {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.swal-mode-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.swal-mode-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-radius: 16px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.swal-mode-card:hover {
+  transform: translateY(-2px);
+}
+
+.swal-mode-card.card-cto:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+}
+
+.swal-mode-card.card-cyber:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
+}
+
+.swal-mode-card.card-creative:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+}
+
+.swal-mode-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.card-cto .swal-mode-icon {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.card-cyber .swal-mode-icon {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.card-creative .swal-mode-icon {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+.swal-mode-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.swal-mode-text strong {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.swal-mode-text span {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.swal-mode-arrow {
+  color: #64748b;
+  font-size: 0.88rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.swal-mode-card:hover .swal-mode-arrow {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
 /* ==========================================================================
    CTO MODE VIEW STYLES
    ========================================================================== */
@@ -2633,6 +2884,50 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   }
   .contact-showcase-section {
     padding-bottom: 5.5rem !important;
+  }
+
+  /* Tooltip Flotante en Móviles (Ubicado arriba del botón para no desbordar) */
+  .floating-mode-tooltip {
+    right: 0 !important;
+    bottom: calc(100% + 14px) !important;
+    width: calc(100vw - 32px) !important;
+    max-width: 280px !important;
+  }
+  .tooltip-speech-tail {
+    right: 18px !important;
+    bottom: -8px !important;
+    border-left: 8px solid transparent !important;
+    border-right: 8px solid transparent !important;
+    border-top: 8px solid rgba(59, 130, 246, 0.55) !important;
+    border-bottom: none !important;
+  }
+  [data-portfolio-mode="creative"] .tooltip-speech-tail {
+    border-top-color: rgba(168, 85, 247, 0.6) !important;
+  }
+  [data-portfolio-mode="cyber"] .tooltip-speech-tail {
+    border-top-color: rgba(16, 185, 129, 0.55) !important;
+  }
+
+  /* Modal de Onboarding en Móviles */
+  .swal-mode-onboarding-popup {
+    padding: 1.5rem 1rem !important;
+    max-width: calc(100vw - 24px) !important;
+    border-radius: 20px !important;
+  }
+  .swal-mode-card {
+    padding: 0.85rem 0.9rem !important;
+    gap: 0.75rem !important;
+  }
+  .swal-mode-icon {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1.05rem !important;
+  }
+  .swal-mode-text strong {
+    font-size: 0.88rem !important;
+  }
+  .swal-mode-text span {
+    font-size: 0.75rem !important;
   }
 }
 
