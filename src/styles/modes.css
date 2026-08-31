@@ -213,20 +213,20 @@
 }
 
 .creative-hero-title {
-  font-size: clamp(1.75rem, 2.5vw, 2.85rem);
+  font-size: clamp(2rem, 3.2vw, 3.3rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: #ffffff !important;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .creative-hero-lead {
-  font-size: clamp(0.88rem, 1vw, 1.02rem);
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+  line-height: 1.65;
   color: #e2e8f0 !important;
-  max-width: 520px;
-  margin-bottom: 1.4rem;
+  max-width: 580px;
+  margin-bottom: 1.6rem;
 }
 
 .creative-hero-left-col {
@@ -243,24 +243,24 @@
 }
 
 .creative-avatar-col .cto-avatar-frame {
-  margin: 0 auto 0.6rem auto;
+  margin: 0 auto 1rem auto;
 }
 
 .creative-avatar-col .cto-avatar-content-wrap {
-  width: clamp(120px, 10vw, 145px);
-  height: clamp(120px, 10vw, 145px);
+  width: clamp(170px, 15vw, 210px);
+  height: clamp(170px, 15vw, 210px);
 }
 
 .creative-avatar-col .cto-avatar-hint-pill {
-  top: -10px;
-  font-size: 0.65rem;
-  padding: 0.18rem 0.6rem;
+  top: -12px;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.75rem;
 }
 
 .creative-avatar-col .cto-avatar-badge {
-  bottom: -10px;
-  font-size: 0.68rem;
-  padding: 0.2rem 0.65rem;
+  bottom: -12px;
+  font-size: 0.76rem;
+  padding: 0.28rem 0.8rem;
 }
 
 /* Mobile Viewport Adaptation: Scroll 1 (Hero Text) & Scroll 2 (Character Spotlight) */
@@ -342,10 +342,10 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 14px;
-  padding: 0.65rem 0.85rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.15);
-  max-width: 390px;
+  border-radius: 16px;
+  padding: 0.95rem 1.15rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.15);
+  max-width: 440px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -358,16 +358,16 @@
 }
 
 .dock-swatches-header {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  margin-bottom: 0.25rem !important;
+  margin-bottom: 0.3rem !important;
 }
 .dock-swatches-title {
   color: #e2e8f0;
 }
 .dock-active-palette-name {
   font-weight: 700;
-  font-size: 0.70rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -376,16 +376,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.25rem;
-  margin-bottom: 0.3rem !important;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem !important;
 }
 
 .dock-swatch-btn {
   background: rgba(30, 41, 59, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -395,8 +395,8 @@
 }
 
 .dock-swatch-btn .swatch-circle {
-  width: 11px;
-  height: 11px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   display: block;
   transition: transform 0.2s ease;
@@ -417,38 +417,38 @@
 .dock-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.25rem;
-  margin-bottom: 0.3rem !important;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem !important;
 }
 
 .dock-metric-item {
   background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 7px;
-  padding: 0.3rem 0.25rem;
+  border-radius: 9px;
+  padding: 0.5rem 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.1rem;
+  gap: 0.15rem;
 }
 
 .dock-metric-item .metric-icon {
-  font-size: 0.76rem;
+  font-size: 0.85rem;
 }
 
 .dock-metric-item .metric-info strong {
   display: block;
-  font-size: 0.70rem;
+  font-size: 0.78rem;
   color: #ffffff;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .dock-metric-item .metric-info small {
   display: block;
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   color: #94a3b8;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .dock-tech-badges {
@@ -456,18 +456,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
-  margin-bottom: 0.25rem !important;
+  gap: 0.3rem;
+  margin-bottom: 0.35rem !important;
 }
 
 .dock-badge {
-  font-size: 0.60rem;
+  font-size: 0.66rem;
   font-weight: 600;
   color: #e2e8f0;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  padding: 0.14rem 0.38rem;
+  border-radius: 6px;
+  padding: 0.18rem 0.45rem;
 }
 
 .dock-private-projects-notice {
@@ -1269,14 +1269,14 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140%;
-  height: 82%;
-  border-radius: 9999px;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
   background: var(--dynamic-aura, linear-gradient(135deg, #3b82f6 0%, #8b5cf6 40%, #10b981 80%, #06b6d4 100%));
   animation: rotateAura 18s linear infinite;
-  opacity: 0.85;
-  filter: blur(14px);
-  box-shadow: 0 0 35px rgba(59, 130, 246, 0.55), 0 0 60px rgba(139, 92, 246, 0.35);
+  opacity: 0.88;
+  filter: blur(18px);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 70px rgba(139, 92, 246, 0.4);
   will-change: transform;
   transform: translate(-50%, -50%) rotate(0deg);
   z-index: 0;
@@ -1285,10 +1285,11 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 }
 
 .cto-avatar-frame.active-css-mode::before {
-  width: 135%;
-  height: 85%;
+  width: 122%;
+  height: 122%;
+  border-radius: 50%;
   opacity: 0.95;
-  box-shadow: 0 0 45px rgba(139, 92, 246, 0.7), 0 0 70px rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.75), 0 0 80px rgba(139, 92, 246, 0.5);
   animation: rotateAura 13s linear infinite;
 }
 
