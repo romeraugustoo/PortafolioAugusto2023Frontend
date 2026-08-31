@@ -242,29 +242,32 @@
 /* Mobile Viewport Adaptation: Scroll 1 (Hero Text) & Scroll 2 (Character Spotlight) */
 @media (max-width: 991px) {
   .creative-hero-section {
-    min-height: auto;
-    padding-top: calc(64px + 1.75rem);
-    padding-bottom: 2rem;
+    min-height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .creative-hero-left-col {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-bottom: 1.5rem;
+    min-height: calc(100dvh - 64px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding-top: calc(64px + 1.75rem) !important;
+    padding-bottom: 2rem !important;
+    box-sizing: border-box !important;
   }
 
   .creative-avatar-col {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0 1rem 0;
-    margin-top: 1rem;
-    border-top: 1px solid rgba(139, 92, 246, 0.18);
+    min-height: calc(100dvh - 64px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 2rem 0.5rem !important;
+    margin-top: 0 !important;
+    border-top: none !important;
+    box-sizing: border-box !important;
   }
 }
 
