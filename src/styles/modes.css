@@ -2763,8 +2763,22 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   .cto-metric-box .metric-val {
     font-size: 1.35rem !important;
   }
-  .cto-metric-box .metric-lbl {
-    font-size: 0.68rem !important;
+  /* Unified Mobile Typography Hierarchy (Harmonious Type Scale) */
+  .section-title {
+    font-size: 1.38rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.45rem !important;
+  }
+  .section-subtitle {
+    font-size: 0.86rem !important;
+    line-height: 1.5 !important;
+    color: #94a3b8 !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .section-tag {
+    font-size: 0.70rem !important;
+    letter-spacing: 0.5px !important;
+    padding: 0.25rem 0.75rem !important;
   }
 
   /* Section Spacing on Mobile */
@@ -2777,53 +2791,61 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 
   /* 1. Metodología & Criterio (Pilares) on Mobile (2x2 Grid) */
   .cto-pillar-card {
-    padding: 0.85rem 0.7rem !important;
+    padding: 0.9rem 0.75rem !important;
     border-radius: 14px !important;
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
   }
   .pillar-icon-box {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 0.92rem !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
     border-radius: 8px !important;
     margin-bottom: 0.45rem !important;
   }
   .cto-pillar-card h4 {
-    font-size: 0.85rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.3rem !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.35rem !important;
+    color: #ffffff !important;
   }
   .cto-pillar-card p {
-    font-size: 0.7rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
+    color: #94a3b8 !important;
+    margin: 0 !important;
   }
 
   /* 2. C4 Architecture Blueprints on Mobile (2x2 Grid) */
   .c4-zoom-levels-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.55rem !important;
+    gap: 0.6rem !important;
   }
   .c4-zoom-card {
-    padding: 0.8rem 0.65rem !important;
+    padding: 0.85rem 0.75rem !important;
     border-radius: 12px !important;
   }
   .c4-zoom-header {
     margin-bottom: 0.35rem !important;
   }
   .c4-zoom-badge {
-    font-size: 0.6rem !important;
-    padding: 0.15rem 0.35rem !important;
+    font-size: 0.68rem !important;
+    padding: 0.15rem 0.4rem !important;
   }
   .c4-zoom-title {
-    font-size: 0.82rem !important;
-    line-height: 1.2 !important;
+    font-size: 0.90rem !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
     margin-bottom: 0.25rem !important;
+    color: #ffffff !important;
   }
   .c4-zoom-desc {
-    font-size: 0.68rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    color: #94a3b8 !important;
+    margin: 0 !important;
   }
   .blueprint-display-card {
     padding: 1.25rem 0.9rem !important;
@@ -2844,30 +2866,35 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   /* 3. Stack Tecnológico & Gobernanza on Mobile (2x2 Grid) */
   .cto-domain-card,
   .governance-box {
-    padding: 0.85rem 0.7rem !important;
+    padding: 0.9rem 0.75rem !important;
     border-radius: 14px !important;
     height: 100% !important;
   }
   .domain-header h5 {
-    font-size: 0.82rem !important;
+    font-size: 0.90rem !important;
+    font-weight: 700 !important;
   }
   .domain-list li {
-    font-size: 0.7rem !important;
+    font-size: 0.76rem !important;
+    line-height: 1.4 !important;
     padding: 0.18rem 0 !important;
   }
   .governance-icon {
     width: 32px !important;
     height: 32px !important;
-    font-size: 0.92rem !important;
+    font-size: 0.95rem !important;
     margin-bottom: 0.35rem !important;
   }
   .governance-box h6 {
-    font-size: 0.82rem !important;
-    margin-bottom: 0.2rem !important;
+    font-size: 0.90rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.25rem !important;
+    color: #ffffff !important;
   }
   .governance-box p {
-    font-size: 0.68rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    color: #94a3b8 !important;
     margin-bottom: 0 !important;
   }
 
@@ -2881,7 +2908,7 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     padding-right: 6px !important;
   }
   .cto-gateway-card {
-    padding: 0.9rem 0.65rem !important;
+    padding: 0.95rem 0.75rem !important;
     border-radius: 14px !important;
     height: 100% !important;
     display: flex !important;
@@ -2893,33 +2920,36 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     gap: 0.35rem !important;
   }
   .gateway-icon-badge {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 0.92rem !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.95rem !important;
     border-radius: 8px !important;
   }
   .gateway-target-role {
-    font-size: 0.62rem !important;
-    padding: 0.15rem 0.4rem !important;
+    font-size: 0.68rem !important;
+    padding: 0.15rem 0.45rem !important;
     line-height: 1.15 !important;
     letter-spacing: -0.01em !important;
   }
   .gateway-title {
-    font-size: 0.86rem !important;
-    line-height: 1.2 !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
     margin-bottom: 0.35rem !important;
   }
   .gateway-desc {
-    font-size: 0.7rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    color: #94a3b8 !important;
     margin-bottom: 0.5rem !important;
   }
   .gateway-feature-list {
     display: none !important;
   }
   .btn-gateway-action {
-    padding: 0.45rem 0.4rem !important;
-    font-size: 0.72rem !important;
+    padding: 0.48rem 0.45rem !important;
+    font-size: 0.76rem !important;
+    font-weight: 700 !important;
     width: 100% !important;
     justify-content: center !important;
     border-radius: 8px !important;
