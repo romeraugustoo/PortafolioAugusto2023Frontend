@@ -1,0 +1,168 @@
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+import confetti from 'canvas-confetti';
+import { projectsData, getCategoryCounts } from '../../data/projects';
+import ProjectFilterTabs from '../projects/ProjectFilterTabs';
+import ProjectCard from '../projects/ProjectCard';
+import ContactShowcase from '../contact/ContactShowcase';
+import Avatar from '../Avatar';
+
+// Lazy load the 3D Particle Canvas so initial bundle is ultra-lightweight
+const LazyParticleCanvas = lazy(() => import('../canvas3d/ParticleCanvas'));
+
+const AVATAR_PALETTES = [
+    { name: 'Violeta Cósmico', color: '#a855f7', gradient: 'conic-gradient(from 0deg, #a855f7, #c084fc, #ec4899, #a855f7)' },
+    { name: 'Cian Eléctrico', color: '#00f2fe', gradient: 'conic-gradient(from 0deg, #00f2fe, #38bdf8, #3b82f6, #00f2fe)' },
+    { name: 'Rosa Neón & Fucsia', color: '#ec4899', gradient: 'conic-gradient(from 0deg, #ec4899, #f472b6, #8b5cf6, #ec4899)' },
+    { name: 'Verde Cyber', color: '#10b981', gradient: 'conic-gradient(from 0deg, #10b981, #34d399, #059669, #10b981)' },
+    { name: 'Oro & Fuego', color: '#f59e0b', gradient: 'conic-gradient(from 0deg, #f59e0b, #fbbf24, #ef4444, #f59e0b)' },
+    { name: 'Rojo Carmesí', color: '#ef4444', gradient: 'conic-gradient(from 0deg, #ef4444, #f87171, #f59e0b, #ef4444)' }
+];
+
+const CreativeModeView = () => {
+    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [paletteIndex, setPaletteIndex] = useState(0);
+    const counts = getCategoryCounts(projectsData);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, []);
+
+    const activePalette = AVATAR_PALETTES[paletteIndex];
+
+    const handleAvatarClick = () => {
+        setPaletteIndex((prev) => (prev + 1) % AVATAR_PALETTES.length);
+        confetti({
+            particleCount: 35,
+            spread: 60,
+            origin: { y: 0.35 }
+        });
+    };
+
+    const filteredProjects = selectedCategory === 'all'
+        ? projectsData
+        : projectsData.filter(p => p.category === selectedCategory);
+
+    return (
+        <div className="creative-mode-view" style={{ position: 'relative', minHeight: '100vh' }}>
+            {/* Background 3D Engine */}
+            <Suspense fallback={null}>
+                <LazyParticleCanvas />
+            </Suspense>
+
+            {/* Foreground Content Layer (guaranteed on top of canvas) */}
+            <div className="creative-foreground-content" style={{ position: 'relative', zIndex: 5 }}>
+                
+                {/* Creative Hero (First Scroll: Intro & CTAs | Second Scroll on Mobile: Interactive Character) */}
+                <section id="home" className="creative-hero-section">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-between g-4 g-lg-5">
+                            
+                            {/* Scroll 1 (Mobile / Desktop Left): Heading & Value Proposition */}
+                            <div className="col-12 col-lg-7 text-start creative-hero-left-col">
+                                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
+                                    <span className="pulse-indicator" style={{ background: '#a78bfa', boxShadow: '0 0 10px #a78bfa' }}></span>
+                                    <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>
+                                        ✨ MODO CREATIVE UI & 3D WEBGL ENGINE
+                                    </span>
+                                </div>
+
+                                <h1 className="creative-hero-title font-heading" style={{ textShadow: '0 4px 24px rgba(0,0,0,0.8)' }}>
+                                    Diseño de Interfaces & <span style={{ background: 'linear-gradient(135deg, #c4b5fd 0%, #60a5fa 50%, #f472b6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline-block' }}>Experiencias 3D</span>
+                                </h1>
+
+                                <p className="creative-hero-lead" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
+                                    Exploración visual con aceleración gráfica en el navegador, micro-interacciones cinematográficas y arquitecturas de frontend modernas en React 18.
+                                </p>
+
+                                <div className="d-flex align-items-center gap-3 flex-wrap mt-2">
+                                    <a href="#portfolio" className="btn btn-primary px-4 py-3 fw-bold" style={{ background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', border: 'none', borderRadius: '14px', boxShadow: '0 8px 30px rgba(139, 92, 246, 0.4)' }}>
+                                        <i className="fas fa-cubes me-2"></i>
+                                        Ver Proyectos 3D & Web
+                                    </a>
+                                    <a 
+                                        href="#contact" 
+                                        className="btn px-4 py-3 fw-bold creative-conversation-btn"
+                                        style={{ 
+                                            borderRadius: '14px',
+                                            background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.25) 0%, rgba(139, 92, 246, 0.3) 100%)',
+                                            border: '2px solid #ec4899',
+                                            color: '#ffffff',
+                                            boxShadow: '0 0 25px rgba(236, 72, 153, 0.4)',
+                                            backdropFilter: 'blur(10px)',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                    >
+                                        <i className="fas fa-paper-plane me-2 text-warning"></i>
+                                        Iniciar Conversación
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Scroll 2 on Mobile (Desktop Right): Interactive Dynamic Color Avatar */}
+                            <div id="about" className="col-12 col-lg-5 creative-avatar-col">
+                                <div 
+                                    className="cto-avatar-frame active-css-mode"
+                                    onClick={handleAvatarClick}
+                                    style={{
+                                        '--primary-color': activePalette.color,
+                                        '--avatar-accent-color': activePalette.color,
+                                        '--dynamic-aura': activePalette.gradient,
+                                        cursor: 'pointer'
+                                    }}
+                                    title="Haz clic para mutar la paleta de color y disparar confeti"
+                                >
+                                    <div className="cto-avatar-hint-pill" style={{ borderColor: activePalette.color }}>
+                                        <i className="fas fa-palette me-1" style={{ color: activePalette.color }}></i>
+                                        {`PALETA: ${activePalette.name} (CLIC MUTAR)`}
+                                    </div>
+
+                                    <div className="cto-avatar-content-wrap" style={{ borderColor: activePalette.color }}>
+                                        <Avatar colorIndex={paletteIndex} />
+                                    </div>
+
+                                    <div className="cto-avatar-badge" style={{ borderColor: activePalette.color }}>
+                                        <span className="badge-role">Creative Frontend & 3D UI</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                {/* Creative Projects Showcase (With Generous Vertical Spacing) */}
+                <section id="portfolio" className="creative-projects-section" style={{ paddingTop: '6rem', paddingBottom: '7rem' }}>
+                    <div className="container">
+                        <div className="text-center mb-5">
+                            <span className="section-tag" style={{ color: '#c4b5fd', borderColor: 'rgba(139, 92, 246, 0.4)', background: 'rgba(139, 92, 246, 0.15)', fontSize: '0.9rem', padding: '0.4rem 1.2rem' }}>
+                                ✨ Galería Interactiva
+                            </span>
+                            <h2 className="display-5 fw-bold text-white mb-2 font-heading" style={{ marginTop: '0.8rem' }}>Catálogo de 18 Proyectos</h2>
+                            <p style={{ color: '#cbd5e1', fontSize: '1.05rem' }}>Filtra por dominio técnico y explora los casos de estudio en vivo</p>
+                        </div>
+
+                        <ProjectFilterTabs
+                            activeCategory={selectedCategory}
+                            onSelectCategory={setSelectedCategory}
+                            counts={counts}
+                        />
+
+                        <div className="row g-4 justify-content-center">
+                            {filteredProjects.map((project) => (
+                                <div key={project.id} className="col-12 col-md-6 col-lg-4">
+                                    <ProjectCard project={project} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Contact Showcase */}
+                <ContactShowcase />
+
+            </div>
+        </div>
+    );
+};
+
+export default CreativeModeView;

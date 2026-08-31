@@ -2,12 +2,12 @@ import React from 'react';
 import { Container, Row, Col, Badge, Card, Accordion, Button } from 'react-bootstrap';
 import '../../styles/bodyhome.css';
 import { useTheme } from '../../context/ThemeContext';
-import databaseDiagram from '../../assets/images/portfolio/tslc/diagramadebasededatos.jpg';
+import databaseDiagram from '../../assets/images/portfolio/tslc/diagramadebasededatos.webp';
 import domainModelDark from '../../assets/images/portfolio/modelodominiobackendtslcdark.svg';
-import deploymentLight from '../../assets/images/portfolio/tslc/diagramadesplieguelight.png';
-import deploymentDark from '../../assets/images/portfolio/tslc/diagramadesplieguedark.png';
-import packagesLight from '../../assets/images/portfolio/tslc/diagramadepaqueteslight.png';
-import packagesDark from '../../assets/images/portfolio/tslc/diagramadepaquetesdark.png';
+import deploymentLight from '../../assets/images/portfolio/tslc/diagramadesplieguelight.webp';
+import deploymentDark from '../../assets/images/portfolio/tslc/diagramadesplieguedark.webp';
+import packagesLight from '../../assets/images/portfolio/tslc/diagramadepaqueteslight.webp';
+import packagesDark from '../../assets/images/portfolio/tslc/diagramadepaquetesdark.webp';
 
 const TransporteSantaLucia = () => {
     const { darkMode } = useTheme();

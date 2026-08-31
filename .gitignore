@@ -9,8 +9,13 @@ lerna-debug.log*
 
 node_modules
 dist
+distv1
 dist-ssr
 *.local
+*.timestamp-*.mjs
+generadotxtcompleto.txt
+portafolio_completo.txt
+dist_v2_completo.txt
 
 # Editor directories and files
 .vscode/*

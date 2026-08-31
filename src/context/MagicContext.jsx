@@ -1,67 +1,63 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { themes } from '../data/themes';
-import { useTheme } from './ThemeContext';
 import confetti from 'canvas-confetti';
 import Swal from 'sweetalert2';
+import { MODES, MODES_CONFIG } from '../data/modes';
 
 const MagicContext = createContext();
 
 export const MagicProvider = ({ children }) => {
-    // -2: Real Image
-    // -1: Avatar (Gold / Default)
-    // 0 to themes.length - 1: Theme Palettes
-    const [themeIndex, setThemeIndex] = useState(() => {
-        const savedIndex = localStorage.getItem('themeIndex');
-        return (savedIndex !== null && savedIndex !== undefined) ? parseInt(savedIndex, 10) : -1;
+    const [currentMode, setCurrentMode] = useState(() => {
+        const saved = localStorage.getItem('portfolio_mode');
+        return (saved && MODES_CONFIG[saved]) ? saved : MODES.CTO;
     });
-    const { darkMode } = useTheme();
 
-    const showAvatar = themeIndex >= -1;
+    const activeConfig = MODES_CONFIG[currentMode] || MODES_CONFIG[MODES.CTO];
 
-    // Current Header logo icon or null for default
-    const currentIcon = themeIndex >= 0 ? themes[themeIndex].icon : null;
-
-    // Derived theme name
-    let themeName = "Foto de Perfil Real";
-    if (themeIndex === -1) themeName = "Avatar 3D (Gold)";
-    else if (themeIndex >= 0 && themes[themeIndex]) themeName = themes[themeIndex].name;
-
-    const handleMagicClick = (e) => {
-        const nextIndex = themeIndex >= themes.length - 1 ? -2 : themeIndex + 1;
-        setThemeIndex(nextIndex);
-
-        // Derive toast details
-        let title = "📷 Modo: Foto Real";
-        let particleColors = ['#fabc5d', '#0df053', '#ffffff'];
-
-        if (nextIndex === -1) {
-            title = "🧑‍💻 Modo: Avatar 3D (Gold)";
-            particleColors = ['#fabc5d', '#ffd700', '#ffffff'];
-        } else if (nextIndex >= 0 && themes[nextIndex]) {
-            const t = themes[nextIndex];
-            title = `🎨 Tema: ${t.name}`;
-            const colors = darkMode ? t.dark : t.light;
-            particleColors = [colors.primary, colors.secondary, colors.text];
+    const cycleMode = (targetMode) => {
+        let nextMode;
+        if (targetMode && MODES_CONFIG[targetMode]) {
+            nextMode = targetMode;
+        } else {
+            if (currentMode === MODES.CTO) nextMode = MODES.CYBER;
+            else if (currentMode === MODES.CYBER) nextMode = MODES.CREATIVE;
+            else nextMode = MODES.CTO;
         }
 
-        // Particle burst
+        setCurrentMode(nextMode);
+        localStorage.setItem('portfolio_mode', nextMode);
+
+        // Garantizar que la nueva vista comience siempre en el Hero superior
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        if (window.location.hash) {
+            try {
+                window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            } catch (e) {
+                // Ignore fallback
+            }
+        }
+
+        const nextConfig = MODES_CONFIG[nextMode];
+
+        // Confetti explosion with mode colors
         confetti({
-            particleCount: 40,
-            spread: 60,
-            origin: { y: 0.85, x: 0.95 },
-            colors: particleColors
+            particleCount: 50,
+            spread: 70,
+            origin: { y: 0.88, x: 0.92 },
+            colors: nextConfig.particleColors
         });
 
-        // Toast feedback
+        // Toast notification
         Swal.fire({
             toast: true,
             position: 'bottom-end',
             showConfirmButton: false,
-            timer: 1800,
+            timer: 2200,
             timerProgressBar: true,
-            title,
-            background: darkMode ? '#1e1e24' : '#ffffff',
-            color: darkMode ? '#ffffff' : '#000000',
+            title: nextConfig.badge,
+            text: nextConfig.subtitle,
+            background: '#0e121a',
+            color: '#f8fafc',
+            iconColor: nextConfig.colors.primary,
             customClass: {
                 popup: 'swal-magic-toast'
             }
@@ -70,34 +66,35 @@ export const MagicProvider = ({ children }) => {
 
     useEffect(() => {
         const root = document.documentElement;
+        root.dataset.portfolioMode = currentMode;
 
-        if (themeIndex <= -1) {
-            // Default Gold Theme
-            root.style.setProperty('--primary-color', '#fabc5d');
-            root.style.setProperty('--secondary-color', '#0df053');
-            root.style.setProperty('--bg-light', '#ffffff');
-            root.style.setProperty('--bg-dark', '#000000');
-            root.style.setProperty('--text-light', '#000000');
-            root.style.setProperty('--text-dark', '#ffffff');
-            root.style.setProperty('--text-muted', '#a1a1aa');
-        } else {
-            const theme = themes[themeIndex];
-            const colors = darkMode ? theme.dark : theme.light;
+        const colors = activeConfig.colors;
+        root.style.setProperty('--primary-color', colors.primary);
+        root.style.setProperty('--secondary-color', colors.secondary);
+        root.style.setProperty('--bg-dark', colors.bg);
+        root.style.setProperty('--text-dark', colors.text);
 
-            root.style.setProperty('--primary-color', colors.primary);
-            root.style.setProperty('--secondary-color', colors.secondary);
-            root.style.setProperty('--bg-light', '#ffffff');
-            root.style.setProperty('--bg-dark', '#000000');
-            root.style.setProperty('--text-light', '#000000');
-            root.style.setProperty('--text-dark', colors.text);
-            root.style.setProperty('--text-muted', darkMode ? '#a1a1aa' : '#4b5563');
+        // Dinámicamente actualizar el favicon SVG de la pestaña según el modo activo
+        const faviconLink = document.getElementById('dynamic-favicon');
+        if (faviconLink) {
+            if (currentMode === MODES.CYBER) {
+                faviconLink.href = '/favicon-cyber.svg';
+            } else if (currentMode === MODES.CREATIVE) {
+                faviconLink.href = '/favicon-creative.svg';
+            } else {
+                faviconLink.href = '/favicon.svg';
+            }
         }
-
-        localStorage.setItem('themeIndex', themeIndex);
-    }, [themeIndex, darkMode]);
+    }, [currentMode, activeConfig]);
 
     return (
-        <MagicContext.Provider value={{ showAvatar, handleMagicClick, themeIndex, currentIcon, themeName }}>
+        <MagicContext.Provider value={{
+            currentMode,
+            activeConfig,
+            setMode: (mode) => cycleMode(mode),
+            cycleMode: () => cycleMode(),
+            MODES
+        }}>
             {children}
         </MagicContext.Provider>
     );

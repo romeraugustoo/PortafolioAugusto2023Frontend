@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useMagic } from '../context/MagicContext';
 
-const Avatar = () => {
-    const { themeIndex } = useMagic();
+const Avatar = ({ colorIndex = 0 }) => {
     const [isGlassesAnimating, setIsGlassesAnimating] = useState(false);
 
     useEffect(() => {
         setIsGlassesAnimating(true);
         const timer = setTimeout(() => setIsGlassesAnimating(false), 750);
         return () => clearTimeout(timer);
-    }, [themeIndex]);
+    }, [colorIndex]);
 
     return (
         <div className="avatar-wrapper-css">
@@ -29,7 +27,6 @@ const Avatar = () => {
                             <div className="mouth layer3"></div>
                         </div>
                     </div>
-                    {/* Puente de nariz y sombra de menton para volumen 2.5D */}
                     <div className="nose-bridge layer4"></div>
                     <div className="nose layer4"></div>
                     <div className="chin-shadow layer2"></div>
@@ -72,7 +69,7 @@ const Avatar = () => {
 
                 {/* Gafas Tech Animadas (layer7) */}
                 <div 
-                    key={`glasses-${themeIndex}`} 
+                    key={`glasses-${colorIndex}`} 
                     className={`glasses layer7 ${isGlassesAnimating ? 'glasses-fly-in-anim' : ''}`}
                 >
                     <div className="frame-rim-joiner-left frame-rim-joiner layer3"></div>
@@ -99,15 +96,16 @@ const Avatar = () => {
                     <div className="neck-v-line layer2"></div>
                 </div>
 
-                {/* Ropa con iniciales AR */}
-                <div className="shirt-box">
+                {/* Camiseta / Shirt Completa con Cuello, Botones y Logo AR (layer1) */}
+                <div className="shirt-box layer1">
                     <div className="shirt">
                         <div className="collar-left"></div>
                         <div className="collar-right"></div>
-                        <div className="logo" title="Augusto Romera"></div>
-                        <div className="buttons"></div>
-                        <div className="buttons"></div>
                         <div className="buttons-trim"></div>
+                        <div className="buttons button1"></div>
+                        <div className="buttons button2"></div>
+                        <div className="buttons button3"></div>
+                        <div className="logo"></div>
                     </div>
                 </div>
             </div>

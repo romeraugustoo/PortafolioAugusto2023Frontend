@@ -5,6 +5,7 @@
 }
 
 .avatar-wrapper-css {
+  container-type: inline-size;
   position: relative;
   width: 100%;
   height: 100%;
@@ -14,6 +15,9 @@
   box-shadow: 0 0 25px var(--primary-color);
   background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
   animation: avatarPulseGlow 4s ease-in-out infinite alternate;
 }
@@ -27,25 +31,31 @@
   }
 }
 
+/* Personaje centrado con la boca exactamente en el eje central del círculo */
 .box {
   position: absolute;
-  top: 52%;
+  top: 50%;
   left: 50%;
   width: 1000px;
   height: 1000px;
   background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
   border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0.145);
+  transform: translate(-50%, -48%) scale(0.26);
   transform-origin: center center;
   animation: avatarBreathe 5s ease-in-out infinite alternate;
 }
 
-@keyframes avatarBreathe {
-  0% {
-    transform: translate(-50%, -50%) scale(0.145);
+@supports (width: 100cqi) {
+  .box {
+    transform: translate(-50%, -48%) scale(calc(100cqi / 1000 * 1.05));
   }
-  100% {
-    transform: translate(-50%, -51%) scale(0.148);
+  @keyframes avatarBreathe {
+    0% {
+      transform: translate(-50%, -48%) scale(calc(100cqi / 1000 * 1.05));
+    }
+    100% {
+      transform: translate(-50%, -48.5%) scale(calc(100cqi / 1000 * 1.065));
+    }
   }
 }
 

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Caso de Estudio: Auditoría de Seguridad de Hardware y Robustez Criptográfica | Motorola MT6765</title>
+  <meta name="description" content="Auditoría de seguridad de hardware e ingeniería inversa en Motorola Moto E6s (Helio P22 MT6765). Análisis de eFuses, modo BootROM, acelerador criptográfico SEJ y límites de la memoria RPMB.">
+  <meta name="author" content="Augusto Ro - Analista Funcional & Ingeniería de Sistemas">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Caso de Estudio: Auditoría de Seguridad de Hardware y Robustez Criptográfica (MT6765)">
+  <meta property="og:description" content="¿Hasta dónde se puede profundizar en la investigación técnica cuando las herramientas comerciales declaran un problema como irresoluble? Caso de estudio de seguridad de hardware y análisis de bajo nivel.">
+  <meta property="og:type" content="article">
+  
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Background Element -->
+  <div class="ambient-glow-top"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="siteHeader">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" aria-label="Ir al inicio - Augusto Romera">
+        <img src="assets/images/logo-augusto.svg" alt="Augusto Romera" class="brand-logo-img">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="nav-link active">Inicio</a></li>
+          <li><a href="#resumen" class="nav-link">TL;DR</a></li>
+          <li><a href="#metodologia" class="nav-link">Metodología</a></li>
+          <li><a href="#terminal" class="nav-link">Consola Forense</a></li>
+          <li><a href="#veredicto" class="nav-link">Veredicto</a></li>
+          <li><a href="#sintesis" class="nav-link">Valor Tech</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#contacto" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          Conectar
+        </a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       HERO SECTION (2-Column Forensic Layout)
+       ========================================================================= -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      
+      <div class="hero-grid-2col">
+        
+        <!-- Left Column: Executive Value & Evidence -->
+        <div class="hero-content-col">
+          <div class="hero-badge-wrap reveal-on-scroll">
+            <span class="section-tag">
+              🔬 Sprint de Investigación · 50h · Arquitectura MT6765
+            </span>
+          </div>
+
+          <h1 class="hero-h1 reveal-on-scroll delay-100">
+            Auditoría de Seguridad de Hardware y Análisis de Robustez Criptográfica
+          </h1>
+
+          <p class="hero-subtitle reveal-on-scroll delay-200">
+            ¿Hasta dónde se puede profundizar en la investigación técnica cuando las herramientas comerciales declaran un problema como irresoluble? Un recorrido desde la capa lógica hasta el silicio, aplicando método científico y evidencia empírica.
+          </p>
+
+          <div class="hero-actions reveal-on-scroll delay-300">
+            <a href="#metodologia" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+              Explorar el Caso Técnico
+            </a>
+            <a href="#terminal" class="btn btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+              Ver Telemetría de Consola
+            </a>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="hero-stack-pills reveal-on-scroll delay-300">
+            <span class="badge-pill">MediaTek Helio P22 (MT6765)</span>
+            <span class="badge-pill">ARMv8-A 64-bit</span>
+            <span class="badge-pill">BootROM Pure (0E8D:0003)</span>
+            <span class="badge-pill">Linux libusb Raw Stack</span>
+            <span class="badge-pill">Motor Criptográfico SEJ (HACC)</span>
+            <span class="badge-pill">eMMC 5.1 / RPMB</span>
+            <span class="badge-pill">Android Verified Boot (AVB 2.0)</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Smartphone X-Ray Scanner -->
+        <div class="hero-xray-col reveal-on-scroll delay-200">
+          <div class="xray-scanner-card" id="xrayScannerCard">
+            
+            <div class="xray-card-header">
+              <div class="xray-header-title-wrap">
+                <span class="hud-dot dot-blue"></span>
+                <span class="xray-card-title">ESCÁNER FORENSE RAYOS X</span>
+              </div>
+              <span class="xray-pill-hint">💡 Mueve la lente sobre el smartphone</span>
+            </div>
+
+            <!-- Dual Photo Interactive Stage (Clip-Path Hardware Accelerated) -->
+            <div class="xray-interactive-stage" id="xrayStage">
+              
+              <!-- Layer 1: Commercial Smartphone (smartphone.png) -->
+              <div class="xray-layer phone-outer-layer">
+                <img src="assets/images/smartphone.png" alt="Motorola Moto E6s XT2053-2 Chasis Comercial" class="xray-img" id="phoneOuterImg">
+              </div>
+
+              <!-- Layer 2: Real Motherboard (parte de arriba.png) clipped natively by lens -->
+              <div class="xray-layer pcb-inner-layer" id="xrayClippedLayer">
+                <img src="assets/images/parte de arriba.png" alt="Placa Real XT2053-2 Superior con TestPoint TP1500" class="xray-img" id="pcbInnerImg">
+              </div>
+
+              <!-- Layer 3: Circular Reticle HUD Ring that tracks cursor/finger -->
+              <div class="xray-reticle-cursor" id="xrayReticleCursor">
+                <div class="lens-crosshair-h"></div>
+                <div class="lens-crosshair-v"></div>
+                <div class="lens-ripple-ring"></div>
+                <span class="lens-tag">⚡ RAYOS X: PLACA REAL XT2053-2</span>
+              </div>
+
+            </div>
+
+            <!-- Card Footer Readout -->
+            <div class="xray-card-footer">
+              <span class="xray-status-readout">
+                <i class="status-pulse"></i> SoC MT6765 HELIO P22 · HW 0x766 · BROM INTERCEPT (0E8D:0003)
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="metrics-strip reveal-on-scroll delay-400">
+        <div class="metric-item">
+          <div class="metric-value">48.5h</div>
+          <div class="metric-label">Investigación Continua</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">153</div>
+          <div class="metric-label">Scripts & Utilidades Creados</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">6.8 GB</div>
+          <div class="metric-label">Dumps & Telemetría Analizados</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">100%</div>
+          <div class="metric-label">Diagnóstico Forense Aislado</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       BENTO GRID: RESUMEN EJECUTIVO (TL;DR)
+       ========================================================================= -->
+  <section id="resumen" style="background: rgba(11, 14, 20, 0.5);">
+    <div class="container">
+      
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag green">Resumen Ejecutivo (TL;DR)</span>
+        <h2 class="section-title">El Caso Técnico en Cuatro Dimensiones</h2>
+        <p class="section-subtitle">
+          En un <strong>sprint de investigación autogestionado de máximo 50 horas</strong>, el objetivo fue sumergirse en una arquitectura de hardware desconocida, mapear su superficie de seguridad y explorar sus límites de robustez desde cero, sin documentación previa confiable. Esta es la síntesis ejecutiva para líderes técnicos: el objetivo evaluado, los mecanismos de seguridad de fábrica, la desambiguación de hardware y el veredicto forense concluyente.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <!-- Bento 1: El Objetivo -->
+        <article class="bento-card span-7 reveal-on-scroll">
+          <div class="bento-header">
+            <div class="bento-icon blue">🎯</div>
+            <span class="badge-pill">Sistema Objetivo</span>
+          </div>
+          <h3>El Dispositivo Evaluado</h3>
+          <p>
+            Un smartphone comercial <strong>Motorola Moto E6s (SKU XT2053-2, codename <code>fiji_64</code>)</strong> gobernado por el SoC MediaTek Helio P22 con parche de seguridad 2022. Diseñado para mitigar vectores lógicos en memoria y bloquear imágenes no autorizadas.
+          </p>
+          <ul class="bento-specs-list">
+            <li><span class="label">Procesador (SoC):</span> <span class="value">MediaTek MT6765 / MT6762 (HW Code 0x766)</span></li>
+            <li><span class="label">Configuración Target:</span> <span class="value">SBC=True · DAA=True · SLA=False</span></li>
+            <li><span class="label">Identificadores:</span> <span class="value">ME_ID: FE433F13... · SOC_ID: 98E8ACF7...</span></li>
+          </ul>
+        </article>
+
+        <!-- Bento 2: El Muro -->
+        <article class="bento-card span-5 reveal-on-scroll delay-100">
+          <div class="bento-header">
+            <div class="bento-icon red">🛡️</div>
+            <span class="badge-pill" style="color: var(--alert-red-light); border-color: rgba(239, 68, 68, 0.25);">Seguridad de Fábrica</span>
+          </div>
+          <h3>Mecanismos de Protección</h3>
+          <p>
+            El flujo de arranque implementa verificación de firmas RSA en cascada: BootROM valida Preloader, Preloader valida LK (Little Kernel), y LK valida boot.img con <code>Red State</code>.
+          </p>
+          <ul class="bento-specs-list">
+            <li><span class="label">Auth Handshake:</span> <span class="value">DAA + SBC en Silicio</span></li>
+            <li><span class="label">Almacenamiento Seguro:</span> <span class="value">eMMC RPMB HMAC-SHA256</span></li>
+            <li><span class="label">Motor Criptográfico:</span> <span class="value">SEJ Hardware Key Binding</span></li>
+          </ul>
+        </article>
+
+        <!-- Bento 3: El Hallazgo -->
+        <article class="bento-card span-6 reveal-on-scroll delay-200">
+          <div class="bento-header">
+            <div class="bento-icon green">⚡</div>
+            <span class="badge-pill" style="color: var(--accent-green-light); border-color: rgba(16, 185, 129, 0.25);">Desambiguación Físico-Lógica</span>
+          </div>
+          <h3>El Punto de Quiebre de Hardware</h3>
+          <p>
+            Los esquemáticos comerciales señalaban un TestPoint erróneo (<code>TP1501</code>). Mediante microscopía y multímetro en el laboratorio, descubrí el verdadero nodo <strong>TP1500</strong> bajo el tornillo superior derecho, forzando la entrada al bus USB BootROM de bajo nivel.
+          </p>
+          <div class="bento-footer-stat">
+            <span class="stat-highlight">VID: 0x0E8D · PID: 0x0003</span>
+            <span class="stat-desc">Control crudo de periféricos vía USB BROM</span>
+          </div>
+        </article>
+
+        <!-- Bento 4: El Veredicto -->
+        <article class="bento-card span-6 reveal-on-scroll delay-300">
+          <div class="bento-header">
+            <div class="bento-icon yellow">⚖️</div>
+            <span class="badge-pill" style="color: var(--alert-amber-light); border-color: rgba(245, 158, 11, 0.25);">Diagnóstico Final</span>
+          </div>
+          <h3>Conclusión de Seguridad</h3>
+          <p>
+            Se demostró que la seguridad lógica de este modelo está irremediablemente ligada al silicio. El motor <strong>SEJ (Security Engine)</strong> y la partición protegida <strong>RPMB</strong> imponen una barrera criptográfica de hardware insalvable por software una vez que los eFuses están quemados de fábrica.
+          </p>
+          <div class="bento-footer-stat">
+            <span class="stat-highlight">100% Blindaje de Fábrica Demostrado</span>
+            <span class="stat-desc">Veredicto forense documentado con rigor técnico</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       METODOLOGÍA & FASES DE AUDITORÍA (TIMELINE TÉCNICO)
+       ========================================================================= -->
+  <section id="metodologia">
+    <div class="container">
+
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag green">Metodología de 4 Fases</span>
+        <h2 class="section-title">El Proceso de Investigación Forense</h2>
+        <p class="section-subtitle">
+          Cuatro etapas metodológicas ejecutadas con precisión científica para aislar la superficie de ataque, desambiguar manuales y auditar el silicio.
+        </p>
+      </div>
+
+      <div class="method-timeline">
+        
+        <!-- Fase 1 -->
+        <article class="method-card reveal-on-scroll">
+          <div>
+            <span class="method-step-num">FASE 01 · AUDITORÍA DE SOFTWARE & VULNERABILIDADES</span>
+            <h3>Análisis de Superficie Lógica: Fastboot & Android 10</h3>
+            <p>
+              La investigación inició evaluando vectores lógicos estándar en el sistema operativo Android 10 (Build <code>QPG30.82-105-4</code>). El objetivo fue mapear el gestor de arranque Fastboot y verificar si existían fallas lógicas de autenticación explotables por software puro.
+            </p>
+            <p>
+              El gestor de arranque rechazó sistemáticamente cualquier comando estándar <code>fastboot flashing unlock</code>, reportando un estatus inmutable de <strong>Secure Boot</strong> y validación continua de la partición <code>vbmeta</code> por hardware.
+            </p>
+            <ul class="method-points">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Mapeo de particiones A/B (<code>boot_a</code>, <code>vendor_boot</code>, <code>dtbo</code>).</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Inspección de tokens de desbloqueo OEM en memoria volátil.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="method-visual">
+            <img src="assets/images/fase1_software_audit.png" alt="Auditoría lógica de Android y árbol de particiones (Visual representativo)" class="zoomable-img" data-caption="Fase 01: Mapeo de vectores lógicos en Android 10 e inspección del gestor de arranque Fastboot (Recreación visual representativa de la estructura del sistema).">
+            <span class="visual-badge">Auditoría Lógica · <em>(Visual Representativo)</em></span>
+          </div>
+        </article>
+
+        <!-- Fase 2 -->
+        <article class="method-card reverse reveal-on-scroll">
+          <div>
+            <span class="method-step-num">FASE 02 · INTERCEPCIÓN DINÁMICA DE TRÁFICO USB</span>
+            <h3>Análisis del Protocolo de Flasheo Oficial Lenovo</h3>
+            <p>
+              Configuré un entorno de captura USB con Wireshark y <code>USBPcap</code> para interceptar las tramas enviadas por la herramienta oficial <strong>Lenovo Rescue and Smart Assistant (LMSA)</strong> durante un ciclo de recuperación de firmware de fábrica.
+            </p>
+            <p>
+              Descubrí que la herramienta no interactúa con la ROM abierta; en su lugar, transmite un payload cifrado firmado por la infraestructura PKI de Lenovo directamente al <strong>Download Agent (DA)</strong> en memoria RAM, requiriendo un handshake de desafío criptográfico DAA/SLA.
+            </p>
+            <ul class="method-points">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Confirmación de escritura física en eMMC mediante el canal firmado de Lenovo.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="method-visual">
+            <img src="assets/images/fase2_traffic_interception.png" alt="Intercepción de tráfico y certificado Fastboot RSA Lenovo (Visual representativo)" class="zoomable-img" data-caption="Fase 02: Sniffer forense interceptando el token RSA signature_frp y handshake de Lenovo en tiempo real (Recreación visual representativa del flujo de red/USB).">
+            <span class="visual-badge">Intercepción Dinámica · <em>(Visual Representativo)</em></span>
+          </div>
+        </article>
+
+        <!-- Fase 3 -->
+        <article class="method-card reveal-on-scroll">
+          <div>
+            <span class="method-step-num">FASE 03 · INGENIERÍA INVERSA DE HARDWARE</span>
+            <h3>Desambiguación de Esquemáticos: El Falso Testpoint</h3>
+            <p>
+              Para tomar control total sobre los eFuses, era mandatorio forzar el modo <strong>BootROM puro (BROM)</strong>. Los manuales oficiales de servicio Lemcell señalaban los puntos <code>TP1501</code> (KPCOL0) y <code>TP1506</code>. Sin embargo, al puentearlos, la placa continuaba cayendo en el Preloader restrictivo.
+            </p>
+            <p>
+              En lugar de aceptar el fracaso, desarmé la placa y ejecuté pruebas de continuidad con multímetro sobre las líneas de reloj del SoC. Descubrí que el punto verdadero estaba oculto bajo el tornillo superior derecho: el <strong>TP1500</strong>.
+            </p>
+            <ul class="method-points">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Aislamiento de la celda de energía (batería desconectada a nivel físico).</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Forzado instantáneo al bus USB nativo: <code>VID=0x0E8D, PID=0x0003</code>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="method-visual-dual">
+            <!-- Comparativa Principal: Plano Oficial vs Placa Real -->
+            <div class="visual-dual-grid">
+              <div class="visual-dual-item">
+                <img src="assets/images/testpoint_official_zoom.png" alt="Plano esquemático oficial Lemcell con puntos erróneos marcados" class="zoomable-img" data-caption="Plano Oficial Lemcell (Documento Técnico Oficial): Señalaba erróneamente TP1501 y TP1506 como puntos de Download Mode.">
+                <span class="visual-badge">1. Plano Oficial Lemcell (Documento Real)</span>
+              </div>
+              <div class="visual-dual-item">
+                <img src="assets/images/testpoint_guia_exacta.png" alt="Placa real XT2053-2 mostrando el falso TP1501 y punto a chasis GND" class="zoomable-img" data-caption="La Verdad Física (Fotografía Real de Laboratorio): Testpoint real TP1500 hallado bajo el chasis superior derecho.">
+                <span class="visual-badge">2. Placa Real · Hallazgo TP1500 (Foto Real)</span>
+              </div>
+            </div>
+            <!-- Tiras de Microscopía Adicionales -->
+            <div class="visual-dual-strip">
+              <div class="visual-strip-thumb">
+                <img src="assets/images/testpoint_video_comparacion.png" alt="Microscopía comparativa de puntos laterales TP1500" class="zoomable-img" data-caption="Microscopía PCB (Fotografía Real): Análisis comparativo de puntos laterales TP1500 y conector TP1501.">
+                <span class="visual-strip-badge">🔬 Puntos Laterales (Foto Real)</span>
+              </div>
+              <div class="visual-strip-thumb">
+                <img src="assets/images/testpoint_video_exacto.png" alt="Puente a masa chasis metálico GND" class="zoomable-img" data-caption="Prueba de Continuidad (Fotografía Real): Puente a masa GND con celda de batería desconectada.">
+                <span class="visual-strip-badge">⚡ Puente a Masa GND (Foto Real)</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Fase 4 -->
+        <article class="method-card reverse reveal-on-scroll">
+          <div>
+            <span class="method-step-num">FASE 04 · CIRUGÍA BARE-METAL EN LINUX</span>
+            <h3>Control Crudo por USB y Motor Criptográfico SEJ</h3>
+            <p>
+              Con el procesador en BootROM, abandoné Windows para evitar las capas de abstracción y utilicé un servidor Linux local con <code>libusb</code> nativo. Inyecté el payload <code>Kamakiri</code> para provocar un desbordamiento en memoria y deshabilitar las políticas DAA/SBC en RAM.
+            </p>
+            <p>
+              Una vez en Stage 2, ejecuté el comando crítico para generar la firma <strong>SecCfg V4</strong>. El exploit comandó al propio procesador MediaTek para calcular el hash HMAC mediante su acelerador criptográfico de hardware <strong>SEJ (HACC)</strong>, reescribiendo la partición <code>seccfg</code> directamente en el chip eMMC.
+            </p>
+            <ul class="method-points">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Firma criptográfica generada en el silicio (AES-128 CBC - HACC run).</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Sobreescritura directa de sectores <code>boot_a/b</code> y <code>vbmeta_a/b</code>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="method-visual">
+            <!-- Interactive Silicon PCB & Telemetry Board in Fase 04 -->
+            <div class="silicon-pcb-card" id="siliconCard">
+              <div class="silicon-ambient-glow"></div>
+              <div class="pcb-board-surface">
+                
+                <svg class="pcb-circuit-svg" viewBox="0 0 460 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M40 70 H130 V150 H160" class="circuit-trace trace-cyan pulse-1" />
+                  <path d="M40 90 H100 V160 H160" class="circuit-trace trace-amber pulse-2" />
+                  <path d="M40 310 H130 V230 H160" class="circuit-trace trace-cyan pulse-3" />
+                  <path d="M300 150 H360 V70 H420" class="circuit-trace trace-cyan pulse-2" />
+                  <path d="M300 230 H340 V290 H390" class="circuit-trace trace-amber pulse-1" />
+                  <path d="M230 40 V100" class="circuit-trace trace-cyan pulse-3" />
+                  <path d="M230 280 V340" class="circuit-trace trace-cyan pulse-2" />
+                  <path d="M300 190 H380 V220" class="circuit-trace trace-tp-pulse" />
+                  <circle cx="380" cy="220" r="6" class="tp-pad-circle" />
+                  <circle cx="380" cy="220" r="14" class="tp-pad-ripple" />
+                  <circle cx="40" cy="70" r="3.5" class="pcb-via" />
+                  <circle cx="40" cy="90" r="3.5" class="pcb-via" />
+                  <circle cx="40" cy="310" r="3.5" class="pcb-via" />
+                  <circle cx="420" cy="70" r="3.5" class="pcb-via" />
+                  <circle cx="390" cy="290" r="3.5" class="pcb-via" />
+                  <circle cx="230" cy="40" r="3.5" class="pcb-via" />
+                  <circle cx="230" cy="340" r="3.5" class="pcb-via" />
+                </svg>
+
+                <div class="soc-chip-package">
+                  <div class="soc-die-bevel">
+                    <div class="soc-laser-mark">
+                      <span class="soc-vendor">MEDIATEK</span>
+                      <span class="soc-part-num">MT6765V/WA</span>
+                      <span class="soc-lot-code">2201-AGASH</span>
+                      <span class="soc-arch">ARM Cortex-A53 8-Core</span>
+                    </div>
+                    <div class="soc-notch"></div>
+                  </div>
+                  <div class="soc-pin-fringe top"></div>
+                  <div class="soc-pin-fringe bottom"></div>
+                  <div class="soc-pin-fringe left"></div>
+                  <div class="soc-pin-fringe right"></div>
+                </div>
+
+                <div class="tp-target-tag">
+                  <span class="tp-spark-icon">⚡</span>
+                  <span class="tp-label">SEJ Crypto Core Active</span>
+                </div>
+
+                <div class="hud-silicon-chip hud-top-left">
+                  <span class="hud-dot dot-green"></span>
+                  <span class="hud-txt">BootROM: <strong>Intercepted (0E8D)</strong></span>
+                </div>
+
+                <div class="hud-silicon-chip hud-top-right">
+                  <span class="hud-dot dot-amber"></span>
+                  <span class="hud-txt">eFuses: <strong>0xFF (Blown)</strong></span>
+                </div>
+
+                <div class="hud-silicon-chip hud-bottom-left">
+                  <span class="hud-dot dot-blue"></span>
+                  <span class="hud-txt">SEJ Engine: <strong>Hardware-Bound</strong></span>
+                </div>
+
+                <div class="hud-silicon-chip hud-bottom-right">
+                  <span class="hud-dot dot-red"></span>
+                  <span class="hud-txt">RPMB: <strong>HMAC Auth Lock</strong></span>
+                </div>
+
+              </div>
+
+              <div class="silicon-card-footer">
+                <span class="silicon-status-bar">
+                  <i class="status-pulse"></i> MTK HIGH-SECURITY BUS TELEMETRY (921,600 BAUD)
+                </span>
+              </div>
+
+            </div>
+            <span class="visual-badge visual-badge-silicon">SoC MT6765 · Arquitectura Criptográfica SEJ</span>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       LA TERMINAL INTERACTIVA (SHOWSTOPPER COMPONENT)
+       ========================================================================= -->
+  <section id="terminal" style="background: rgba(11, 14, 20, 0.75);">
+    <div class="container">
+
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag green">Telemetría de Consola</span>
+        <h2 class="section-title">Consola Forense Interactiva</h2>
+        <p class="section-subtitle">
+          Inspecciona los registros reales extraídos durante la auditoría. Selecciona una pestaña para analizar cada etapa del protocolo de bajo nivel y la respuesta del hardware.
+        </p>
+      </div>
+
+      <!-- Terminal Window Component -->
+      <div class="terminal-window reveal-on-scroll">
+        <div class="terminal-topbar">
+          <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+          </div>
+
+          <div class="terminal-tabs">
+            <button class="term-tab-btn active" data-tab="brom">01. Handshake BROM</button>
+            <button class="term-tab-btn" data-tab="seccfg">02. Desbloqueo SEJ</button>
+            <button class="term-tab-btn" data-tab="fastboot">03. Telemetría Fastboot & RPMB</button>
+          </div>
+
+          <div class="term-actions">
+            <button class="btn-copy-log" id="btnCopyLog">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copiar Log
+            </button>
+          </div>
+        </div>
+
+        <div class="terminal-body" id="terminalBody">
+          <!-- Dynamically populated via terminal.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       VEREDICTO FORENSE: EL LÍMITE DEL SILICIO (RPMB)
+       ========================================================================= -->
+  <section id="veredicto">
+    <div class="container">
+
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag red">Análisis Criptográfico</span>
+        <h2 class="section-title">El Veredicto Forense: El Límite del Silicio</h2>
+        <p class="section-subtitle">
+          ¿Por qué el Little Kernel activó el Red State tras la reescritura de seccfg? La respuesta reside en el mecanismo de validación cruzada con la memoria RPMB del chip eMMC.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <article class="bento-card span-12 reveal-on-scroll">
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="bento-icon red">⚠️</div>
+            <div>
+              <h3 style="margin: 0;">La Telemetría Clave que Reveló la Arquitectura</h3>
+              <p style="margin: 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                Extracción directa mediante Fastboot Protocol (Variables del Little Kernel de Motorola)
+              </p>
+            </div>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1.75rem;">
+            <div style="color: var(--alert-red-light); margin-bottom: 0.35rem;">(bootloader) unlocked: no <span style="color: var(--text-muted);">// Anclado criptográficamente en la RPMB</span></div>
+            <div style="color: var(--alert-red-light); margin-bottom: 0.35rem;">(bootloader) slot-unbootable:a: yes <span style="color: var(--text-muted);">// Little Kernel invalidó el slot al fallar la firma</span></div>
+            <div style="color: var(--alert-red-light);">(bootloader) slot-retry-count:a: 0 <span style="color: var(--text-muted);">// 7 reintentos agotados por falta de token RSA</span></div>
+          </div>
+
+          <div class="verdict-dual-grid">
+            <div>
+              <h4 style="color: var(--accent-blue-light); margin-bottom: 0.75rem;">Mecanismo de Doble Validación</h4>
+              <p style="font-size: 0.95rem; line-height: 1.65;">
+                En chipsets genéricos MediaTek, el estado de desbloqueo reside exclusivamente en un registro dentro de la partición lógica <code>seccfg</code>. Sin embargo, en esta compilación de Motorola con parche 2022, el Little Kernel consulta la <strong>RPMB (Replay Protected Memory Block)</strong> del chip eMMC.
+              </p>
+              <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-muted);">
+                La RPMB exige una clave simétrica HMAC-SHA256 provisionada en fábrica. Cualquier intento de arranque con particiones modificadas sin el certificado emitido por servidor revierte el sistema a <code>Red State</code> por diseño.
+              </p>
+            </div>
+
+            <div>
+              <h4 style="color: var(--terminal-green-light); margin-bottom: 0.75rem;">El Valor del Diagnóstico Conclusivo</h4>
+              <p style="font-size: 0.95rem; line-height: 1.65;">
+                Este hallazgo consolida un <strong>diagnóstico forense concluyente y verificado</strong>. Al aislar metódicamente cada variable del microprocesador y registrar la telemetría, se demostró con precisión técnica la frontera que separa a la capa lógica de la seguridad anclada en el silicio.
+              </p>
+              <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-muted);">
+                El dispositivo fue restaurado íntegramente a su estado de fábrica en Android 9.0 Pie, validando el éxito del protocolo de rescate y preservando la integridad del hardware al 100%.
+              </p>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SÍNTESIS: EL VALOR PARA LA INGENIERÍA DE SOFTWARE
+       ========================================================================= -->
+  <section id="sintesis" style="background: rgba(11, 14, 20, 0.4);">
+    <div class="container">
+
+      <div class="synthesis-card reveal-on-scroll">
+        <div class="synthesis-grid">
+          
+          <div>
+            <span class="section-tag" style="margin-bottom: 1.25rem;">Visión de Sistemas</span>
+            <h3 style="font-size: 2.1rem; margin-bottom: 1.5rem; line-height: 1.25;">
+              ¿Qué aporta este caso a mi perfil como Analista Funcional e Ingeniero?
+            </h3>
+            <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              El valor de esta investigación reside en la aplicación de un <strong>rigor metodológico sistemático</strong> para auditar un sistema desconocido, evaluar sus especificaciones bajo condiciones reales y documentar con precisión el comportamiento de cada variable.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.65;">
+              Frente a un error de <em>«comando no soportado»</em> o un bloqueo de fábrica, el enfoque profesional consiste en profundizar en la arquitectura hasta su nivel fundamental, construyendo claridad y estructura a partir de la evidencia empírica.
+            </p>
+          </div>
+
+          <div class="synthesis-pillars">
+            
+            <div class="pillar-item">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Capacidad Crítica de Desambiguación</h4>
+                <p>
+                  Validación de hipótesis mediante pruebas empíricas directas (continuidad eléctrica, inspección de protocolos USB y análisis de telemetría de registros).
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Pensamiento Sistémico Vertical</h4>
+                <p>
+                  Capacidad de articular diferentes niveles de abstracción: desde reglas de negocio y flujos funcionales de software hasta interfaces de bajo nivel y protocolos de comunicación física.
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="pillar-content">
+                <h4>Rigor de Documentación y Telemetría</h4>
+                <p>
+                  Documentación exhaustiva con más de 150 scripts, esquemas técnicos y bitácoras reproducibles que garantizan la trazabilidad y la transferencia de conocimiento.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECCIÓN PREMIUM DE CONTACTO & LLAMADA A LA ACCIÓN (SHOWCASE)
+       ========================================================================= -->
+  <section id="contacto" class="contact-section-wrapper">
+    <div class="container">
+
+      <!-- Hero Card del Pitch Principal -->
+      <div class="contact-hero-card reveal-on-scroll">
+        <div class="contact-status-pill">
+          <span class="pulse-indicator"></span>
+          <span>Disponible para Nuevos Desafíos & Contratación</span>
+        </div>
+
+        <h2 class="contact-hero-title">
+          “Si buscas un profesional con capacidad de <span class="gradient-highlight">análisis profundo</span>, <span class="gradient-highlight">pensamiento sistémico</span> y <span class="gradient-highlight">rigor documental</span>, hablemos.”
+        </h2>
+
+        <p class="contact-hero-desc">
+          Perfil enfocado en <strong>Análisis Funcional</strong>, <strong>Diseño de Sistemas</strong> e <strong>Ingeniería de Software</strong>. Experiencia comprobada para desarmar problemas complejos, auditar arquitecturas críticas de raíz y documentar soluciones de forma reproducible y transferible.
+        </p>
+
+        <div class="contact-main-buttons">
+          <a href="https://www.linkedin.com/in/augusto-romera" target="_blank" rel="noopener noreferrer" class="btn-cta-linkedin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            Conectar en LinkedIn
+          </a>
+
+          <a href="https://wa.me/5493865204411?text=Hola%20Augusto,%20estuve%20viendo%20tu%20caso%20de%20estudio%20de%20Moto%20E6s%20y%20me%20gustar%C3%ADa%20conversar." target="_blank" rel="noopener noreferrer" class="btn-cta-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.771.821 2.791.821 3.181 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.767-5.768-5.767zm3.364 8.163c-.141.397-.714.739-1.002.775-.288.036-.576.108-1.748-.372-1.427-.584-2.355-2.023-2.427-2.119-.072-.096-.582-.774-.582-1.476 0-.702.368-1.047.498-1.191.13-.144.285-.18.381-.18.096 0 .192 0 .276.004.09.004.21-.034.33.252.126.299.432 1.054.468 1.13.036.076.06.166.012.262-.048.096-.072.156-.144.24-.072.084-.153.188-.219.252-.072.072-.148.15-.064.294.084.144.372.613.798.992.548.488 1.01.639 1.154.711.144.072.228.06.312-.036.084-.096.36-.42.456-.564.096-.144.192-.12.324-.072.132.048.84.396.984.468.144.072.24.108.276.168.036.06.036.348-.105.745zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.957-1.399C8.397 21.493 10.134 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            </svg>
+            Escribir al WhatsApp
+          </a>
+
+          <a href="assets/CV_Augusto_Romera.pdf" download="Curriculum_Vitae_Augusto_Romera.pdf" class="btn-cta-cv">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Descargar CV Oficial</span>
+            <span class="badge-pdf-size">PDF 330 KB</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cuadrícula Interactiva de Canales Directos -->
+      <div class="contact-cards-grid reveal-on-scroll delay-200">
+        
+        <!-- Tarjeta 1: LinkedIn -->
+        <a href="https://www.linkedin.com/in/augusto-romera" target="_blank" rel="noopener noreferrer" class="contact-interactive-card">
+          <div>
+            <div class="contact-card-icon-box icon-box-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </div>
+            <div class="contact-card-label">Red Profesional</div>
+            <div class="contact-card-val">in/augusto-romera</div>
+          </div>
+          <div class="contact-card-link-text">
+            <span>Ver Perfil & Contacto</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+
+        <!-- Tarjeta 2: WhatsApp -->
+        <a href="https://wa.me/5493865204411?text=Hola%20Augusto,%20estuve%20viendo%20tu%20caso%20de%20estudio%20de%20Moto%20E6s%20y%20me%20gustar%C3%ADa%20conversar." target="_blank" rel="noopener noreferrer" class="contact-interactive-card">
+          <div>
+            <div class="contact-card-icon-box icon-box-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.771.821 2.791.821 3.181 0 5.767-2.587 5.768-5.766.001-3.182-2.585-5.767-5.768-5.767zm3.364 8.163c-.141.397-.714.739-1.002.775-.288.036-.576.108-1.748-.372-1.427-.584-2.355-2.023-2.427-2.119-.072-.096-.582-.774-.582-1.476 0-.702.368-1.047.498-1.191.13-.144.285-.18.381-.18.096 0 .192 0 .276.004.09.004.21-.034.33.252.126.299.432 1.054.468 1.13.036.076.06.166.012.262-.048.096-.072.156-.144.24-.072.084-.153.188-.219.252-.072.072-.148.15-.064.294.084.144.372.613.798.992.548.488 1.01.639 1.154.711.144.072.228.06.312-.036.084-.096.36-.42.456-.564.096-.144.192-.12.324-.072.132.048.84.396.984.468.144.072.24.108.276.168.036.06.036.348-.105.745zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.957-1.399C8.397 21.493 10.134 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+              </svg>
+            </div>
+            <div class="contact-card-label">Mensajería Directa</div>
+            <div class="contact-card-val">+54 (3865) 20-4411</div>
+          </div>
+          <div class="contact-card-link-text">
+            <span>Iniciar Chat en Vivo</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+
+        <!-- Tarjeta 3: Email -->
+        <a href="mailto:newsromers@gmail.com?subject=Contacto%20desde%20Caso%20de%20Estudio%20Moto%20E6s" class="contact-interactive-card">
+          <div>
+            <div class="contact-card-icon-box icon-box-amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="contact-card-label">Correo Electrónico</div>
+            <div class="contact-card-val">newsromers@gmail.com</div>
+          </div>
+          <div class="contact-card-link-text">
+            <span>Enviar Email Directo</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+
+        <!-- Tarjeta 4: GitHub -->
+        <a href="https://github.com/romeraugustoo" target="_blank" rel="noopener noreferrer" class="contact-interactive-card">
+          <div>
+            <div class="contact-card-icon-box icon-box-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </div>
+            <div class="contact-card-label">Repositorios & Código</div>
+            <div class="contact-card-val">github.com/romeraugustoo</div>
+          </div>
+          <div class="contact-card-link-text">
+            <span>Explorar Proyectos</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 0.75rem;">
+            <img src="assets/images/logo-augusto.png" alt="Augusto Romera Dev" class="brand-logo-img" style="height: 42px;">
+          </div>
+          <p>
+            Analista Funcional y estudiante avanzado de Ingeniería en Sistemas. Enfoque en arquitectura de software, seguridad de sistemas y modelado de ecosistemas digitales complejos.
+          </p>
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://www.linkedin.com/in/augusto-romera" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://wa.me/5493865204411" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">
+              WhatsApp
+            </a>
+            <a href="assets/CV_Augusto_Romera.pdf" download="Curriculum_Vitae_Augusto_Romera.pdf" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              CV (PDF)
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#resumen">Resumen Ejecutivo (TL;DR)</a></li>
+            <li><a href="#metodologia">Metodología Científica</a></li>
+            <li><a href="#terminal">Consola de Telemetría</a></li>
+            <li><a href="#veredicto">Veredicto Forense</a></li>
+            <li><a href="#sintesis">Valor para Ingeniería</a></li>
+            <li><a href="#contacto">Contacto Directo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Canales Directos</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.linkedin.com/in/augusto-romera" target="_blank" rel="noopener noreferrer">LinkedIn: in/augusto-romera</a></li>
+            <li><a href="mailto:newsromers@gmail.com">Email: newsromers@gmail.com</a></li>
+            <li><a href="https://wa.me/5493865204411" target="_blank" rel="noopener noreferrer">WhatsApp: +54 3865 204411</a></li>
+            <li><a href="https://github.com/romeraugustoo" target="_blank" rel="noopener noreferrer">GitHub: @romeraugustoo</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Augusto Ro · Caso de Estudio de Ingeniería de Sistemas y Seguridad de Hardware.
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-blue-light);">
+          "Aportando claridad, estructura y rigor metodológico en sistemas complejos."
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Diagrams & Macro Photography -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Visualizador de diagramas">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor">&times;</button>
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/terminal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,198 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
-import { useTheme } from '../context/ThemeContext';
 import { useMagic } from '../context/MagicContext';
 import '../styles/bodyhome.css';
 import '../styles/avatar.css';
-import confetti from 'canvas-confetti';
-import Swal from 'sweetalert2';
-import { verifyAccessCode, formatTimeRemaining } from '../utils/securityManager';
+import '../styles/modes.css';
 
 const LayoutContent = ({ children, activeSection }) => {
-    const [navBarClass, setNavBarClass] = useState('');
-    const { darkMode, toggleTheme } = useTheme();
-    const { handleMagicClick, themeName } = useMagic();
-    const [isUnlocked, setIsUnlocked] = useState(localStorage.getItem('unlocked_projects') === 'true');
-
-    useEffect(() => {
-        const handleUnlockChange = () => {
-            setIsUnlocked(localStorage.getItem('unlocked_projects') === 'true');
-        };
-        window.addEventListener('unlock_changed', handleUnlockChange);
-        return () => window.removeEventListener('unlock_changed', handleUnlockChange);
-    }, []);
-
-    const onMagicClick = (e) => {
-        if (e) e.preventDefault();
-        handleMagicClick(e);
-    };
-
-    const handleWhatsAppClick = (e) => {
-        e.preventDefault();
-        const url = e.currentTarget.href;
-
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { x, y }
-        });
-
-        setTimeout(() => {
-            window.open(url, '_blank');
-        }, 3000);
-    };
-
-    const handleSecretKeyClick = async () => {
-        const currentlyUnlocked = localStorage.getItem('unlocked_projects') === 'true';
-
-        if (currentlyUnlocked) {
-            Swal.fire({
-                title: '🔓 Proyectos Desbloqueados',
-                text: '¿Deseas volver a bloquear los proyectos protegidos?',
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, bloquear',
-                cancelButtonText: 'Mantener desbloqueado',
-                background: darkMode ? '#1a1a1a' : '#ffffff',
-                color: darkMode ? '#ffffff' : '#000000',
-                confirmButtonColor: '#ef4444',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.setItem('unlocked_projects', 'false');
-                    window.dispatchEvent(new Event('unlock_changed'));
-                    Swal.fire({
-                        title: '🔒 Bloqueado',
-                        text: 'Proyectos protegidos ocultados.',
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false,
-                        background: darkMode ? '#1a1a1a' : '#ffffff',
-                        color: darkMode ? '#ffffff' : '#000000',
-                    });
-                }
-            });
-            return;
-        }
-
-        const { value: inputCode, isConfirmed } = await Swal.fire({
-            title: '🔑 Acceso Protegido',
-            text: 'Ingresa el código para desbloquear proyectos exclusivos:',
-            input: 'password',
-            inputPlaceholder: 'Código de acceso',
-            showCancelButton: true,
-            confirmButtonText: 'Desbloquear',
-            cancelButtonText: 'Cancelar',
-            background: darkMode ? '#1a1a1a' : '#ffffff',
-            color: darkMode ? '#ffffff' : '#000000',
-            confirmButtonColor: '#f59e0b',
-            customClass: {
-                popup: 'swal-custom-popup',
-                title: 'swal-custom-title',
-            }
-        });
-
-        if (isConfirmed) {
-            Swal.fire({
-                title: 'Verificando seguridad...',
-                text: 'Comprobando credenciales y origen IP',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                },
-                background: darkMode ? '#1a1a1a' : '#ffffff',
-                color: darkMode ? '#ffffff' : '#000000',
-            });
-
-            const res = await verifyAccessCode(inputCode);
-
-            if (res.success) {
-                localStorage.setItem('unlocked_projects', 'true');
-                window.dispatchEvent(new Event('unlock_changed'));
-                confetti({ particleCount: 120, spread: 80 });
-                Swal.fire({
-                    title: '¡Acceso Concedido! 🎉',
-                    text: 'Se han desbloqueado los proyectos protegidos.',
-                    icon: 'success',
-                    confirmButtonColor: '#25D366',
-                    background: darkMode ? '#1a1a1a' : '#ffffff',
-                    color: darkMode ? '#ffffff' : '#000000',
-                });
-            } else if (res.locked) {
-                Swal.fire({
-                    title: '🚫 Acceso Bloqueado por IP',
-                    html: `<p>${res.message}</p><p style="font-weight: bold; color: #ef4444; margin-top: 10px;">Tiempo de espera: ${formatTimeRemaining(res.secondsRemaining)} min</p>`,
-                    icon: 'error',
-                    confirmButtonColor: '#ef4444',
-                    background: darkMode ? '#1a1a1a' : '#ffffff',
-                    color: darkMode ? '#ffffff' : '#000000',
-                });
-            } else {
-                Swal.fire({
-                    title: 'Código Incorrecto 🔒',
-                    text: res.message,
-                    icon: 'warning',
-                    confirmButtonColor: '#ef4444',
-                    background: darkMode ? '#1a1a1a' : '#ffffff',
-                    color: darkMode ? '#ffffff' : '#000000',
-                });
-            }
-        }
-    };
-
     const { pathname } = useLocation();
+    const { activeConfig, cycleMode } = useMagic();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const scrollThreshold = 0.05;
-
-            if (scrollY < windowHeight * scrollThreshold) {
-                setNavBarClass("");
-            } else {
-                setNavBarClass("inline-block-class");
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    const isSolutionPage = pathname.startsWith('/solution');
 
     return (
-        <>
-            <Header activeSection={activeSection} navBarClass={navBarClass} />
-            {children}
+        <div className="page-layout-root" style={{ position: 'relative', zIndex: 1, minHeight: '100vh' }}>
+            <Header activeSection={activeSection} />
+            <main className="main-content-wrapper" style={{ position: 'relative', zIndex: 2 }}>
+                {children}
+            </main>
 
-            {/* Floating Buttons */}
-            <div className="wsp" >
-                <a href="https://wa.link/cjq5u5" className='btn-wsp' target='_blank' rel="noopener noreferrer" onClick={handleWhatsAppClick} data-tooltip="¡Escríbeme!">
-                    <i className="fa-brands fa-whatsapp fa-2xl" ></i>
+            {/* Bottom-Right Floating Controls (Circular WhatsApp & Mode Switcher) */}
+            <div className="floating-actions-container">
+                {/* 1. Mode Switcher (Round Pencil Trigger) - Oculto en páginas de solución */}
+                {!isSolutionPage && (
+                    <button
+                        type="button"
+                        className="floating-btn-round floating-btn-mode"
+                        onClick={cycleMode}
+                        title={`Modo actual: ${activeConfig.name} (Clic para mutar)`}
+                        aria-label="Cambiar modo de ingeniería"
+                    >
+                        <span className="mode-indicator-dot"></span>
+                        <i className="fas fa-pencil-alt"></i>
+                    </button>
+                )}
+
+                {/* 2. WhatsApp Circular Button (Icon Only, No Text) */}
+                <a 
+                    href="https://wa.me/5493865204411?text=Hola%20Augusto,%20estuve%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar." 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="floating-btn-round floating-btn-wsp"
+                    title="Escribir directamente por WhatsApp"
+                    aria-label="Contactar por WhatsApp"
+                >
+                    <i className="fab fa-whatsapp"></i>
                 </a>
             </div>
-
-            <button className="btn-theme-toggle" onClick={toggleTheme} data-tooltip={darkMode ? "Modo Claro" : "Modo Oscuro"}>
-                <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} fa-2xl`}></i>
-            </button>
-
-            <button className="magic-wand-btn-floating" onClick={onMagicClick} data-tooltip={`Modo Mágico (${themeName})`}>
-                <i className="fa-solid fa-wand-magic-sparkles"></i>
-            </button>
-
-            <button className="secret-key-btn-floating" onClick={handleSecretKeyClick} data-tooltip={isUnlocked ? "Bloquear Proyectos" : "Desbloquear Proyectos"}>
-                <i className={`fas ${isUnlocked ? 'fa-unlock' : 'fa-key'}`}></i>
-            </button>
-        </>
+        </div>
     );
 };
 

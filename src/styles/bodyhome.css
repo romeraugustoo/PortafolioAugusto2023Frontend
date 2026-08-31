@@ -39,14 +39,14 @@ html, body {
 }
 
 body {
-    background-color: var(--bg-light);
-    color: var(--text-light);
-    font-family: "Roboto", sans-serif;
+    background-color: var(--bg-primary, #0b0e14) !important;
+    color: var(--text-secondary, #cbd5e1);
+    font-family: var(--font-main, "Inter", sans-serif);
 }
 
 /* Estilos de la sección de inicio */
 .home {
-    background-image: url("../assets/images/background/bg.png");
+    background-image: url("../assets/images/background/bg.webp");
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;

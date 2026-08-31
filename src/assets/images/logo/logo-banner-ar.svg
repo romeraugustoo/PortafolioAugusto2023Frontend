@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 180" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bannerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="50%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="bannerCyanLeg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#00F2FE"/>
+    </linearGradient>
+    <filter id="bannerGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left Icon Glyph Centered Vertically -->
+  <g transform="translate(15, 12) scale(0.31)">
+    <polygon points="250,25 445,138 445,362 250,475 55,362 55,138" fill="#070a12" stroke="url(#bannerGrad)" stroke-width="8" filter="url(#bannerGlow)"/>
+    <path d="M250 115 L145 365 L198 365 L250 240 L302 365 L355 365 Z" fill="url(#bannerGrad)"/>
+    <path d="M250 240 L315 240 C355 240 380 210 380 178 C380 145 350 120 310 120 L250 120 Z" fill="none" stroke="url(#bannerGrad)" stroke-width="28"/>
+    <path d="M280 240 L355 365" stroke="url(#bannerCyanLeg)" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="250" cy="240" r="10" fill="#00F2FE"/>
+  </g>
+
+  <!-- Centered High-Impact Brand Typography (+40% Size) -->
+  <text x="180" y="108" font-family="'Inter', -apple-system, sans-serif" font-size="54" font-weight="900" fill="#F8FAFC" letter-spacing="2">
+    AUGUSTO <tspan fill="url(#bannerGrad)">ROMERA</tspan>
+  </text>
+</svg>

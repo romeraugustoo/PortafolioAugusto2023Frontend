@@ -3,13 +3,13 @@
 > **Archivo de Registro Vivo (Bitácora de Antigravity)**  
 > **Proyecto:** Portafolio Augusto (`d:\Augusto\Augusto cosas\portafolio-augusto`)  
 > **Repositorio Remoto:** `romeraugustoo/PortafolioAugusto2023Frontend`  
-> **Última actualización:** 2026-08-11  
+> **Última actualización:** 2026-08-27  
 
 ---
 
 ## 📌 1. Visión General del Proyecto
 
-El **Portafolio de Augusto Romera** es una aplicación web interactiva desarrollada en **React + Vite + Bootstrap / Vanilla CSS**, diseñada para mostrar casos de estudio detallados, proyectos destacados (como ONG Seamos Puente, TSLC, Relicario Studio, Rapiburguer, ProfeBook Studio), habilidades profesionales y botones de interacción interactivos (efectos de confeti, botón mágico flotante, clave secreta y cambio de modo oscuro/claro).
+El **Portafolio de Augusto Romera** es una aplicación web interactiva desarrollada en **React + Vite + Bootstrap / Vanilla CSS**, diseñada para mostrar casos de estudio detallados, proyectos destacados (como Auditoría Moto E6s MT6765, ONG Seamos Puente, TSLC, Relicario Studio, Rapiburguer, ProfeBook Studio), habilidades profesionales y botones de interacción interactivos (efectos de confeti, botón mágico flotante, clave secreta y cambio de modo oscuro/claro).
 
 ---
 
@@ -35,6 +35,14 @@ El **Portafolio de Augusto Romera** es una aplicación web interactiva desarroll
 ---
 
 ## 📝 4. Bitácora de Trabajo
+
+### 📅 2026-08-27
+- **Integración del Caso de Estudio Moto E6s (MT6765):**
+  - Incorporación de la vista React `src/components/solutions/MotoE6sSolution.jsx` con análisis de hardware forense, desambiguación de esquemáticos (TP1500), bypass criptográfico SEJ (HACC) y veredicto en memoria RPMB.
+  - Creación de la ruta dinámica `/solution/motoe6s` en `SolutionScreen.jsx`.
+  - Integración de tarjeta flip-card en `BodyHome.jsx` con portada premium `MotoE6s.png`.
+  - Alojamiento de la landing page estática e interactiva en `public/motoe6s/` (`index.html`, terminal con pestañas dinámicas, WCAG AAA y lightbox modal).
+  - Sincronización del documento maestro de transferencia de contexto `HISTORIAL_Y_CONTEXTO_MOTOE6S.md`.
 
 ### 📅 2026-08-11
 - **Fix PIN 1221122 en Dev Local (`src/utils/securityManager.js`):**

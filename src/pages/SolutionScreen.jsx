@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import PageLayout from '../components/PageLayout';
 import TransporteSantaLucia from '../components/solutions/TransporteSantaLucia';
@@ -8,6 +8,8 @@ import RelicarioSolution from '../components/solutions/RelicarioSolution';
 import ProfeBookSolution from '../components/solutions/ProfeBookSolution';
 import SeamosPuenteSolution from '../components/solutions/SeamosPuenteSolution';
 import MiMusicaSolution from '../components/solutions/MiMusicaSolution';
+import MotoE6sSolution from '../components/solutions/MotoE6sSolution';
+import TallerEspanaSolution from '../components/solutions/TallerEspanaSolution';
 import { useTheme } from '../context/ThemeContext';
 import Swal from 'sweetalert2';
 import confetti from 'canvas-confetti';
@@ -28,6 +30,8 @@ const SolutionScreen = () => {
 
     const renderContent = () => {
         switch (id) {
+            case 'motoe6s':
+                return <MotoE6sSolution />;
             case 'mimusica':
                 return <MiMusicaSolution />;
             case 'tslc':
@@ -35,9 +39,14 @@ const SolutionScreen = () => {
             case 'rapiburguer':
                 return <RapiburguerSolution />;
             case 'portfolio':
+            case 'portfolio-v1':
+            case 'portafoliov1':
                 return <PortfolioSolution />;
             case 'seamospuente':
                 return <SeamosPuenteSolution />;
+            case 'taller-espana':
+            case 'tallerespana':
+                return <TallerEspanaSolution />;
             case 'relicario':
             case 'profebook':
                 if (!isUnlocked) {

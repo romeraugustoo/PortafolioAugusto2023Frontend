@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="devGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+    <radialGradient id="bgRadial" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#030508"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(59, 130, 246, 0.08)" stroke-width="1"/>
+    </pattern>
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="500" fill="url(#bgRadial)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <!-- Geometric Hexagon Accents -->
+  <polygon points="400,80 580,180 580,380 400,480 220,380 220,180" fill="none" stroke="rgba(139, 92, 246, 0.15)" stroke-width="2" stroke-dasharray="8,8"/>
+  <polygon points="400,110 550,195 550,365 400,450 250,365 250,195" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="1.5"/>
+
+  <!-- Code Watermark Telemetry Background -->
+  <g opacity="0.15" font-family="'JetBrains Mono', monospace" font-size="12" fill="#38BDF8">
+    <text x="40" y="60">> INITIALIZING_PIPELINE: [OK]</text>
+    <text x="40" y="85">> ASYNC_WORKER_POOL: 16 THREADS ACTIVE</text>
+    <text x="40" y="110">> MEMORY_MANAGEMENT: DETERMINISTIC_ZERO_LEAK</text>
+    <text x="560" y="420">> DOCKER_COMPOSE: ACTIVE</text>
+    <text x="560" y="445">> STATUS: PROPRIETARY</text>
+  </g>
+
+  <!-- Central Shield / Lock Engine Glyph -->
+  <g transform="translate(400, 210)">
+    <!-- Outer Glow Circle -->
+    <circle cx="0" cy="0" r="65" fill="rgba(15, 23, 42, 0.8)" stroke="url(#devGrad)" stroke-width="3" filter="url(#glowEffect)"/>
+    
+    <!-- Lock Icon Blueprint -->
+    <rect x="-24" y="-10" width="48" height="38" rx="8" fill="url(#devGrad)"/>
+    <path d="M-15 -10 V -22 C -15 -32, 15 -32, 15 -22 V -10" fill="none" stroke="#F8FAFC" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="6" r="5" fill="#030508"/>
+    <path d="M0 10 V 17" stroke="#030508" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main Status Badges & Headline -->
+  <g transform="translate(400, 330)" text-anchor="middle">
+    <!-- Top Pill -->
+    <rect x="-140" y="-16" width="280" height="32" rx="16" fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.5)" stroke-width="1"/>
+    <circle cx="-115" cy="0" r="5" fill="#F59E0B" filter="url(#glowEffect)"/>
+    <text x="-95" y="5" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#FBBF24" text-anchor="start" letter-spacing="2">
+      SISTEMA EN DESARROLLO
+    </text>
+
+    <!-- Main Title -->
+    <text x="0" y="55" font-family="'Inter', sans-serif" font-size="24" font-weight="800" fill="#F8FAFC" letter-spacing="1">
+      DESPLIEGUE PRIVADO &amp; PROPIETARIO
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="82" font-family="'Inter', sans-serif" font-size="13" font-weight="500" fill="#94A3B8" letter-spacing="0.5">
+      Arquitectura en fase de testing y optimización de rendimiento
+    </text>
+  </g>
+
+  <!-- Corner Tech Accents -->
+  <path d="M 20 50 L 20 20 L 50 20" fill="none" stroke="url(#devGrad)" stroke-width="3"/>
+  <path d="M 780 50 L 780 20 L 750 20" fill="none" stroke="url(#devGrad)" stroke-width="3"/>
+  <path d="M 20 450 L 20 480 L 50 480" fill="none" stroke="url(#devGrad)" stroke-width="3"/>
+  <path d="M 780 450 L 780 480 L 750 480" fill="none" stroke="url(#devGrad)" stroke-width="3"/>
+</svg>

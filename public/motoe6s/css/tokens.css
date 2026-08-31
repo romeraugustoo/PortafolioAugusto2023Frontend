@@ -1,0 +1,83 @@
+:root {
+  /* Surface & Background */
+  --bg-dark: #07090e;
+  --bg-primary: #0b0e14;
+  --bg-secondary: #11151f;
+  --bg-tertiary: #161c2a;
+  
+  --surface-card: rgba(17, 21, 31, 0.75);
+  --surface-card-hover: rgba(24, 30, 44, 0.85);
+  --surface-elevated: rgba(22, 28, 42, 0.9);
+  --surface-glass: rgba(255, 255, 255, 0.03);
+  
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-accent: rgba(59, 130, 246, 0.35);
+  --border-success: rgba(16, 185, 129, 0.35);
+  --border-danger: rgba(239, 68, 68, 0.35);
+  
+  /* Accent Colors */
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #60a5fa;
+  --accent-blue-dark: #1d4ed8;
+  --accent-blue-glow: rgba(59, 130, 246, 0.22);
+  
+  --terminal-green: #10b981;
+  --terminal-green-light: #34d399;
+  --terminal-green-glow: rgba(16, 185, 129, 0.2);
+  
+  --alert-red: #ef4444;
+  --alert-red-light: #f87171;
+  --alert-red-glow: rgba(239, 68, 68, 0.25);
+  
+  --warning-amber: #f59e0b;
+  --warning-amber-glow: rgba(245, 158, 11, 0.2);
+
+  --purple-accent: #8b5cf6;
+  
+  /* Typography Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-accent: #60a5fa;
+  
+  /* Focus & Accessibility */
+  --focus-ring: 0 0 0 2px var(--bg-dark), 0 0 0 4px var(--accent-blue);
+  --focus-outline: 2px solid var(--accent-blue-light);
+  
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  
+  /* Spacing */
+  --container-max: 1200px;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Shadows & Glows */
+  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-glow-blue: 0 0 50px -10px rgba(59, 130, 246, 0.25);
+  --shadow-glow-green: 0 0 50px -10px rgba(16, 185, 129, 0.2);
+  --shadow-glow-red: 0 0 50px -10px rgba(239, 68, 68, 0.25);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
