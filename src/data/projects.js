@@ -20,7 +20,7 @@ export const PROJECT_CATEGORIES = [
 
 export const projectsData = [
     // ==========================================
-    // TIER 1: CORE SHOWSTOPPERS (Proyectos Principales)
+    // SECCIÓN 1: PROYECTOS DISPONIBLES (DEMO EN VIVO)
     // ==========================================
     {
         id: 'motoe6s',
@@ -39,22 +39,118 @@ export const projectsData = [
         description: 'Auditoría de bajo nivel en procesadores MediaTek Helio P22 para desambiguar protecciones anti-rollback, aislamiento de claves simétricas HMAC-SHA256 y diagnóstico concluyente de memoria.'
     },
     {
-        id: 'loopai',
-        title: 'LoopAI — Orquestación de Cómputo Concurrente [Confidencial]',
-        subtitle: 'Arquitectura distribuida de procesamiento asíncrono con WebSockets y benchmarking',
+        id: 'portfolio',
+        title: 'Portafolio Augusto v2.0 — Metamorfosis Tri-Modo',
+        subtitle: 'Arquitectura SPA con 3 Modos Reactivos: Desarrollador & CTO, Consola Linux CLI & Estudio 3D',
         tier: 1,
         featured: true,
-        isProtected: true,
-        category: 'ai-agents',
-        impactMetric: '⚡ Concurrencia Asíncrona · <200ms Latencia en Streaming',
-        contextNote: 'Pipeline diseñado para procesamiento continuo de eventos sin bloqueo de hilos de ejecución.',
-        techStack: ['Python', 'Rust (WASM)', 'WebSockets', 'PostgreSQL', 'Docker', 'Benchmarking'],
-        image: portfolio,
-        website: '',
-        github: '#',
-        solutionRoute: '/solution/loopai',
-        description: 'Plataforma confidencial de alta eficiencia para orquestación de tareas computacionales complejas, evaluación de latencia en tiempo real y ejecución asíncrona optimizada.'
+        category: 'creative-3d',
+        impactMetric: '🔮 3 Modos de Vista Reactivos · 60-144 FPS WebGL & Consola CLI',
+        contextNote: 'Arquitectura desacoplada en React 18 con renderizado condicional optimizado y cero dependencias pesadas innecesarias.',
+        techStack: ['React 18', 'Vite', 'Three.js / Canvas', 'Clean Architecture', 'Netlify Edge', 'CSS 3D Rigging'],
+        image: portfolioV2,
+        website: 'https://augustoromera.netlify.app/',
+        hasCustomScreenshot: true,
+        github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend/tree/v2.0',
+        solutionRoute: '/solution/portfolio',
+        description: 'Frontend reactivo de alta gama con metamorfosis instantánea entre 3 personalidades de ingeniería: Modo Ejecutivo CTO, Consola Linux CLI interactiva con comandos de kernel, y Estudio Creativo 3D con aceleración gráfica.'
     },
+    {
+        id: 'mimusica',
+        title: 'Mi Música Organizada',
+        subtitle: 'Automatizador multimedia local, reproductor de audio y catalogador ID3 offline',
+        tier: 2,
+        category: 'fullstack',
+        impactMetric: '🎵 $0 Infra Cloud · Procesamiento Local Asíncrono',
+        contextNote: 'Procesamiento de librerías locales no bloqueante mediante WebSockets sin costos de servidores en la nube.',
+        techStack: ['Python 3.13', 'FastAPI', 'WebSockets', 'Mutagen ID3', 'FFmpeg', 'PyInstaller'],
+        image: mimusica,
+        website: 'https://mimusicaorganizada.netlify.app/',
+        github: 'https://github.com/romeraugustoo/myorganizedsound',
+        solutionRoute: '/solution/mimusica',
+        description: 'Aplicación para organización automática, catalogación y streaming de librerías de audio 100% local. Implementa backend asíncrono con FastAPI, telemetría bidireccional por WebSockets, inyección de metadatos ID3 y arquitectura zero-cloud.'
+    },
+    {
+        id: 'tslc',
+        title: 'Transporte Santa Lucía (TSLC)',
+        subtitle: 'Sistema ERP de logística y trazabilidad de flota interurbana',
+        tier: 2,
+        category: 'fullstack',
+        impactMetric: '🚛 Trazabilidad Operativa · Java Spring Boot Enterprise',
+        contextNote: 'Modelado C4 integral para despacho de unidades, control de mantenimiento y roles administrativos.',
+        techStack: ['Java', 'Spring Boot', 'MySQL', 'Bootstrap 5', 'Hibernate', 'Docker'],
+        image: tslc,
+        website: 'https://transportesantalucia.netlify.app/',
+        github: '#',
+        solutionRoute: '/solution/tslc',
+        description: 'Plataforma integral de gestión de transporte de pasajeros, control de despachos y administración de personal con arquitectura enterprise.'
+    },
+    {
+        id: 'portfolio-v1',
+        title: 'Portafolio Augusto v1.0 (Edición 2024)',
+        subtitle: 'Diseño interactivo con avatar reactivo, modo oscuro/claro y selector dinámico de paletas',
+        tier: 2,
+        category: 'creative-3d',
+        impactMetric: '🎨 Avatar Interactivo & Modos Dinámicos · SPA React 18',
+        contextNote: 'Desarrollo enfocado en animaciones responsivas, transiciones de tema y tarjetas interactivas novedosas para 2024.',
+        techStack: ['React 18', 'Vite', 'Context API', 'Bootstrap 5', 'CSS Keyframes', 'ScrollReveal'],
+        image: portfolio,
+        website: 'https://augustoromerav1.netlify.app/',
+        hasCustomScreenshot: true,
+        github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend/tree/main',
+        solutionRoute: '/solution/portfolio-v1',
+        description: 'Primera iteración interactiva del portafolio: implementa avatar 2D con rigging de parpadeo, sistema de temas multi-paleta en tiempo real, efectos 3D en tarjetas y diseño responsivo adaptado para 2024.'
+    },
+    {
+        id: 'taller-espana',
+        title: 'España Diesel — Taller de Inyección',
+        subtitle: 'Plataforma de diagnóstico interactivo, catálogo de 6 servicios especializados y Máximo SEO',
+        tier: 3,
+        category: 'fullstack',
+        impactMetric: '⚡ Diagnóstico Interactivo de Fallas · Schema.org Local SEO',
+        contextNote: 'Estructuración semántica completa con JSON-LD y selector dinámico de fallas mecánicas.',
+        techStack: ['React 19', 'Vite', 'Local SEO Schema.org', 'WhatsApp API', 'Netlify Edge'],
+        image: espanaImg,
+        website: 'https://tallerconconcepcion.netlify.app/',
+        hasCustomScreenshot: true,
+        github: 'https://github.com/romeraugustoo',
+        solutionRoute: '/solution/taller-espana',
+        description: 'Plataforma comercial y técnica con selector interactivo de síntomas en cuadrícula móvil 2x3, catálogo simétrico de 6 servicios diésel/nafta y arquitectura de Máximo SEO Local.'
+    },
+    {
+        id: 'rapiburger',
+        title: 'RapiBurger E-Commerce',
+        subtitle: 'Sistema gastronómico de pedidos con carrito en tiempo real y panel de stock',
+        tier: 3,
+        category: 'fullstack',
+        impactMetric: '🍔 Control de Comandas & Stock · Stack React + Node',
+        contextNote: 'Arquitectura completa con catálogo dinámico, persistencia en MongoDB y gestión de pedidos.',
+        techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT Auth'],
+        image: rapiburger,
+        website: 'https://rapiburger.netlify.app/',
+        github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code',
+        solutionRoute: '/solution/rapiburguer',
+        description: 'Solución e-commerce para restaurantes con catálogo dinámico, gestión de comandas y panel administrativo con control de stock.'
+    },
+    {
+        id: 'seamospuente',
+        title: 'ONG Seamos Puente',
+        subtitle: 'Portal institucional de donaciones y proyectos comunitarios',
+        tier: 3,
+        category: 'fullstack',
+        impactMetric: '🤝 Trazabilidad de Proyectos · Portal Institucional',
+        contextNote: 'Canal digital transparente para captación de fondos y seguimiento de impacto social.',
+        techStack: ['React', 'Bootstrap 5', 'Node.js', 'Express', 'Netlify'],
+        image: seamospuente,
+        website: 'https://seamospuente.netlify.app/',
+        github: 'https://github.com/romeraugustoo/seamospuente.git',
+        solutionRoute: '/solution/seamospuente',
+        description: 'Portal web para visibilización de causas comunitarias, captación de voluntarios e integración con pasarelas de donación.'
+    },
+
+    // ==========================================
+    // SECCIÓN 2: PROYECTOS PRIVADOS / EN DESARROLLO
+    // ==========================================
     {
         id: 'nexus-shop',
         title: 'NEXUS-Shop & Servidor Microservicios',
@@ -87,24 +183,22 @@ export const projectsData = [
         solutionRoute: '/solution/prestamo',
         description: 'Plataforma FinTech para cálculo automatizado de cuadros de marcha financiera, validación de ingresos y análisis predictivo de riesgo crediticio.'
     },
-
-    // ==========================================
-    // TIER 2: HIGH-IMPACT ENTERPRISE & TOOLS
-    // ==========================================
     {
-        id: 'mimusica',
-        title: 'Mi Música Organizada',
-        subtitle: 'Automatizador multimedia local, reproductor de audio y catalogador ID3 offline',
-        tier: 2,
-        category: 'fullstack',
-        impactMetric: '🎵 $0 Infra Cloud · Procesamiento Local Asíncrono',
-        contextNote: 'Procesamiento de librerías locales no bloqueante mediante WebSockets sin costos de servidores en la nube.',
-        techStack: ['Python 3.13', 'FastAPI', 'WebSockets', 'Mutagen ID3', 'FFmpeg', 'PyInstaller'],
-        image: mimusica,
-        website: 'https://mimusicaorganizada.netlify.app/',
-        github: 'https://github.com/romeraugustoo/myorganizedsound',
-        solutionRoute: '/solution/mimusica',
-        description: 'Aplicación para organización automática, catalogación y streaming de librerías de audio 100% local. Implementa backend asíncrono con FastAPI, telemetría bidireccional por WebSockets, inyección de metadatos ID3 y arquitectura zero-cloud.'
+        id: 'loopai',
+        title: 'LoopAI — Orquestación de Cómputo Concurrente [Confidencial]',
+        subtitle: 'Arquitectura distribuida de procesamiento asíncrono con WebSockets y benchmarking',
+        tier: 1,
+        featured: true,
+        isProtected: true,
+        category: 'ai-agents',
+        impactMetric: '⚡ Concurrencia Asíncrona · <200ms Latencia en Streaming',
+        contextNote: 'Pipeline diseñado para procesamiento continuo de eventos sin bloqueo de hilos de ejecución.',
+        techStack: ['Python', 'Rust (WASM)', 'WebSockets', 'PostgreSQL', 'Docker', 'Benchmarking'],
+        image: portfolio,
+        website: '',
+        github: '#',
+        solutionRoute: '/solution/loopai',
+        description: 'Plataforma confidencial de alta eficiencia para orquestación de tareas computacionales complejas, evaluación de latencia en tiempo real y ejecución asíncrona optimizada.'
     },
     {
         id: 'educabot-3d',
@@ -122,21 +216,6 @@ export const projectsData = [
         description: 'Simulador 3D en tiempo real para programación de robots educativos con detección de colisiones y renderizado acelerado por hardware.'
     },
     {
-        id: 'tslc',
-        title: 'Transporte Santa Lucía (TSLC)',
-        subtitle: 'Sistema ERP de logística y trazabilidad de flota interurbana',
-        tier: 2,
-        category: 'fullstack',
-        impactMetric: '🚛 Trazabilidad Operativa · Java Spring Boot Enterprise',
-        contextNote: 'Modelado C4 integral para despacho de unidades, control de mantenimiento y roles administrativos.',
-        techStack: ['Java', 'Spring Boot', 'MySQL', 'Bootstrap 5', 'Hibernate', 'Docker'],
-        image: tslc,
-        website: 'https://transportesantalucia.netlify.app/',
-        github: '#',
-        solutionRoute: '/solution/tslc',
-        description: 'Plataforma integral de gestión de transporte de pasajeros, control de despachos y administración de personal con arquitectura enterprise.'
-    },
-    {
         id: 'intercalador-pdf',
         title: 'Intercalador Cut & Stack PDF',
         subtitle: 'Herramienta de imposición editorial y maquetación para impresión dúplex',
@@ -151,10 +230,6 @@ export const projectsData = [
         solutionRoute: '/solution/intercalador',
         description: 'Software de automatización editorial para conversión e imposición de pliegos de libros y cuadernillos. Implementa algoritmos de corte horizontal al centro (Cut & Stack) y reordenamiento dúplex matemático para encuadernación directa.'
     },
-
-    // ==========================================
-    // TIER 3: CLIENT WORK & SPECIALIZED UTILITIES
-    // ==========================================
     {
         id: 'relicario',
         title: 'Relicario — Precision Print & Bézier Engine',
@@ -189,36 +264,6 @@ export const projectsData = [
         description: 'Plataforma de asistencia docente para planificación curricular y generación de contenido pedagógico estructurado.'
     },
     {
-        id: 'seamospuente',
-        title: 'ONG Seamos Puente',
-        subtitle: 'Portal institucional de donaciones y proyectos comunitarios',
-        tier: 3,
-        category: 'fullstack',
-        impactMetric: '🤝 Trazabilidad de Proyectos · Portal Institucional',
-        contextNote: 'Canal digital transparente para captación de fondos y seguimiento de impacto social.',
-        techStack: ['React', 'Bootstrap 5', 'Node.js', 'Express', 'Netlify'],
-        image: seamospuente,
-        website: 'https://seamospuente.netlify.app/',
-        github: 'https://github.com/romeraugustoo/seamospuente.git',
-        solutionRoute: '/solution/seamospuente',
-        description: 'Portal web para visibilización de causas comunitarias, captación de voluntarios e integración con pasarelas de donación.'
-    },
-    {
-        id: 'rapiburger',
-        title: 'RapiBurger E-Commerce',
-        subtitle: 'Sistema gastronómico de pedidos con carrito en tiempo real y panel de stock',
-        tier: 3,
-        category: 'fullstack',
-        impactMetric: '🍔 Control de Comandas & Stock · Stack React + Node',
-        contextNote: 'Arquitectura completa con catálogo dinámico, persistencia en MongoDB y gestión de pedidos.',
-        techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT Auth'],
-        image: rapiburger,
-        website: 'https://rapiburger.netlify.app/',
-        github: 'https://github.com/Augustoromera/Group-3-proyecto-final-Rolling-Code',
-        solutionRoute: '/solution/rapiburguer',
-        description: 'Solución e-commerce para restaurantes con catálogo dinámico, gestión de comandas y panel administrativo con control de stock.'
-    },
-    {
         id: 'bar-app',
         title: 'Bar Management Full-Stack SaaS',
         subtitle: 'Sistema desacoplado de digitalización para bares con TPV Táctil, Menú QR y roles RBAC',
@@ -249,22 +294,6 @@ export const projectsData = [
         description: 'Pipeline de alta eficiencia para conversión ultrarrápida de audio y video a texto usando modelos Whisper optimizados con CTranslate2 y filtrado VAD anti-silencios. Genera simultáneamente transcripciones limpias (.txt), subtítulos sincronizados (.srt) y subtítulos web (.vtt), ejecutable localmente o en Google Colab con aceleración GPU.'
     },
     {
-        id: 'taller-espana',
-        title: 'España Diesel — Taller de Inyección',
-        subtitle: 'Plataforma de diagnóstico interactivo, catálogo de 6 servicios especializados y Máximo SEO',
-        tier: 3,
-        category: 'fullstack',
-        impactMetric: '⚡ Diagnóstico Interactivo de Fallas · Schema.org Local SEO',
-        contextNote: 'Estructuración semántica completa con JSON-LD y selector dinámico de fallas mecánicas.',
-        techStack: ['React 19', 'Vite', 'Local SEO Schema.org', 'WhatsApp API', 'Netlify Edge'],
-        image: espanaImg,
-        website: 'https://tallerconconcepcion.netlify.app/',
-        hasCustomScreenshot: true,
-        github: 'https://github.com/romeraugustoo',
-        solutionRoute: '/solution/taller-espana',
-        description: 'Plataforma comercial y técnica con selector interactivo de síntomas en cuadrícula móvil 2x3, catálogo simétrico de 6 servicios diésel/nafta y arquitectura de Máximo SEO Local.'
-    },
-    {
         id: 'cartas-poker',
         title: 'Custom Deck & Card Design Studio',
         subtitle: 'Motor de diseño, maquetación e imposición para barajas y naipes personalizados desde cero',
@@ -293,39 +322,6 @@ export const projectsData = [
         github: 'https://github.com/romeraugustoo',
         solutionRoute: '/solution/gemini',
         description: 'Plataforma modular para personalizar y orquestar chatbots con arquitectura BYOK (Bring Your Own Key), permitiendo a cada usuario conectar de forma segura sus propias credenciales de IA (Gemini, OpenAI, Claude). Incluye configuración de personalidades, prompts del sistema, persistencia local cifrada y respuestas en streaming sin vendor lock-in.'
-    },
-    {
-        id: 'portfolio-v1',
-        title: 'Portafolio Augusto v1.0 (Edición 2024)',
-        subtitle: 'Diseño interactivo con avatar reactivo, modo oscuro/claro y selector dinámico de paletas',
-        tier: 2,
-        category: 'creative-3d',
-        impactMetric: '🎨 Avatar Interactivo & Modos Dinámicos · SPA React 18',
-        contextNote: 'Desarrollo enfocado en animaciones responsivas, transiciones de tema y tarjetas interactivas novedosas para 2024.',
-        techStack: ['React 18', 'Vite', 'Context API', 'Bootstrap 5', 'CSS Keyframes', 'ScrollReveal'],
-        image: portfolio,
-        website: 'https://augustoromerav1.netlify.app/',
-        hasCustomScreenshot: true,
-        github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend/tree/main',
-        solutionRoute: '/solution/portfolio-v1',
-        description: 'Primera iteración interactiva del portafolio: implementa avatar 2D con rigging de parpadeo, sistema de temas multi-paleta en tiempo real, efectos 3D en tarjetas y diseño responsivo adaptado para 2024.'
-    },
-    {
-        id: 'portfolio',
-        title: 'Portafolio Augusto v2.0 — Metamorfosis Tri-Modo',
-        subtitle: 'Arquitectura SPA con 3 Modos Reactivos: Desarrollador & CTO, Consola Linux CLI & Estudio 3D',
-        tier: 1,
-        featured: true,
-        category: 'creative-3d',
-        impactMetric: '🔮 3 Modos de Vista Reactivos · 60-144 FPS WebGL & Consola CLI',
-        contextNote: 'Arquitectura desacoplada en React 18 con renderizado condicional optimizado y cero dependencias pesadas innecesarias.',
-        techStack: ['React 18', 'Vite', 'Three.js / Canvas', 'Clean Architecture', 'Netlify Edge', 'CSS 3D Rigging'],
-        image: portfolioV2,
-        website: 'https://augustoromera.netlify.app/',
-        hasCustomScreenshot: true,
-        github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend/tree/v2.0',
-        solutionRoute: '/solution/portfolio',
-        description: 'Frontend reactivo de alta gama con metamorfosis instantánea entre 3 personalidades de ingeniería: Modo Ejecutivo CTO, Consola Linux CLI interactiva con comandos de kernel, y Estudio Creativo 3D con aceleración gráfica.'
     }
 ];
 

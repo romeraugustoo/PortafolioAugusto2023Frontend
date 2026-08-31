@@ -38,9 +38,16 @@ const CreativeModeView = () => {
         });
     };
 
-    const filteredProjects = selectedCategory === 'all'
+    const filteredProjects = (selectedCategory === 'all'
         ? projectsData
-        : projectsData.filter(p => p.category === selectedCategory);
+        : projectsData.filter(p => p.category === selectedCategory)
+    ).slice().sort((a, b) => {
+        const aAvailable = Boolean(a.website);
+        const bAvailable = Boolean(b.website);
+        if (aAvailable && !bAvailable) return -1;
+        if (!aAvailable && bAvailable) return 1;
+        return (a.tier || 3) - (b.tier || 3);
+    });
 
     return (
         <div className="creative-mode-view" style={{ position: 'relative', minHeight: '100vh' }}>
