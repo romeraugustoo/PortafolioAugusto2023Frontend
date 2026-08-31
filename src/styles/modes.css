@@ -243,7 +243,7 @@
 @media (max-width: 991px) {
   .creative-hero-section {
     min-height: auto;
-    padding-top: calc(64px + 1.25rem);
+    padding-top: calc(64px + 1.75rem);
     padding-bottom: 2rem;
   }
 
@@ -2977,16 +2977,17 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     justify-content: center;
   }
 
-  /* CTO Mode Mobile Refinements: Descuenta Navbar Fija (64px) */
+  /* CTO Mode Mobile Refinements: Inicio estricto debajo de la navbar fija */
   .cto-hero-section {
     min-height: calc(100dvh - 64px) !important;
-    padding-top: calc(64px + 1.25rem) !important;
-    padding-bottom: 1.5rem !important;
+    padding-top: calc(64px + 1.75rem) !important;
+    padding-bottom: 2rem !important;
+    justify-content: flex-start !important;
   }
   .cto-hero-h1 {
-    font-size: 1.6rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.6rem !important;
+    font-size: 1.55rem !important;
+    line-height: 1.22 !important;
+    margin-bottom: 0.65rem !important;
   }
   .cto-hero-lead {
     margin: 0 0 1.25rem 0 !important;
