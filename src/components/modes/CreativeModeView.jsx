@@ -57,9 +57,9 @@ const CreativeModeView = () => {
                     <div className="container">
                         <div className="row align-items-center justify-content-between g-4 g-lg-5">
                             
-                            {/* Scroll 1 (Mobile / Desktop Left): Heading & Value Proposition */}
-                            <div className="col-12 col-lg-7 text-start creative-hero-left-col">
-                                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
+                            {/* Scroll 1 (Mobile / Desktop Left): Heading & Value Proposition (Centered on Mobile) */}
+                            <div className="col-12 col-lg-7 text-center text-lg-start creative-hero-left-col">
+                                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-4 mx-auto mx-lg-0" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
                                     <span className="pulse-indicator" style={{ background: '#a78bfa', boxShadow: '0 0 10px #a78bfa' }}></span>
                                     <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>
                                         ✨ MODO CREATIVE UI & 3D WEBGL ENGINE
@@ -70,11 +70,11 @@ const CreativeModeView = () => {
                                     Diseño de Interfaces & <span style={{ background: 'linear-gradient(135deg, #c4b5fd 0%, #60a5fa 50%, #f472b6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline-block' }}>Experiencias 3D</span>
                                 </h1>
 
-                                <p className="creative-hero-lead" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
+                                <p className="creative-hero-lead mx-auto mx-lg-0" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
                                     Exploración visual con aceleración gráfica en el navegador, micro-interacciones cinematográficas y arquitecturas de frontend modernas en React 18.
                                 </p>
 
-                                <div className="d-flex align-items-center gap-3 flex-wrap mt-2">
+                                <div className="creative-cta-group d-flex align-items-center justify-content-center justify-content-lg-start gap-3 flex-wrap mt-2">
                                     <a href="#portfolio" className="btn btn-primary px-4 py-3 fw-bold" style={{ background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)', border: 'none', borderRadius: '14px', boxShadow: '0 8px 30px rgba(139, 92, 246, 0.4)' }}>
                                         <i className="fas fa-cubes me-2"></i>
                                         Ver Proyectos 3D & Web
