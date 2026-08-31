@@ -235,7 +235,7 @@ const CyberModeView = () => {
         setHistory(prev => [
             ...prev,
             { type: 'warn', text: '[>>] Secuencia acelerada por el operador. Volcando veredicto final...' },
-            ...MOTOE6S_STREAM_STEPS.map(s => ({ type: s.type, text: s.text, url: s.url }))
+            ...MOTOE6S_STREAM_STEPS.map(s => ({ ...s }))
         ]);
         setIsStreaming(false);
         setStreamProgress(100);
@@ -376,7 +376,7 @@ const CyberModeView = () => {
             MOTOE6S_STREAM_STEPS.forEach((step, idx) => {
                 accumulatedDelay += step.delay;
                 const timer = setTimeout(() => {
-                    setHistory(prev => [...prev, { type: step.type, text: step.text, url: step.url }]);
+                    setHistory(prev => [...prev, { ...step }]);
                     setStreamProgress(Math.round(((idx + 1) / totalSteps) * 100));
 
                     if (idx === totalSteps - 1) {
@@ -612,9 +612,10 @@ const CyberModeView = () => {
                             return (
                                 <div key={idx} className="terminal-log-line line-cta my-3">
                                     <RouterLink 
-                                        to={line.internalRoute || line.url} 
+                                        to={line.internalRoute || line.url || '/solution/motoe6s'} 
                                         className="btn-terminal-cta"
-                                        title="Abrir Caso de Estudio Completo"
+                                        onClick={(e) => e.stopPropagation()}
+                                        title="Abrir Caso de Estudio Completo (Moto E6s)"
                                     >
                                         <i className="fas fa-file-code me-2"></i>
                                         <span>{line.text}</span>
