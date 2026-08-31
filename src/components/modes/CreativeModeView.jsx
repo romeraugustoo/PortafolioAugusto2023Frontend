@@ -135,7 +135,7 @@ const CreativeModeView = () => {
                                 </div>
 
                                 {/* 2. Abajo: Controlador / Dock de Paletas y Métricas */}
-                                <div className="creative-avatar-dock-card mt-3">
+                                <div className="creative-avatar-dock-card mt-2">
                                     {/* 1. Selector de 6 Paletas */}
                                     <div className="dock-swatches-header d-flex align-items-center justify-content-between mb-2">
                                         <span className="dock-swatches-title">

@@ -203,11 +203,13 @@
    CREATIVE HERO SECTION & RESPONSIVE SCROLL FLOW (MOBILE 1st & 2nd SCROLL)
    ========================================================================== */
 .creative-hero-section {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 64px);
   display: flex;
   align-items: center;
-  padding-top: clamp(4.5rem, 8vh, 6.5rem);
-  padding-bottom: clamp(2.5rem, 5vh, 4.5rem);
+  justify-content: center;
+  padding-top: calc(64px + 0.5rem);
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
 }
 
 .creative-hero-title {
@@ -241,9 +243,25 @@
   width: 100%;
 }
 
+.creative-avatar-col .cto-avatar-frame {
+  margin: 0 auto 0.6rem auto;
+}
+
 .creative-avatar-col .cto-avatar-content-wrap {
-  width: clamp(170px, 15vw, 215px);
-  height: clamp(170px, 15vw, 215px);
+  width: clamp(120px, 10vw, 145px);
+  height: clamp(120px, 10vw, 145px);
+}
+
+.creative-avatar-col .cto-avatar-hint-pill {
+  top: -10px;
+  font-size: 0.65rem;
+  padding: 0.18rem 0.6rem;
+}
+
+.creative-avatar-col .cto-avatar-badge {
+  bottom: -10px;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.65rem;
 }
 
 /* Mobile Viewport Adaptation: Scroll 1 (Hero Text) & Scroll 2 (Character Spotlight) */
@@ -321,14 +339,14 @@
    CREATIVE AVATAR COMBINED DOCK CARD (SWATCHES + METRICS + BADGES)
    ========================================================================== */
 .creative-avatar-dock-card {
-  background: rgba(15, 23, 42, 0.82);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
-  padding: 0.85rem 1rem;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.15);
-  max-width: 430px;
+  border-radius: 14px;
+  padding: 0.65rem 0.85rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.15);
+  max-width: 390px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -341,15 +359,16 @@
 }
 
 .dock-swatches-header {
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  margin-bottom: 0.25rem !important;
 }
 .dock-swatches-title {
   color: #e2e8f0;
 }
 .dock-active-palette-name {
   font-weight: 700;
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
 }
@@ -358,15 +377,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.3rem;
+  gap: 0.25rem;
+  margin-bottom: 0.3rem !important;
 }
 
 .dock-swatch-btn {
   background: rgba(30, 41, 59, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
-  width: 27px;
-  height: 27px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -376,8 +396,8 @@
 }
 
 .dock-swatch-btn .swatch-circle {
-  width: 13px;
-  height: 13px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   display: block;
   transition: transform 0.2s ease;
@@ -398,37 +418,38 @@
 .dock-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.35rem;
+  gap: 0.25rem;
+  margin-bottom: 0.3rem !important;
 }
 
 .dock-metric-item {
   background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 9px;
-  padding: 0.42rem 0.35rem;
+  border-radius: 7px;
+  padding: 0.3rem 0.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .dock-metric-item .metric-icon {
-  font-size: 0.85rem;
+  font-size: 0.76rem;
 }
 
 .dock-metric-item .metric-info strong {
   display: block;
-  font-size: 0.74rem;
+  font-size: 0.70rem;
   color: #ffffff;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .dock-metric-item .metric-info small {
   display: block;
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   color: #94a3b8;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .dock-tech-badges {
@@ -436,17 +457,18 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.2rem;
+  margin-bottom: 0.25rem !important;
 }
 
 .dock-badge {
-  font-size: 0.64rem;
+  font-size: 0.60rem;
   font-weight: 600;
   color: #e2e8f0;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  padding: 0.18rem 0.42rem;
+  border-radius: 5px;
+  padding: 0.14rem 0.38rem;
 }
 
 .dock-private-projects-notice {
