@@ -273,14 +273,18 @@
   }
 
   .creative-hero-left-col {
+    min-height: calc(100svh - 64px) !important;
     min-height: calc(100dvh - 64px) !important;
+    min-height: calc(100vh - 64px) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
-    padding-top: calc(64px + 1rem) !important;
+    padding-top: calc(64px + 1.25rem) !important;
     padding-bottom: 2rem !important;
+    margin-bottom: 3.5rem !important;
+    box-sizing: border-box !important;
   }
 
   .creative-hero-left-col .creative-hero-lead {
@@ -295,12 +299,14 @@
   }
 
   .creative-avatar-col {
+    min-height: calc(100svh - 64px) !important;
     min-height: calc(100dvh - 64px) !important;
+    min-height: calc(100vh - 64px) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 3.5rem 0.5rem 2rem 0.5rem !important;
+    padding: 3rem 0.5rem 2rem 0.5rem !important;
     margin-top: 2rem !important;
     border-top: none !important;
     box-sizing: border-box !important;
@@ -308,8 +314,8 @@
   }
 
   .creative-avatar-col .cto-avatar-content-wrap {
-    width: clamp(210px, 58vw, 270px) !important;
-    height: clamp(210px, 58vw, 270px) !important;
+    width: clamp(200px, 55vw, 250px) !important;
+    height: clamp(200px, 55vw, 250px) !important;
   }
 
   .creative-dock-col {
@@ -2997,11 +3003,13 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 @media (max-width: 768px) {
   /* Snap-like Full Viewport Blocks in CTO Mode (Except Hero which flows naturally from top) */
   .cto-mode-view section:not(.cto-hero-section) {
+    min-height: calc(100svh - 64px) !important;
     min-height: calc(100dvh - 64px) !important;
+    min-height: calc(100vh - 64px) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    padding: 1.5rem 0.5rem !important;
+    padding: 2rem 0.5rem !important;
     box-sizing: border-box !important;
     scroll-margin-top: 64px !important;
   }
@@ -3032,45 +3040,13 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     width: calc(100% - 24px) !important;
     max-width: 380px !important;
     margin: 1.25rem auto 0 auto !important;
-    padding: 1rem 0.85rem !important;
-    box-sizing: border-box !important;
-    border-radius: 16px !important;
   }
 
-  /* Contact Showcase on Mobile: Descuenta navbar y compacta tarjeta */
-  .contact-showcase-section {
-    padding: 2.5rem 0 !important;
-  }
-  .contact-hero-card {
-    padding: 1.35rem 1.1rem !important;
-    border-radius: 16px !important;
-    margin-bottom: 1.5rem !important;
-  }
-  .contact-status-pill {
-    font-size: 0.72rem !important;
-    padding: 0.25rem 0.65rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .contact-hero-title {
-    font-size: 1.15rem !important;
-    line-height: 1.35 !important;
-    margin: 0.5rem 0 !important;
-  }
-  .contact-hero-desc {
-    font-size: 0.82rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 0.75rem !important;
-  }
-  .contact-form-card {
-    padding: 1.25rem 1rem !important;
-    border-radius: 16px !important;
-  }
-
-  .contact-cards-grid {
-    grid-template-columns: 1fr;
-  }
+  /* Contact Showcase Unified Clean Actions */
   .contact-main-buttons {
+    display: flex;
     flex-direction: column;
+    gap: 0.75rem;
     width: 100%;
   }
   .contact-main-buttons .btn-cta-linkedin,
@@ -3082,21 +3058,26 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 
   /* CTO Mode Mobile Refinements: Inicio estricto debajo de la navbar fija */
   .cto-hero-section {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-height: calc(100svh - 64px) !important;
     min-height: calc(100dvh - 64px) !important;
-    padding-top: calc(64px + 2.5rem) !important;
+    min-height: calc(100vh - 64px) !important;
+    padding-top: calc(64px + 1.25rem) !important;
     padding-bottom: 2rem !important;
+    margin-bottom: 3.5rem !important;
     box-sizing: border-box !important;
   }
   .cto-hero-h1 {
-    font-size: 1.55rem !important;
-    line-height: 1.22 !important;
-    margin-bottom: 0.65rem !important;
+    font-size: 1.48rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
   }
   .cto-hero-lead {
-    margin: 0 0 1.25rem 0 !important;
-    font-size: 0.86rem !important;
-    line-height: 1.45 !important;
+    margin: 0 0 1rem 0 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.42 !important;
   }
   .cto-avatar-frame {
     margin: 1.5rem auto 0 auto;
@@ -3107,19 +3088,24 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
   }
   .cto-metrics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.65rem !important;
-    margin-top: 1rem !important;
-    padding-top: 0.75rem !important;
+    gap: 0.5rem !important;
+    margin-top: 0.85rem !important;
+    padding-top: 0.5rem !important;
   }
   .cto-metric-box {
     background: rgba(15, 23, 42, 0.75);
     border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 0.75rem 0.65rem !important;
+    border-radius: 12px;
+    padding: 0.55rem 0.5rem !important;
     text-align: center;
   }
   .cto-metric-box .metric-val {
-    font-size: 1.25rem !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  .cto-metric-box .metric-lbl {
+    font-size: 0.62rem !important;
+    line-height: 1.2 !important;
   }
   /* Unified Mobile Typography Hierarchy (Harmonious Type Scale) */
   .section-header {
