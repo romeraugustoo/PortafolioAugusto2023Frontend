@@ -1242,7 +1242,7 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 
 .cto-avatar-badge {
   position: absolute;
-  bottom: 0px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(11, 14, 20, 0.95);
