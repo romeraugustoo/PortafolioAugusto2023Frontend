@@ -93,6 +93,37 @@ const ContactShowcase = () => {
                     </p>
                 </div>
 
+                {/* Prominent CV Download Banner Above Contact Boxes */}
+                <div 
+                    className="contact-cv-card contact-cv-banner p-3 p-md-4 rounded-4 mb-4" 
+                    onClick={handleDownload}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && handleDownload(e)}
+                >
+                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                        <div className="d-flex align-items-center gap-3">
+                            <div className="contact-channel-icon flex-shrink-0" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#f87171', width: '46px', height: '46px', fontSize: '1.35rem' }}>
+                                <i className="fas fa-file-pdf"></i>
+                            </div>
+                            <div>
+                                <div className="d-flex align-items-center gap-2 flex-wrap">
+                                    <h4 className="text-white mb-0 font-heading" style={{ fontSize: '1.18rem' }}>
+                                        Curriculum Vitae Profesional
+                                    </h4>
+                                    <span className="contact-pdf-badge">PDF · 330 KB</span>
+                                </div>
+                                <p className="contact-cv-desc mb-0 mt-1" style={{ fontSize: '0.84rem' }}>
+                                    Perfil profesional, formación en UTN-FRT, experiencia técnica y detalle de proyectos.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="btn btn-outline-light btn-sm fw-bold px-3 py-2 flex-shrink-0">
+                            <i className="fas fa-download me-2"></i> Descargar CV
+                        </div>
+                    </div>
+                </div>
+
                 {/* Asymmetric 60/40 Hub: Form Left (60%) | Direct Channels Right (40%) */}
                 <div className="row g-4 align-items-stretch">
                     
@@ -100,7 +131,7 @@ const ContactShowcase = () => {
                     <div className="col-12 col-lg-7">
                         <div className="contact-form-card h-100 p-4 p-md-5">
                             <div className="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
-                                <h3 className="text-white font-heading mb-0" style={{ fontSize: '1.4rem' }}>
+                                <h3 className="text-white font-heading mb-0" style={{ fontSize: '1.35rem' }}>
                                     <i className="fas fa-paper-plane text-primary me-2"></i>
                                     Enviar Mensaje Directo
                                 </h3>
@@ -144,11 +175,11 @@ const ContactShowcase = () => {
                                             onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                                         ></textarea>
                                     </div>
-                                    <div className="col-12 text-end mt-4">
+                                    <div className="col-12 text-end mt-3">
                                         <button 
                                             type="submit" 
                                             disabled={isSubmitting}
-                                            className="btn btn-primary px-4 py-3 fw-bold w-100 w-sm-auto"
+                                            className="btn btn-primary px-4 py-2 fw-bold w-100 w-sm-auto"
                                         >
                                             {isSubmitting ? (
                                                 <span><i className="fas fa-spinner fa-spin me-2"></i>Enviando...</span>
@@ -162,34 +193,10 @@ const ContactShowcase = () => {
                         </div>
                     </div>
 
-                    {/* Right Column (40%): Direct Channels & CV */}
+                    {/* Right Column (40%): Direct Channels */}
                     <div className="col-12 col-lg-5">
                         <div className="contact-channels-wrapper d-flex flex-column gap-3 h-100">
                             
-                            {/* Prominent CV Download Card */}
-                            <div 
-                                className="contact-cv-card p-4 rounded-4" 
-                                onClick={handleDownload}
-                                role="button"
-                                tabIndex={0}
-                                onKeyDown={(e) => e.key === 'Enter' && handleDownload(e)}
-                            >
-                                <div className="d-flex align-items-center justify-content-end mb-2">
-                                    <span className="contact-pdf-badge">
-                                        <i className="fas fa-file-pdf text-danger me-1"></i> PDF · 330 KB
-                                    </span>
-                                </div>
-                                <h4 className="text-white mb-2 font-heading" style={{ fontSize: '1.25rem' }}>
-                                    Descargar Curriculum Vitae
-                                </h4>
-                                <p className="contact-cv-desc mb-3">
-                                    Perfil profesional, formación en UTN-FRT, experiencia técnica y detalle de proyectos.
-                                </p>
-                                <div className="btn btn-outline-light btn-sm w-100 fw-bold py-2">
-                                    <i className="fas fa-download me-2"></i> Descargar PDF
-                                </div>
-                            </div>
-
                             {/* Direct Network Links */}
                             <a 
                                 href="https://www.linkedin.com/in/augusto-romera" 
