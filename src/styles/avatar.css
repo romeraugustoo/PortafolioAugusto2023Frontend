@@ -31,7 +31,7 @@
   }
 }
 
-/* Personaje centrado con zoom óptimo para mostrar cabello completo y proporciones simétricas */
+/* Personaje centrado con zoom óptimo (25% zoom negativo) para lucir cabello, cuello y remera completa */
 .box {
   position: absolute;
   top: 50%;
@@ -40,29 +40,29 @@
   height: 1000px;
   background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
   border-radius: 50%;
-  transform: translate(-50%, -45%) scale(0.22);
+  transform: translate(-50%, -46%) scale(0.18);
   transform-origin: center center;
   animation: avatarBreathe 5s ease-in-out infinite alternate;
 }
 
 @supports (width: 100cqi) {
   .box {
-    transform: translate(-50%, -45%) scale(calc(100cqi / 1000 * 0.86));
+    transform: translate(-50%, -46%) scale(calc(100cqi / 1000 * 0.68));
   }
   @keyframes avatarBreathe {
     0% {
-      transform: translate(-50%, -45%) scale(calc(100cqi / 1000 * 0.86));
+      transform: translate(-50%, -46%) scale(calc(100cqi / 1000 * 0.68));
     }
     100% {
-      transform: translate(-50%, -45.5%) scale(calc(100cqi / 1000 * 0.875));
+      transform: translate(-50%, -46.5%) scale(calc(100cqi / 1000 * 0.695));
     }
   }
 }
 
-/* En móviles, asegurar zoom negativo para que el cabello tenga margen superior idéntico a desktop */
+/* En móviles, zoom negativo del 25% para que la remera, hombros y cabello encajen con balance perfecto */
 @media (max-width: 991px) {
   .box {
-    transform: translate(-50%, -44%) scale(calc(100cqi / 1000 * 0.84)) !important;
+    transform: translate(-50%, -46%) scale(calc(100cqi / 1000 * 0.66)) !important;
   }
 }
 
