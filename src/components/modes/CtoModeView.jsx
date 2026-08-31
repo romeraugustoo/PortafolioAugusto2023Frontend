@@ -188,7 +188,7 @@ const CtoModeView = () => {
                                         onClick={(e) => { e.stopPropagation(); setMode(MODES.CYBER); }}
                                     >
                                         <i className="fas fa-terminal me-1"></i>
-                                        <span>&gt; Abrir Consola (CLI)</span>
+                                        <span>Abrir Consola</span>
                                         <i className="fas fa-arrow-right ms-1 arrow-icon"></i>
                                     </button>
                                 </div>
@@ -206,7 +206,7 @@ const CtoModeView = () => {
                             >
                                 <div className="gateway-card-header">
                                     <div className="gateway-icon-badge creative">
-                                        <i className="fas fa-cube"></i>
+                                        <i className="fas fa-magic"></i>
                                     </div>
                                     <span className="gateway-target-role">Founders &amp; UI/UX</span>
                                 </div>
@@ -240,7 +240,6 @@ const CtoModeView = () => {
                                         className="btn-gateway-action creative-btn"
                                         onClick={(e) => { e.stopPropagation(); setMode(MODES.CREATIVE); }}
                                     >
-                                        <i className="fas fa-cube me-1"></i>
                                         <span>✨ Abrir Estudio 3D</span>
                                         <i className="fas fa-arrow-right ms-1 arrow-icon"></i>
                                     </button>
