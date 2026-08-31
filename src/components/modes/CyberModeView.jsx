@@ -212,6 +212,7 @@ const CyberModeView = () => {
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [isStreaming, setIsStreaming] = useState(false);
     const [streamProgress, setStreamProgress] = useState(0);
+    const [isInputFocused, setIsInputFocused] = useState(false);
 
     const bottomRef = useRef(null);
     const inputRef = useRef(null);
@@ -550,19 +551,24 @@ const CyberModeView = () => {
                     </div>
                 </div>
 
-                {/* Suggested Chips Bar */}
-                <div className="cyber-chips-bar">
-                    <span className="chips-label">Comandos rápidos:</span>
-                    {SUGGESTED_CHIPS.map((cmd, idx) => (
-                        <button
-                            key={idx}
-                            type="button"
-                            className="cyber-chip-btn"
-                            onClick={() => executeCommand(cmd)}
-                        >
-                            <code>{cmd}</code>
-                        </button>
-                    ))}
+                {/* Suggested Chips Bar with Horizontal Scroll Invitation */}
+                <div className="cyber-chips-wrapper">
+                    <div className="cyber-chips-bar">
+                        <span className="chips-label">Comandos rápidos:</span>
+                        {SUGGESTED_CHIPS.map((cmd, idx) => (
+                            <button
+                                key={idx}
+                                type="button"
+                                className="cyber-chip-btn"
+                                onClick={() => executeCommand(cmd)}
+                            >
+                                <code>{cmd}</code>
+                            </button>
+                        ))}
+                    </div>
+                    <div className="cyber-chips-scroll-hint" aria-hidden="true" title="Desliza para ver más comandos">
+                        <i className="fas fa-chevron-right scroll-hint-icon"></i>
+                    </div>
                 </div>
 
                 {/* Terminal Screen Body */}
@@ -680,7 +686,7 @@ const CyberModeView = () => {
                         </div>
                     )}
 
-                    <div className="cyber-input-form">
+                    <div className={`cyber-input-form ${!isInputFocused && !inputVal ? 'pulse-invitation' : ''}`}>
                         <span className="cyber-prompt-text">root@augusto-romera:~$</span>
                         <input
                             ref={inputRef}
@@ -689,8 +695,15 @@ const CyberModeView = () => {
                             value={inputVal}
                             onChange={handleInputChange}
                             onKeyDown={handleKeyDown}
-                            placeholder={isStreaming ? "Transmitiendo telemetría en vivo... (Presiona ESC para saltar)" : "Escribe un comando o '/' para sugerencias..."}
-                            autoFocus
+                            onFocus={() => setIsInputFocused(true)}
+                            onBlur={() => setIsInputFocused(false)}
+                            placeholder={
+                                isStreaming 
+                                    ? "Transmitiendo telemetría en vivo... (Presiona ESC para saltar)" 
+                                    : (isInputFocused 
+                                        ? "Escribe un comando o '/' para autocompletar..." 
+                                        : "👉 Toca aquí para escribir o usa los comandos rápidos de arriba...")
+                            }
                             spellCheck="false"
                             autoComplete="off"
                         />
