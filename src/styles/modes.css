@@ -1167,33 +1167,29 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 .cto-avatar-frame::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  aspect-ratio: 1 / 1;
+  inset: -10px;
   border-radius: 50%;
-  background: var(--dynamic-aura, conic-gradient(from 0deg, #3b82f6, #8b5cf6, #10b981, #3b82f6));
-  animation: rotateAura 20s linear infinite;
-  opacity: 0.6;
-  filter: blur(8px);
-  box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+  background: var(--dynamic-aura, conic-gradient(from 0deg, #3b82f6, #8b5cf6, #10b981, #06b6d4, #3b82f6));
+  animation: rotateAura 8s linear infinite;
+  opacity: 0.9;
+  filter: blur(10px);
+  box-shadow: 0 0 28px rgba(59, 130, 246, 0.6), 0 0 50px rgba(139, 92, 246, 0.35);
   will-change: transform;
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform: translateZ(0);
   z-index: 0;
   pointer-events: none;
   transition: opacity 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
 }
 
 .cto-avatar-frame.active-css-mode::before {
-  opacity: 0.85;
-  box-shadow: 0 0 32px rgba(139, 92, 246, 0.55);
-  animation: rotateAura 16s linear infinite;
+  opacity: 0.95;
+  box-shadow: 0 0 36px rgba(139, 92, 246, 0.7), 0 0 60px rgba(139, 92, 246, 0.45);
+  animation: rotateAura 6s linear infinite;
 }
 
 @keyframes rotateAura {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .cto-avatar-content-wrap {
