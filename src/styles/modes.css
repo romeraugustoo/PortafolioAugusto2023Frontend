@@ -235,19 +235,15 @@
 
 .creative-avatar-col {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .creative-avatar-col .cto-avatar-content-wrap {
-  width: clamp(170px, 14vw, 225px);
-  height: clamp(170px, 14vw, 225px);
-}
-
-.creative-dock-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: clamp(170px, 15vw, 215px);
+  height: clamp(170px, 15vw, 215px);
 }
 
 /* Mobile Viewport Adaptation: Scroll 1 (Hero Text) & Scroll 2 (Character Spotlight) */
@@ -332,7 +328,7 @@
   border-radius: 16px;
   padding: 0.85rem 1rem;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.15);
-  max-width: 360px;
+  max-width: 430px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;

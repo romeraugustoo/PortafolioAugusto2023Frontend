@@ -61,14 +61,14 @@ const CreativeModeView = () => {
                 
                 {/* Creative Hero (First Scroll: Intro & CTAs | Second Scroll on Mobile: Interactive Character) */}
                 <section id="home" className="creative-hero-section">
-                    <div className="container-fluid px-3 px-xl-5">
-                        <div className="row align-items-center justify-content-between g-3 g-xl-4 creative-panoramic-row">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-between g-4 g-lg-5">
                             
-                            {/* Columna 1 (Izquierda): Pitch & Llamada a la Acción */}
-                            <div className="col-12 col-lg-5 text-center text-lg-start creative-hero-left-col">
+                            {/* Columna Izquierda (50%): Pitch & Llamada a la Acción */}
+                            <div className="col-12 col-lg-6 text-center text-lg-start creative-hero-left-col">
                                 <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 mx-auto mx-lg-0" style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(139, 92, 246, 0.5)' }}>
                                     <span className="pulse-indicator" style={{ background: '#a78bfa', boxShadow: '0 0 10px #a78bfa' }}></span>
-                                    <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', fontWeight: 600 }}>
+                                    <span style={{ color: '#e9d5ff', fontFamily: 'var(--font-mono)', fontSize: '0.82rem', fontWeight: 600 }}>
                                         ✨ MODO CREATIVE UI & 3D WEBGL ENGINE
                                     </span>
                                 </div>
@@ -105,8 +105,10 @@ const CreativeModeView = () => {
                                 </div>
                             </div>
 
-                            {/* Columna 2 (Centro): Avatar Interactivo con Halo */}
-                            <div id="about" className="col-12 col-md-6 col-lg-3 text-center creative-avatar-col">
+                            {/* Columna Derecha (50%): Arriba Animación + Abajo Controlador de Paletas */}
+                            <div id="about" className="col-12 col-lg-6 creative-avatar-col d-flex flex-column align-items-center justify-content-center">
+                                
+                                {/* 1. Arriba: Animación de Avatar Interactivo */}
                                 <div 
                                     className="cto-avatar-frame active-css-mode"
                                     onClick={handleAvatarClick}
@@ -131,11 +133,9 @@ const CreativeModeView = () => {
                                         <span className="badge-role">Creative Frontend & 3D UI</span>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Columna 3 (Derecha): Controlador / Dock Compacto de Paletas y Métricas */}
-                            <div className="col-12 col-md-6 col-lg-4 creative-dock-col">
-                                <div className="creative-avatar-dock-card">
+                                {/* 2. Abajo: Controlador / Dock de Paletas y Métricas */}
+                                <div className="creative-avatar-dock-card mt-3">
                                     {/* 1. Selector de 6 Paletas */}
                                     <div className="dock-swatches-header d-flex align-items-center justify-content-between mb-2">
                                         <span className="dock-swatches-title">
@@ -203,6 +203,7 @@ const CreativeModeView = () => {
                                         Personaje vectorial interactivo programado con propiedades personalizadas de CSS y animación procedural.
                                     </p>
                                 </div>
+
                             </div>
 
                         </div>
