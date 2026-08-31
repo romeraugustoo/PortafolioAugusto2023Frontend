@@ -313,7 +313,7 @@ export const projectsData = [
     {
         id: 'portfolio',
         title: 'Portafolio Augusto v2.0 — Metamorfosis Tri-Modo',
-        subtitle: 'Arquitectura SPA con 3 Modos Reactivos: Desarrollador & CTO, Consola Cyber & Estudio 3D',
+        subtitle: 'Arquitectura SPA con 3 Modos Reactivos: Desarrollador & CTO, Consola Linux CLI & Estudio 3D',
         tier: 1,
         featured: true,
         category: 'creative-3d',
@@ -325,7 +325,7 @@ export const projectsData = [
         hasCustomScreenshot: true,
         github: 'https://github.com/Augustoromera/PortafolioAugusto2023Frontend/tree/v2.0',
         solutionRoute: '/solution/portfolio',
-        description: 'Frontend reactivo de alta gama con metamorfosis instantánea entre 3 personalidades de ingeniería: Modo Ejecutivo CTO, Consola Cyber interactiva con comandos de kernel, y Estudio Creativo 3D con aceleración gráfica.'
+        description: 'Frontend reactivo de alta gama con metamorfosis instantánea entre 3 personalidades de ingeniería: Modo Ejecutivo CTO, Consola Linux CLI interactiva con comandos de kernel, y Estudio Creativo 3D con aceleración gráfica.'
     }
 ];
 

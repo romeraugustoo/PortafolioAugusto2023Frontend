@@ -7,7 +7,7 @@ import curriculumPDF from '../../assets/files/Curriculum Vitae augusto.pdf';
 
 const INITIAL_LOGS = [
     { type: 'system', text: '========================================================================' },
-    { type: 'system', text: '🔒 AUGUSTO ROMERA — KERNEL TELEMETRY & SECURITY CONSOLE v2.0' },
+    { type: 'system', text: '🖥️ AUGUSTO ROMERA — LINUX TELEMETRY & DIAGNOSTIC CONSOLE v2.0' },
     { type: 'system', text: 'Arquitectura: ARM64 / x86_64 | Host: utn-frt-systems | Estado: ONLINE' },
     { type: 'system', text: 'Escribe "/" o un comando para ver sugerencias y autocompletado en vivo.' },
     { type: 'system', text: '========================================================================' },

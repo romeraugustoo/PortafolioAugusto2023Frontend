@@ -102,21 +102,21 @@ const CtoModeView = () => {
                                     <div className="gateway-icon-badge cyber">
                                         <i className="fas fa-terminal"></i>
                                     </div>
-                                    <span className="gateway-target-role">Para Tech Leads, Backend &amp; Ciberseguridad</span>
+                                    <span className="gateway-target-role">Para Tech Leads, Backend &amp; Linux/Sistemas</span>
                                 </div>
 
                                 <div className="gateway-card-body">
                                     <h3 className="gateway-title cyber-text">
-                                        Consola Forense &amp; Kernel Telemetry
+                                        Consola Linux &amp; Kernel Telemetry
                                     </h3>
                                     <p className="gateway-desc">
-                                        Entorno terminal interactivo estilo hacker. Simula en tiempo real la ejecución de comandos y procesos de bajo nivel (Bypass MT6765, Little Kernel) e inspecciona telemetría de auditorías y pipelines concurrentes.
+                                        Entorno interactivo estilo terminal Linux / POSIX Shell. Simula en tiempo real la ejecución de comandos y procesos de bajo nivel (Bypass MT6765, Little Kernel) e inspecciona telemetría de auditorías y pipelines concurrentes.
                                     </p>
 
                                     <ul className="gateway-feature-list">
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
-                                            <span>Simulación interactiva de comandos (<code>/help</code>, <code>/audit motoe6s</code>)</span>
+                                            <span>Simulación interactiva de comandos shell (<code>/help</code>, <code>/audit motoe6s</code>)</span>
                                         </li>
                                         <li>
                                             <i className="fas fa-check text-success me-2"></i>
@@ -135,7 +135,7 @@ const CtoModeView = () => {
                                         onClick={(e) => { e.stopPropagation(); setMode(MODES.CYBER); }}
                                     >
                                         <i className="fas fa-terminal me-2"></i>
-                                        <span>&gt; Activar Terminal Forense (CLI)</span>
+                                        <span>&gt; Abrir Consola Linux (CLI)</span>
                                         <i className="fas fa-arrow-right ms-2 arrow-icon"></i>
                                     </button>
                                 </div>

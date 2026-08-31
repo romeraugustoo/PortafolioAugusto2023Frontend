@@ -21,10 +21,10 @@ export const MODES_CONFIG = {
     },
     [MODES.CYBER]: {
         id: MODES.CYBER,
-        name: 'Low-Level / Ciberseguridad',
-        badge: '💻 Modo: Consola Forense & Low-Level',
-        subtitle: 'Auditoría de bajo nivel, protocolos de comunicación y telemetría de kernel',
-        tag: 'Terminal CLI Interactiva',
+        name: 'Consola Linux / Terminal CLI',
+        badge: '💻 Modo: Consola Linux & Kernel Telemetry',
+        subtitle: 'Auditoría de bajo nivel, entornos POSIX y telemetría de kernel en tiempo real',
+        tag: 'Terminal CLI Linux',
         colors: {
             primary: '#10b981',
             secondary: '#34d399',
