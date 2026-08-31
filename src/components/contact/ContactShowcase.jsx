@@ -126,10 +126,10 @@ const ContactShowcase = () => {
                                     e.stopPropagation();
                                     handleDownload(e);
                                 }}
+                                title="Descargar Curriculum Vitae en PDF"
                             >
-                                <i className="fas fa-download me-2"></i>
+                                <i className="fas fa-file-pdf me-2 text-danger"></i>
                                 <span>Descargar CV</span>
-                                <span className="cv-btn-ext ms-2">PDF</span>
                             </button>
                         </div>
                     </div>
