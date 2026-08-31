@@ -1148,15 +1148,16 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 /* Interactive Metamorph Avatar Frame */
 .cto-avatar-frame {
   position: relative;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 50%;
   padding: 6px;
   transition: transform 0.3s ease;
   margin: auto;
+  width: fit-content;
+  z-index: 2;
 }
 
 .cto-avatar-frame:hover {
@@ -1166,27 +1167,33 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
 .cto-avatar-frame::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--dynamic-aura, conic-gradient(from 0deg, #3b82f6, #8b5cf6, #10b981, #3b82f6));
-  animation: rotateAura 8s linear infinite;
+  animation: rotateAura 20s linear infinite;
   opacity: 0.6;
+  filter: blur(8px);
   box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate(-50%, -50%) rotate(0deg);
   z-index: 0;
+  pointer-events: none;
   transition: opacity 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
 }
 
 .cto-avatar-frame.active-css-mode::before {
-  opacity: 0.95;
-  box-shadow: 0 0 36px rgba(139, 92, 246, 0.65);
-  animation: rotateAura 4s linear infinite;
+  opacity: 0.85;
+  box-shadow: 0 0 32px rgba(139, 92, 246, 0.55);
+  animation: rotateAura 16s linear infinite;
 }
 
 @keyframes rotateAura {
-  0% { transform: rotate(0deg) translateZ(0); }
-  100% { transform: rotate(360deg) translateZ(0); }
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .cto-avatar-content-wrap {
@@ -3010,16 +3017,24 @@ html[data-portfolio-mode="cyber"] .swal2-timer-progress-bar {
     font-size: 1.25rem !important;
   }
   /* Unified Mobile Typography Hierarchy (Harmonious Type Scale) */
+  .section-header {
+    position: relative !important;
+    z-index: 5 !important;
+  }
   .section-title {
     font-size: 1.38rem !important;
     line-height: 1.25 !important;
     margin-bottom: 0.45rem !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
   .section-subtitle {
     font-size: 0.86rem !important;
     line-height: 1.5 !important;
     color: #94a3b8 !important;
     margin-bottom: 1.25rem !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
   .section-tag {
     font-size: 0.70rem !important;
