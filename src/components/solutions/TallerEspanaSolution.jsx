@@ -3,6 +3,7 @@ import { Container, Row, Col, Badge, Card, Table, Button } from 'react-bootstrap
 import '../../styles/bodyhome.css';
 import { useTheme } from '../../context/ThemeContext';
 import espanaImg from '../../assets/images/portfolio/españa.webp';
+import seoImg from '../../assets/images/portfolio/espana-seo.webp';
 
 const TallerEspanaSolution = () => {
     const { darkMode } = useTheme();
@@ -26,21 +27,21 @@ const TallerEspanaSolution = () => {
                         <Badge bg="success" className="p-2">WhatsApp Smart API</Badge>
                         <Badge bg="info" text="dark" className="p-2">Máximo SEO (Schema.org AutoRepair)</Badge>
                         <Badge bg="warning" text="dark" className="p-2">Mobile-First Grid 2x3</Badge>
-                        <Badge bg="danger" className="p-2">100/100 Lighthouse Performance</Badge>
+                        <Badge bg="danger" className="p-2">100/100 PageSpeed Perfection</Badge>
                         <Badge bg="dark" className="p-2">Netlify Edge Deploy</Badge>
-                        <Badge bg="secondary" className="p-2">Sitemap & Robots.txt Nativos</Badge>
+                        <Badge bg="secondary" className="p-2">Agentic Web 3/3</Badge>
                     </div>
 
                     <div className="mt-3 d-flex justify-content-center gap-3 flex-wrap">
                         <Button 
                             variant="success" 
                             size="lg" 
-                            href="https://tallerconconcepcion.netlify.app/" 
+                            href="https://dieselconcepcion.com.ar/" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="mb-2"
+                            className="mb-2 shadow"
                         >
-                            <i className="fas fa-external-link-alt me-2"></i> Ver Sitio en Producción
+                            <i className="fas fa-external-link-alt me-2"></i> Ver Sitio en Producción (dieselconcepcion.com.ar)
                         </Button>
                         <Button 
                             variant="outline-primary" 
@@ -74,8 +75,8 @@ const TallerEspanaSolution = () => {
                         <Col md={3} sm={6} className="mb-3">
                             <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} text-center p-3 h-100 shadow-sm`}>
                                 <Card.Body>
-                                    <h3 className="display-6 fw-bold text-info">&lt; 0.5s</h3>
-                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>Velocidad de Carga (Netlify Edge CDN)</p>
+                                    <h3 className="display-6 fw-bold text-info">&lt; 0.3s</h3>
+                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>Velocidad de Carga Real (Edge CDN)</p>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -83,7 +84,7 @@ const TallerEspanaSolution = () => {
                             <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} text-center p-3 h-100 shadow-sm`}>
                                 <Card.Body>
                                     <h3 className="display-6 fw-bold text-success">100 / 100</h3>
-                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>Lighthouse SEO & Performance</p>
+                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>PageSpeed Insights (Móvil Oficial)</p>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -98,12 +99,44 @@ const TallerEspanaSolution = () => {
                         <Col md={3} sm={6} className="mb-3">
                             <Card bg={darkMode ? "dark" : "light"} className={`border-${darkMode ? 'secondary' : 'dark'} text-center p-3 h-100 shadow-sm`}>
                                 <Card.Body>
-                                    <h3 className="display-6 fw-bold text-danger">$0 / mes</h3>
-                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>Costo Operativo de Infraestructura</p>
+                                    <h3 className="display-6 fw-bold text-danger">3 / 3</h3>
+                                    <p className={`mb-0 ${darkMode ? 'text-light' : 'text-muted'}`}>Navegación para Agentes IA (GEO)</p>
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
+                </section>
+
+                {/* Certificación Oficial PageSpeed Insights */}
+                <section className="mb-5">
+                    <Card bg={darkMode ? "dark" : "light"} className={`border-success p-4 shadow-lg`} style={{ borderWidth: '2px' }}>
+                        <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                            <div>
+                                <Badge bg="success" className="p-2 mb-2">⚡ Puntuación Perfecta Certificada</Badge>
+                                <h3 className="h4 theme-text-primary fw-bold mb-0">Google PageSpeed Insights: 100% en Todas las Categorías</h3>
+                            </div>
+                            <Button 
+                                variant="outline-success" 
+                                size="sm" 
+                                href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fdieselconcepcion.com.ar%2F" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                <i className="fas fa-check-circle me-1"></i> Verificar en Google en Vivo
+                            </Button>
+                        </div>
+                        <p className={`mb-4 ${darkMode ? 'text-light' : 'text-secondary'}`}>
+                            Auditoría oficial de Google Lighthouse en entorno móvil simulado (4G Lento en Moto G Power). La arquitectura logró la calificación máxima de <strong>100 en Rendimiento, 100 en Accesibilidad, 100 en Recomendaciones, 100 en SEO y 3/3 en Navegación con Agentes IA</strong> mediante Inlining de CSS Crítico, compresión Lanczos WebP de última generación y carga diferida modular con IntersectionObserver.
+                        </p>
+                        <div className="text-center p-2 rounded-3" style={{ background: darkMode ? '#0b0c10' : '#f8fafc', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                            <img 
+                                src={seoImg} 
+                                alt="Prueba de Rendimiento Google PageSpeed Insights 100/100 España Diesel" 
+                                className="img-fluid rounded-2 shadow" 
+                                style={{ width: '100%', maxHeight: '520px', objectFit: 'contain' }}
+                            />
+                        </div>
+                    </Card>
                 </section>
 
                 {/* 2. El Desafío de Ingeniería y la Solución */}
@@ -196,7 +229,7 @@ const TallerEspanaSolution = () => {
                             <strong>España Diesel</strong> demuestra cómo un análisis funcional enfocado en la reducción de fricción y el posicionamiento estratégico puede transformar un negocio tradicional en un canal de captación digital altamente eficiente, rentable y de costo de mantenimiento cero.
                         </p>
                         <div className="d-flex justify-content-end gap-2 mt-3">
-                            <Button variant="primary" href="https://tallerconconcepcion.netlify.app/" target="_blank" rel="noopener noreferrer">
+                            <Button variant="primary" href="https://dieselconcepcion.com.ar/" target="_blank" rel="noopener noreferrer">
                                 <i className="fas fa-wrench me-2"></i> Abrir España Diesel en Producción
                             </Button>
                         </div>

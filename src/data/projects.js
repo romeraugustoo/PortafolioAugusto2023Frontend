@@ -107,15 +107,15 @@ export const projectsData = [
         subtitle: 'Plataforma de diagnóstico interactivo, catálogo de 6 servicios especializados y Máximo SEO',
         tier: 3,
         category: 'fullstack',
-        impactMetric: '⚡ Diagnóstico Interactivo de Fallas · Schema.org Local SEO',
+        impactMetric: '⚡ 100/100 PageSpeed & SEO · Diagnóstico Interactivo',
         contextNote: 'Estructuración semántica completa con JSON-LD y selector dinámico de fallas mecánicas.',
         techStack: ['React 19', 'Vite', 'Local SEO Schema.org', 'WhatsApp API', 'Netlify Edge'],
         image: espanaImg,
-        website: 'https://tallerconconcepcion.netlify.app/',
+        website: 'https://dieselconcepcion.com.ar/',
         hasCustomScreenshot: true,
         github: 'https://github.com/romeraugustoo',
         solutionRoute: '/solution/taller-espana',
-        description: 'Plataforma comercial y técnica con selector interactivo de síntomas en cuadrícula móvil 2x3, catálogo simétrico de 6 servicios diésel/nafta y arquitectura de Máximo SEO Local.'
+        description: 'Plataforma comercial y técnica con selector interactivo de síntomas en cuadrícula móvil 2x3, catálogo simétrico de 6 servicios diésel/nafta y arquitectura de Máximo SEO Local certificada con 100/100 en PageSpeed.'
     },
     {
         id: 'rapiburger',
